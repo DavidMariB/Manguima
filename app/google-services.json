@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "78536690998",
+    "firebase_url": "https://testriotapi.firebaseio.com",
+    "project_id": "testriotapi",
+    "storage_bucket": "testriotapi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78536690998:android:9e013669f52b2287",
+        "android_client_info": {
+          "package_name": "com.dmb.testriotapi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78536690998-vmqvrma3vfe5fe61mjrnjfkccftp0oa5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZbKgOCqsBZfwV1y_YxZyT-WCGWtOrAfE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78536690998-vmqvrma3vfe5fe61mjrnjfkccftp0oa5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

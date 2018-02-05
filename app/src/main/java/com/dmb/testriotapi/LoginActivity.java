@@ -46,20 +46,13 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
         mAuth = FirebaseAuth.getInstance();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        //mAuth.signOut();
-
         if(mUser!=null){
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
+            this.finish();
         }else{
             callLoginFragment();
         }
-    }
-
-    @Override
-    protected void onResume() {
-        //callLoginFragment();
-        super.onResume();
     }
 
     @Override

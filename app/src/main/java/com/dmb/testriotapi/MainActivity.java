@@ -1,5 +1,6 @@
 package com.dmb.testriotapi;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.actionSignOut) {
             mAuth.signOut();
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
             this.finish();
             return true;
         }

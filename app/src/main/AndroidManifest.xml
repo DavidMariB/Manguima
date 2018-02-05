@@ -28,6 +28,12 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LogoActivity" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".FriendsActivity" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".ConfigActivity" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

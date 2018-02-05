@@ -137,7 +137,7 @@ public class RegisterFragment extends Fragment {
                 getRegEmail.isEmpty() || getRegPassword.isEmpty()){
             Toast.makeText(getContext(), "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
         }else{
-            //createAccount();
+            createAccount();
         }
     }
 
@@ -146,27 +146,44 @@ public class RegisterFragment extends Fragment {
         databaseReference.child(key).setValue(user);
     }
 
-    /*public void createAccount(){
-        mAuth.createUserWithEmailAndPassword(getRegEmail, getRegPassword)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            createUser(user.getUid());
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(getContext(), "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
+    public void createAccount(){
+        DatabaseReference ddbb = FirebaseDatabase.getInstance().getReference();
+        ddbb.child("usuarios").child("username").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()){
+                    mAuth.createUserWithEmailAndPassword(getRegEmail, getRegPassword)
+                            .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.e("TAG", "createUserWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        createUser(user.getUid());
+                                        getActivity().getIntent().putExtra("userUID",user.getUid());
+                                        getActivity().setResult(RESULT_OK,getActivity().getIntent());
+                                        Toast.makeText(getContext(), "Usuario Añadido", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.e("TAG", "createUserWithEmail:failure", task.getException());
+                                        Toast.makeText(getContext(), "No se ha podido crear el usuario.", Toast.LENGTH_SHORT).show();
+                                    }
 
-                        // ...
-                    }
-                });*/
+
+                                }
+                            });
+                }else{
+                    Toast.makeText(getContext(), "Debes escoger un nombre de usuario o correo diferentes", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

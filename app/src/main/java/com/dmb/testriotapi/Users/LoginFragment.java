@@ -119,7 +119,7 @@ public class LoginFragment extends Fragment {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logInUser();
+                checkFields();
             }
         });
 
@@ -139,6 +139,7 @@ public class LoginFragment extends Fragment {
     public void logInUser(){
         getLogEmail = etLogEmail.getText().toString();
         getLogPassword = etLogPassword.getText().toString();
+
 
         mAuth.signInWithEmailAndPassword(getLogEmail, getLogPassword)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
@@ -163,6 +164,18 @@ public class LoginFragment extends Fragment {
 
                     }
                 });
+    }
+
+    public void checkFields(){
+
+        getLogEmail = etLogEmail.getText().toString();
+        getLogPassword = etLogPassword.getText().toString();
+
+        if (getLogEmail.isEmpty() || getLogPassword.isEmpty()){
+            Toast.makeText(getContext(), "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
+        }else{
+            logInUser();
+        }
     }
 
     public void onButtonPressed(Uri uri) {

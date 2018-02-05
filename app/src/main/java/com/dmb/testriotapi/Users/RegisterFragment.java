@@ -164,6 +164,7 @@ public class RegisterFragment extends Fragment {
                                         getActivity().getIntent().putExtra("userUID",user.getUid());
                                         getActivity().setResult(RESULT_OK,getActivity().getIntent());
                                         Toast.makeText(getContext(), "Usuario Añadido", Toast.LENGTH_SHORT).show();
+                                        callLoginFragment();
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.e("TAG", "createUserWithEmail:failure", task.getException());

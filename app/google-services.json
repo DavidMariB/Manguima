@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "78536690998",
-    "firebase_url": "https://testriotapi.firebaseio.com",
-    "project_id": "testriotapi",
-    "storage_bucket": "testriotapi.appspot.com"
+    "project_number": "430442945610",
+    "firebase_url": "https://manguima-project.firebaseio.com",
+    "project_id": "manguima-project",
+    "storage_bucket": "manguima-project.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:78536690998:android:9e013669f52b2287",
+        "mobilesdk_app_id": "1:430442945610:android:9e013669f52b2287",
         "android_client_info": {
           "package_name": "com.dmb.testriotapi"
         }
       },
       "oauth_client": [
         {
-          "client_id": "78536690998-vmqvrma3vfe5fe61mjrnjfkccftp0oa5.apps.googleusercontent.com",
+          "client_id": "430442945610-ef3ole0v128tqjn22tnm8st6hvu0ur1q.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDZbKgOCqsBZfwV1y_YxZyT-WCGWtOrAfE"
+          "current_key": "AIzaSyCkrL2rZe_2i4GiDna0Q1p47qPngEv3NBk"
         }
       ],
       "services": {
@@ -29,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "78536690998-vmqvrma3vfe5fe61mjrnjfkccftp0oa5.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

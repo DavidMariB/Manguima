@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
 
     @Override
     protected void onResume() {
-        callLoginFragment();
+        //callLoginFragment();
         super.onResume();
     }
 

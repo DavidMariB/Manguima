@@ -105,11 +105,14 @@ public class MainActivity extends AppCompatActivity
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren() ){
                     tvUser.setText(dataSnapshot1.getValue(User.class).getUserName());
                     tvEmail.setText(dataSnapshot1.getValue(User.class).getEmail());
-                    storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot1.getValue(User.class).getProfileImage());
-                    Glide.with(getApplicationContext())
-                            .using(new FirebaseImageLoader())
-                            .load(storageReference)
-                            .into(profileIcon);
+                    if(dataSnapshot1.getValue(User.class).getProfileImage() != null){
+                        storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot1.getValue(User.class).getProfileImage());
+                        Glide.with(getApplicationContext())
+                                .using(new FirebaseImageLoader())
+                                .load(storageReference)
+                                .into(profileIcon);
+                    }
+
                 }
             }
 

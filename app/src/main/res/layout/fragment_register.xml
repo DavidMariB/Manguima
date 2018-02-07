@@ -4,94 +4,167 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dmb.testriotapi.Users.RegisterFragment"
+    android:background="@color/negro"
     android:orientation="vertical"
-    android:paddingTop="12dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:paddingBottom="20dp"
+    tools:context="com.dmb.testriotapi.Users.RegisterFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Registrarse"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/etRegUsername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre de Usuario"
-            android:ems="12"
-            android:paddingTop="30dp"/>
-
-        <ImageButton
-            android:id="@+id/btnPickProfileImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_camera_enhance_black_24dp"/>
-
-    </LinearLayout>
-
-
-    <EditText
-        android:id="@+id/etRegName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Nombre"
-        android:ems="12"/>
-
-    <EditText
-        android:id="@+id/etRegSurname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Apellidos"
-        android:ems="12"/>
-
-    <EditText
-        android:id="@+id/etRegAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Edad"
-        android:ems="12"
-        android:inputType="number"/>
-
-    <EditText
-        android:id="@+id/etRegEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Correo Electronico"
-        android:ems="12"
-        android:inputType="textEmailAddress"/>
-
-    <EditText
-        android:id="@+id/etRegPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:ems="12"/>
-
-    <TextView
-        android:id="@+id/tvAlreadyRegistered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/alreadyRegistered"
-        android:textStyle="italic"
-        android:textSize="15sp"
-        android:clickable="true"/>
-
-    <Button
-        android:id="@+id/btnConfirmRegister"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Registrarse"
-        android:layout_marginTop="30dp" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:src="@drawable/register" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="¡Únete a Mänguima!"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Nombre de Usuario"
+                    android:textColorHint="@color/white">
+
+                    <EditText
+                        android:id="@+id/etRegUsername"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="12"
+                        android:paddingTop="30dp"
+                        android:textColor="@color/white" />
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/btnPickProfileImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_camera_enhance_black_24dp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Nombre"
+                    android:textColorHint="@color/white">
+
+                    <EditText
+                        android:id="@+id/etRegName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="12"
+                        android:textColor="@color/white" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="Apellidos"
+                    android:textColorHint="@color/white">
+
+                    <EditText
+                        android:id="@+id/etRegSurname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="12"
+                        android:textColor="@color/white" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Fecha de Nacimiento"
+                    android:textColorHint="@color/white">
+
+                    <EditText
+                        android:id="@+id/etRegAge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="12"
+                        android:inputType="number"
+                        android:textColor="@color/white" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Correo electrónico"
+                    android:textColorHint="@color/white">
+
+                    <EditText
+                        android:id="@+id/etRegEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="12"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/white" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Contraseña"
+                    android:textColorHint="@color/white">
+
+                    <EditText
+                        android:id="@+id/etRegPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="12"
+                        android:inputType="textPassword"
+                        android:textColor="@color/white" />
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvAlreadyRegistered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:text="@string/alreadyRegistered"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+                <Button
+                    android:id="@+id/btnConfirmRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="1"
+                    android:background="@color/amarillo"
+                    android:text="Registrarse"
+                    android:textColor="@color/negro" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

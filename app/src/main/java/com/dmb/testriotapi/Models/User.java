@@ -1,22 +1,30 @@
 package com.dmb.testriotapi.Models;
 
+import android.util.Log;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 /**
  * Created by davidmari on 5/2/18.
  */
 
 public class User {
 
-    private String username,name,surname,age,email,auth;
+    private String username,name,surname,age,email,profileImage;
 
-    public User(String username,String name,String surname,String age,String email,String auth){
+    public User(){
+
+    }
+
+    public User(String username,String name,String surname,String age,String email,String profileImage){
 
         this.username = username;
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
-        this.auth = auth;
-
+        this.profileImage = profileImage;
     }
 
     public String getUserName() {
@@ -59,12 +67,23 @@ public class User {
         this.email = email;
     }
 
-    public String getAuth() {
-        return auth;
+    public String getProfileImage() {
+        return profileImage;
     }
 
-    public void setAuth(String auth) {
-        this.auth = auth;
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age='" + age + '\'' +
+                ", email='" + email + '\'' +
+                ", profileImage='" + profileImage + '\'' +
+                '}';
+    }
 }

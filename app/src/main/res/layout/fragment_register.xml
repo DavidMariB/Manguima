@@ -18,13 +18,27 @@
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"/>
 
-    <EditText
-        android:id="@+id/etRegUsername"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Nombre de Usuario"
-        android:ems="12"
-        android:paddingTop="30dp"/>
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etRegUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de Usuario"
+            android:ems="12"
+            android:paddingTop="30dp"/>
+
+        <ImageButton
+            android:id="@+id/btnPickProfileImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_camera_enhance_black_24dp"/>
+
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/etRegName"

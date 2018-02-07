@@ -15,19 +15,53 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.dmb.testriotapi.LeagueOfLegends.RecentMatchesFragment;
 import com.dmb.testriotapi.LeagueOfLegends.SummonerInfoFragment;
+import com.dmb.testriotapi.Models.Champion;
+import com.dmb.testriotapi.Models.Match;
+import com.dmb.testriotapi.Models.User;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SummonerInfoFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, SummonerInfoFragment.OnFragmentInteractionListener,
+        RecentMatchesFragment.OnFragmentInteractionListener{
 
     private FragmentManager fm;
     private FragmentTransaction ft;
 
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
+    private StorageReference storageReference;
+
+    private ArrayList<Champion> champions = new ArrayList<>();
+    private ArrayList<Match> matches = new ArrayList<>();
+
+    private String apiKey,gameVersion;
+
+    private TextView tvUser,tvEmail;
+    private ImageView profileIcon;
+
+    private DatabaseReference dbr;
+
+    private User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +79,46 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        mAuth = FirebaseAuth.getInstance();
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        View headerLayout = navigationView.getHeaderView(0);
 
-        Log.e("Usuario Actual: ",""+mUser);
+        tvUser = headerLayout.findViewById(R.id.tvUser);
+        tvEmail = headerLayout.findViewById(R.id.tvMail);
+        profileIcon = headerLayout.findViewById(R.id.imgUser);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        apiKey = "RGAPI-1b9cdf8b-b160-47e6-8f5e-96ecdaca9100";
+        gameVersion = "8.2.1";
+
+        getUserData();
+
+    }
+
+    public void getUserData(){
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        dbr = FirebaseDatabase.getInstance().getReference("usuarios");
+
+        Query q = dbr.orderByKey().equalTo(mUser.getUid());
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren() ){
+                    tvUser.setText(dataSnapshot1.getValue(User.class).getUserName());
+                    tvEmail.setText(dataSnapshot1.getValue(User.class).getEmail());
+                    storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot1.getValue(User.class).getProfileImage());
+                    Glide.with(getApplicationContext())
+                            .using(new FirebaseImageLoader())
+                            .load(storageReference)
+                            .into(profileIcon);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     @Override
@@ -115,5 +185,25 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public ArrayList<Champion> getChampions() {
+        return this.champions;
+    }
+
+    @Override
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    @Override
+    public String getGameVersion() {
+        return gameVersion;
+    }
+
+    @Override
+    public ArrayList<Match> getMatches() {
+        return this.matches;
     }
 }

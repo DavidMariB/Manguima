@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/friendInfoCard"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginTop="20dp"
+    app:cardBackgroundColor="@color/morado"
+    app:cardCornerRadius="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgFriendIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:id="@+id/tvFriendName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/imgFriendIcon" />
+
+        <TextView
+            android:id="@+id/tvFriendUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvFriendName"
+            android:layout_toEndOf="@+id/tvFriendName" />
+
+        <TextView
+            android:id="@+id/tvFriendSurname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvFriendUserName"
+            android:layout_toEndOf="@+id/imgFriendIcon" />
+
+        <TextView
+            android:id="@+id/tvFriendConected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvFriendSurname"
+            android:layout_toEndOf="@+id/imgFriendIcon" />
+
+        <ImageView
+            android:id="@+id/imgFriendConected"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/imgFriendIcon"
+            android:layout_marginEnd="27dp" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

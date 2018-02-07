@@ -77,8 +77,8 @@
 
                         <ImageButton
                             android:id="@+id/btnPickProfileImage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_width="30dp"
+                            android:layout_height="40dp"
                             android:layout_marginLeft="50dp"
                             android:layout_marginRight="50dp"
                             android:layout_weight="1"
@@ -131,18 +131,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_weight="1"
-                            android:text="Fecha de Nacimiento"
+                            android:text="¡Añade una fecha de nacimiento!"
                             android:textColor="@color/white"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="italic" />
 
                         <ImageButton
                             android:id="@+id/btnDate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="70dp"
+                            android:layout_width="15dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="50dp"
                             android:layout_weight="1"
                             android:background="@color/amarillo"

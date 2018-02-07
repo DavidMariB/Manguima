@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryDark">#303f9f</color>
     <color name="colorAccent">#FF4081</color>
     <color name="shaded_black">#B2000000</color>
     <color name="negro">#333333</color>
     <color name="morado">#a14564</color>
-    <color name="amarillo">#ffff71</color>
+    <color name="amarillo">#ffff01</color>
     <color name="white">#fafafa</color>
     <color name="negroLogo">#302431</color>
 </resources>

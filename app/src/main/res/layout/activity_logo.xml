@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/negroLogo"
     tools:context="com.dmb.testriotapi.LogoActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="307dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@mipmap/descarga" />
+</android.widget.LinearLayout>

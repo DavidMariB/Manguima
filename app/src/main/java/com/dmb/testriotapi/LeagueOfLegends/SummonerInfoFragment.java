@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,11 +48,10 @@ public class SummonerInfoFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private EditText etSummonerName;
-    private Button btnSearchSummoner;
-    private String apiKey,gameVersion,champName,champKey,champImg,selectedRegion,summonerName,
+    private Button btnSearchSummoner,btnRecentMatches;
+    private String champName,champKey,champImg,selectedRegion,summonerName,
             summonerLevel,summonerID,summonerProfileIcon,summonerTier,summonerRank,accountID;
     private ProgressDialog progressDialog;
-    private ArrayList<Champion> champions;
     private Spinner spSelectRegion;
     private CardView summonerInfoCard;
     private TextView tvSummonerName,tvSummonerLevel,tvSummonerTier;
@@ -85,9 +85,6 @@ public class SummonerInfoFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_summoner_info, container, false);
 
-        apiKey = "RGAPI-c95fee8c-937e-4dae-aa77-0a095c950859";
-        gameVersion = "8.2.1";
-
         requestAllChamps();
 
         etSummonerName = v.findViewById(R.id.etSummonerName);
@@ -99,6 +96,7 @@ public class SummonerInfoFragment extends Fragment {
         tvSummonerTier = v.findViewById(R.id.tvSummonerTier);
         imgSummonerIcon = v.findViewById(R.id.imgSummonerIcon);
         imgSummonerTier = v.findViewById(R.id.imgSummonerTier);
+        btnRecentMatches = v.findViewById(R.id.btnRecentMatches);
 
         selectRegion();
 
@@ -106,6 +104,13 @@ public class SummonerInfoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 requestSummonerInfo();
+            }
+        });
+
+        btnRecentMatches.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callRecentMatchesFragment();
             }
         });
 
@@ -153,7 +158,8 @@ public class SummonerInfoFragment extends Fragment {
         progressDialog.setMessage("Obteniendo Campeones...");
         progressDialog.show();
 
-        String url = "http://ddragon.leagueoflegends.com/cdn/"+gameVersion+"/data/es_ES/champion.json";
+        String url = "http://ddragon.leagueoflegends.com/cdn/"+mListener.getGameVersion()+"/data/es_ES/champion.json";
+
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String string) {
@@ -172,9 +178,7 @@ public class SummonerInfoFragment extends Fragment {
     }
 
     public void parseAllChamps(String jsonString){
-        champions = new ArrayList<>();
         try{
-
             JSONObject obj = new JSONObject(jsonString);
             JSONObject object = obj.getJSONObject("data");
             Iterator<String> it = object.keys();
@@ -184,7 +188,7 @@ public class SummonerInfoFragment extends Fragment {
                 champKey = champion.optString("key");
                 champImg = champion.optString("full");
                 Champion champ = new Champion(champName,champKey,champImg);
-                champions.add(champ);
+                mListener.getChampions().add(champ);
             }
 
         }catch (JSONException e){
@@ -199,7 +203,7 @@ public class SummonerInfoFragment extends Fragment {
         progressDialog.show();
 
         String url = "https://"+selectedRegion+".api.riotgames.com/lol/summoner/v3/summoners/by-name/"+
-                etSummonerName.getText().toString().replace(" ","")+"?api_key="+apiKey;
+                etSummonerName.getText().toString().replace(" ","")+"?api_key="+mListener.getApiKey();
 
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -232,7 +236,7 @@ public class SummonerInfoFragment extends Fragment {
             summonerInfoCard.setVisibility(View.VISIBLE);
             tvSummonerName.setText(summonerName);
             tvSummonerLevel.setText("Nivel: "+summonerLevel);
-            Picasso.with(getContext()).load("http://ddragon.leagueoflegends.com/cdn/"+gameVersion+
+            Picasso.with(getContext()).load("http://ddragon.leagueoflegends.com/cdn/"+mListener.getGameVersion()+
                     "/img/profileicon/"+summonerProfileIcon+".png").into(imgSummonerIcon);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -242,7 +246,7 @@ public class SummonerInfoFragment extends Fragment {
     }
 
     public void requestSummonerLeague(){
-        String url = "https://"+selectedRegion+".api.riotgames.com/lol/league/v3/positions/by-summoner/"+summonerID+"?api_key="+apiKey;
+        String url = "https://"+selectedRegion+".api.riotgames.com/lol/league/v3/positions/by-summoner/"+summonerID+"?api_key="+mListener.getApiKey();
 
 
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
@@ -306,7 +310,23 @@ public class SummonerInfoFragment extends Fragment {
             e.printStackTrace();
         }
 
-        //recentMatches.setVisibility(View.VISIBLE);
+        btnRecentMatches.setVisibility(View.VISIBLE);
+    }
+
+    public void callRecentMatchesFragment(){
+        Bundle bundle = new Bundle();
+        bundle.putString("selectedRegion",selectedRegion);
+        bundle.putString("accountID",accountID);
+
+        Log.e("BUNDLE: ",""+bundle);
+
+        RecentMatchesFragment rmf = new RecentMatchesFragment();
+        rmf.setArguments(bundle);
+
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.mainFragment,RecentMatchesFragment.newInstance("",""))
+                .commit();
     }
 
     public void onButtonPressed(Uri uri) {
@@ -335,5 +355,8 @@ public class SummonerInfoFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+        ArrayList<Champion> getChampions();
+        String getApiKey();
+        String getGameVersion();
     }
 }

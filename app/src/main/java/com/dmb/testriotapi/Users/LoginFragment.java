@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,6 +57,8 @@ public class LoginFragment extends Fragment {
     private View mLoginFormView;
     private TextView tvNotRegistered;
     private Button btnSignIn;
+
+    Boolean checkFields;
 
     private FloatingActionButton loginGoogle;
 
@@ -119,7 +122,11 @@ public class LoginFragment extends Fragment {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkFields();
+
+
+                if (checkLogFields()){
+                    logInUser();
+                };
             }
         });
 
@@ -166,16 +173,21 @@ public class LoginFragment extends Fragment {
                 });
     }
 
-    public void checkFields(){
-
+    public boolean checkLogFields(){
         getLogEmail = etLogEmail.getText().toString();
         getLogPassword = etLogPassword.getText().toString();
 
-        if (getLogEmail.isEmpty() || getLogPassword.isEmpty()){
-            Toast.makeText(getContext(), "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
-        }else{
-            logInUser();
+        if (TextUtils.isEmpty(getLogEmail)){
+            etLogEmail.setError("Introduce un email");
+            checkFields = false;
+        }else if(TextUtils.isEmpty(getLogPassword)){
+            etLogPassword.setError("Introduce una contraseña");
+            checkFields = false;
+
+        }else {
+            checkFields = true;
         }
+        return checkFields;
     }
 
     public void onButtonPressed(Uri uri) {

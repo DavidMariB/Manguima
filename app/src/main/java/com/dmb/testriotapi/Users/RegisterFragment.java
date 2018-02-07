@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,8 @@ public class RegisterFragment extends Fragment {
     private TextView tvAlreadyRegistered;
 
     private String getRegUsername,getRegName,getRegSurname,getRegAge,getRegEmail,getRegPassword;
+
+    boolean checkFields;
 
     private FragmentManager fm;
     private FragmentTransaction ft;
@@ -129,16 +132,38 @@ public class RegisterFragment extends Fragment {
         getRegEmail = etRegEmail.getText().toString();
         getRegPassword = etRegPassword.getText().toString();
 
-        checkFields();
+        if(checkRegFields()){
+
+            createAccount();
+
+        }
     }
 
-    public void checkFields(){
-        if (getRegUsername.isEmpty() || getRegName.isEmpty() || getRegSurname.isEmpty() ||getRegAge.isEmpty() ||
-                getRegEmail.isEmpty() || getRegPassword.isEmpty()){
-            Toast.makeText(getContext(), "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
-        }else{
-            createAccount();
+
+    public boolean checkRegFields(){
+
+        if (TextUtils.isEmpty(getRegUsername)){
+            etRegUsername.setError("Introduce un usuario");
+            checkFields = false;
+        }else if(TextUtils.isEmpty(getRegName)){
+            etRegName.setError("Introduce un nombre");
+            checkFields = false;
+        }else if(TextUtils.isEmpty(getRegSurname)){
+            etRegSurname.setError("Introduce un apellido");
+            checkFields = false;
+        }else if(TextUtils.isEmpty(getRegAge)){
+            etRegAge.setError("Introduce una edad");
+            checkFields = false;
+        }else if(TextUtils.isEmpty(getRegEmail)){
+            etRegEmail.setError("Introduce un email");
+            checkFields = false;
+        }else if(TextUtils.isEmpty(getRegPassword)){
+            etRegPassword.setError("Introduce una contraseña");
+            checkFields = false;
+        }else {
+            checkFields = true;
         }
+        return checkFields;
     }
 
     public void createUser(String key){
@@ -154,27 +179,27 @@ public class RegisterFragment extends Fragment {
                 if (!dataSnapshot.exists()){
                     mAuth.createUserWithEmailAndPassword(getRegEmail, getRegPassword)
                             .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        Log.e("TAG", "createUserWithEmail:success");
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        createUser(user.getUid());
-                                        getActivity().getIntent().putExtra("userUID",user.getUid());
-                                        getActivity().setResult(RESULT_OK,getActivity().getIntent());
-                                        Toast.makeText(getContext(), "Usuario Añadido", Toast.LENGTH_SHORT).show();
-                                        callLoginFragment();
-                                    } else {
-                                        // If sign in fails, display a message to the user.
-                                        Log.e("TAG", "createUserWithEmail:failure", task.getException());
-                                        Toast.makeText(getContext(), "No se ha podido crear el usuario.", Toast.LENGTH_SHORT).show();
-                                    }
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.e("TAG", "createUserWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                createUser(user.getUid());
+                                getActivity().getIntent().putExtra("userUID",user.getUid());
+                                getActivity().setResult(RESULT_OK,getActivity().getIntent());
+                                Toast.makeText(getContext(), "Usuario Añadido", Toast.LENGTH_SHORT).show();
+                                callLoginFragment();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.e("TAG", "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(getContext(), "No se ha podido crear el usuario.", Toast.LENGTH_SHORT).show();
+                            }
 
-                                }
-                            });
-                }else{
+                        }
+                    });
+
                     Toast.makeText(getContext(), "Debes escoger un nombre de usuario o correo diferentes", Toast.LENGTH_SHORT).show();
                 }
             }

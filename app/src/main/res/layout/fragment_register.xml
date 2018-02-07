@@ -28,7 +28,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
                 android:text="¡Únete a Mänguima!"
+                android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -48,17 +50,41 @@
                         android:id="@+id/etRegUsername"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
                         android:layout_weight="1"
                         android:ems="12"
                         android:paddingTop="30dp"
                         android:textColor="@color/white" />
-                </android.support.design.widget.TextInputLayout>
 
-                <ImageButton
-                    android:id="@+id/btnPickProfileImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_camera_enhance_black_24dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txt_foto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:text="¡Añade una foto de perfil!"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="italic" />
+
+                        <ImageButton
+                            android:id="@+id/btnPickProfileImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
+                            android:layout_weight="1"
+                            android:background="@color/amarillo"
+                            android:src="@mipmap/ic_camera_enhance_black_24dp" />
+                    </LinearLayout>
+                </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -70,6 +96,7 @@
                         android:id="@+id/etRegName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
                         android:layout_weight="1"
                         android:ems="12"
                         android:textColor="@color/white" />
@@ -87,6 +114,7 @@
                         android:id="@+id/etRegSurname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
                         android:layout_weight="1"
                         android:ems="12"
                         android:textColor="@color/white" />
@@ -102,6 +130,7 @@
                         android:id="@+id/etRegAge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
                         android:layout_weight="1"
                         android:ems="12"
                         android:inputType="number"
@@ -118,6 +147,7 @@
                         android:id="@+id/etRegEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
                         android:layout_weight="1"
                         android:ems="12"
                         android:inputType="textEmailAddress"
@@ -134,19 +164,24 @@
                         android:id="@+id/etRegPassword"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
                         android:layout_weight="1"
                         android:ems="12"
+                        android:hint="Contraseña"
                         android:inputType="textPassword"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white" />
                 </android.support.design.widget.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tvAlreadyRegistered"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
                     android:layout_weight="1"
                     android:clickable="true"
                     android:text="@string/alreadyRegistered"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     android:textStyle="italic" />

@@ -1,5 +1,6 @@
 package com.dmb.testriotapi.Users;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -17,11 +18,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dmb.testriotapi.Fragments.DatePickerFragment;
+import com.dmb.testriotapi.LoginActivity;
 import com.dmb.testriotapi.Models.User;
 import com.dmb.testriotapi.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -120,6 +124,14 @@ public class RegisterFragment extends Fragment {
         tvAlreadyRegistered = v.findViewById(R.id.tvAlreadyRegistered);
         btnConfirmRegister = v.findViewById(R.id.btnConfirmRegister);
         btnPickImage = v.findViewById(R.id.btnPickProfileImage);
+
+
+        etRegAge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog();
+            }
+        });
 
         databaseReference = FirebaseDatabase.getInstance().getReference("usuarios");
 
@@ -308,6 +320,18 @@ public class RegisterFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    private void showDatePickerDialog() {
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int anyo, int mes, int dia) {
+                //Aquí recogemos la información (Añadimos 1 al mes porque enero sale como 0)
+                final String fechaSelecionada = dia + " / " + (mes+1) + " / " + anyo;
+                etRegAge.setText(fechaSelecionada);
+            }
+        });
+        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
     }
 
     @Override

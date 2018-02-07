@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -61,10 +62,10 @@ public class RegisterFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private EditText etRegUsername,etRegName,etRegSurname,etRegAge,etRegEmail,etRegPassword;
+    private EditText etRegUsername,etRegName,etRegSurname,etRegEmail,etRegPassword;
     private Button btnConfirmRegister;
-    private TextView tvAlreadyRegistered;
-    private ImageButton btnPickImage;
+    private TextView tvAlreadyRegistered, etRegAge;
+    private ImageButton btnPickImage, btnDate;
 
     private String getRegUsername,getRegName,getRegSurname,getRegAge,getRegEmail,getRegPassword;
 
@@ -124,9 +125,9 @@ public class RegisterFragment extends Fragment {
         tvAlreadyRegistered = v.findViewById(R.id.tvAlreadyRegistered);
         btnConfirmRegister = v.findViewById(R.id.btnConfirmRegister);
         btnPickImage = v.findViewById(R.id.btnPickProfileImage);
+        btnDate = v.findViewById(R.id.btnDate);
 
-
-        etRegAge.setOnClickListener(new View.OnClickListener() {
+        btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog();

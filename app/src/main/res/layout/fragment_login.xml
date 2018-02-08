@@ -14,13 +14,12 @@
     tools:context="com.dmb.testriotapi.LoginActivity">
 
     <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
+
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
+        android:layout_height="418dp"
+        fab:srcCompat="@drawable/logo" />
 
     <ScrollView
         android:id="@+id/login_form"
@@ -31,48 +30,59 @@
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="Correo Electrónico"
+                android:textColorHint="@color/white">
 
                 <EditText
                     android:id="@+id/etLoginEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_email"
+                    android:layout_marginLeft="20dp"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColor="@color/white" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:textColorHint="@color/white">
 
                 <EditText
                     android:id="@+id/etLoginPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Contraseña"
+                    android:layout_marginLeft="20dp"
                     android:imeActionId="6"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColor="@color/white" />
 
             </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvNotRegistered"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:clickable="true"
                 android:text="@string/notRegistered"
-                android:textSize="15sp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
                 android:textStyle="italic" />
 
             <Button
@@ -81,47 +91,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:background="@color/amarillo"
                 android:text="Login"
+                android:textColor="@color/negro"
+                android:textSize="18sp"
                 android:textStyle="bold" />
-
-            <com.getbase.floatingactionbutton.FloatingActionsMenu
-                android:id="@+id/menuLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
-                app:fab_addButtonColorNormal="?attr/colorPrimary"
-                fab:fab_addButtonSize="normal"
-                fab:fab_labelStyle="@style/Tags"
-                fab:fab_labelsPosition="left">
-
-                <com.getbase.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/loginGoogle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    fab:fab_colorNormal="?attr/colorAccent"
-                    fab:fab_icon="@mipmap/google_plus"
-                    fab:fab_size="mini"
-                    fab:fab_title="Google +" />
-
-                <com.getbase.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/loginFacebook"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    fab:fab_colorNormal="?attr/colorAccent"
-                    fab:fab_icon="@mipmap/facebook"
-                    fab:fab_size="mini"
-                    fab:fab_title="Facebook" />
-
-                <com.getbase.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/loginTwitter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    fab:fab_colorNormal="?attr/colorAccent"
-                    fab:fab_icon="@mipmap/twitter"
-                    fab:fab_size="mini"
-                    fab:fab_title="Twitter" />
-
-            </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
         </LinearLayout>
 

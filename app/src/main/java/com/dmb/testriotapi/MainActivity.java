@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
     private ArrayList<Match> matches = new ArrayList<>();
     private ArrayList<Friend> friends = new ArrayList<>();
 
-    private String apiKey,gameVersion;
+    private String apiKey,gameVersion,selectedRegion,accountID;
 
     private TextView tvUser,tvEmail;
     private ImageView profileIcon;
@@ -223,17 +223,42 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public String getApiKey() {
-        return apiKey;
+        return this.apiKey;
     }
 
     @Override
     public String getGameVersion() {
-        return gameVersion;
+        return this.gameVersion;
+    }
+
+    @Override
+    public void setRegion(String region) {
+        this.selectedRegion = region;
+    }
+
+    @Override
+    public void setAccountID(String account) {
+        this.accountID = account;
     }
 
     @Override
     public ArrayList<Match> getMatches() {
         return this.matches;
+    }
+
+    @Override
+    public String getRegion() {
+        return selectedRegion;
+    }
+
+    @Override
+    public String getAccountID() {
+        return accountID;
+    }
+
+    @Override
+    public void addMatch(Match match) {
+        this.matches.add(match);
     }
 
 

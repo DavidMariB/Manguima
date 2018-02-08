@@ -13,10 +13,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -41,22 +44,16 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SummonerInfoFragment.OnFragmentInteractionListener,
-        RecentMatchesFragment.OnFragmentInteractionListener, FriendsFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    private FragmentManager fm;
-    private FragmentTransaction ft;
 
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
     private StorageReference storageReference;
 
-    private ArrayList<Champion> champions = new ArrayList<>();
-    private ArrayList<Match> matches = new ArrayList<>();
-    private ArrayList<Friend> friends = new ArrayList<>();
-
     private String apiKey,gameVersion,selectedRegion,accountID;
+
+    private LinearLayout holderLayout;
 
     private TextView tvUser,tvEmail;
     private ImageView profileIcon;
@@ -69,7 +66,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        super.setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -83,55 +80,12 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerLayout = navigationView.getHeaderView(0);
+        holderLayout = (LinearLayout) findViewById(R.id.holderLayout);
 
         tvUser = headerLayout.findViewById(R.id.tvUser);
         tvEmail = headerLayout.findViewById(R.id.tvMail);
         profileIcon = headerLayout.findViewById(R.id.imgUser);
 
-        mAuth = FirebaseAuth.getInstance();
-
-        apiKey = "RGAPI-1b9cdf8b-b160-47e6-8f5e-96ecdaca9100";
-        gameVersion = "8.2.1";
-
-        getUserData();
-
-        addFriend();
-
-    }
-
-    public void getUserData(){
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
-        dbr = FirebaseDatabase.getInstance().getReference("usuarios");
-
-        Query q = dbr.orderByKey().equalTo(mUser.getUid());
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren() ){
-                    tvUser.setText(dataSnapshot1.getValue(User.class).getUserName());
-                    tvEmail.setText(dataSnapshot1.getValue(User.class).getEmail());
-                    if(dataSnapshot1.getValue(User.class).getProfileImage() != null){
-                        storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot1.getValue(User.class).getProfileImage());
-                        Glide.with(getApplicationContext())
-                                .using(new FirebaseImageLoader())
-                                .load(storageReference)
-                                .into(profileIcon);
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-
-    public void addFriend(){
-        Friend friend = new Friend("gsfef","grgr","greg",null,"conectado");
-        this.friends.add(friend);
     }
 
     @Override
@@ -177,22 +131,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.navLol) {
-            fm = getSupportFragmentManager();
-            fm.popBackStack();
-            ft = fm.beginTransaction();
-            ft.add(R.id.mainFragment,SummonerInfoFragment.newInstance("",""));
-            ft.addToBackStack(null);
-            ft.commit();
-            Snackbar.make(findViewById(R.id.mainFragment),"League of Legends",Snackbar.LENGTH_LONG).show();
+
         }
         else if (id==R.id.navFriends){
-            fm = getSupportFragmentManager();
-            fm.popBackStack();
-            ft = fm.beginTransaction();
-            ft.add(R.id.mainFragment, FriendsFragment.newInstance("",""));
-            ft.addToBackStack(null);
-            ft.commit();
-            Snackbar.make(findViewById(R.id.mainFragment),"Lista de amigos",Snackbar.LENGTH_LONG).show();
+
         }
 
         else if (id == R.id.navSettings) {
@@ -207,59 +149,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-
+    public void setContentView(int layoutResID) {
+        if (holderLayout != null) {
+            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
+            View stubView = inflater.inflate(layoutResID, holderLayout, false);
+            holderLayout.addView(stubView, lp);
+        }
     }
-
-    @Override
-    public ArrayList<Friend> getFriends() {
-        return this.friends;
-    }
-
-    @Override
-    public ArrayList<Champion> getChampions() {
-        return this.champions;
-    }
-
-    @Override
-    public String getApiKey() {
-        return this.apiKey;
-    }
-
-    @Override
-    public String getGameVersion() {
-        return this.gameVersion;
-    }
-
-    @Override
-    public void setRegion(String region) {
-        this.selectedRegion = region;
-    }
-
-    @Override
-    public void setAccountID(String account) {
-        this.accountID = account;
-    }
-
-    @Override
-    public ArrayList<Match> getMatches() {
-        return this.matches;
-    }
-
-    @Override
-    public String getRegion() {
-        return selectedRegion;
-    }
-
-    @Override
-    public String getAccountID() {
-        return accountID;
-    }
-
-    @Override
-    public void addMatch(Match match) {
-        this.matches.add(match);
-    }
-
-
 }
+

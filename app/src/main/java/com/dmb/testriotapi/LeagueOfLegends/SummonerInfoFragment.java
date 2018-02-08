@@ -321,12 +321,14 @@ public class SummonerInfoFragment extends Fragment {
 
     public void callRecentMatchesFragment(){
 
+        // He comentado esta clase por tema de errores. Paco
+        /*
         fm = getActivity().getSupportFragmentManager();
         fm.popBackStack();
         ft = fm.beginTransaction();
         ft.add(R.id.mainFragment,RecentMatchesFragment.newInstance("",""));
         ft.addToBackStack(null);
-        ft.commit();
+        ft.commit();*/
     }
 
     public void onButtonPressed(Uri uri) {

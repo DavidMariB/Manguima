@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if(mUser!=null){
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this,DynamicActivity.class);
             startActivity(intent);
             this.finish();
         }else{

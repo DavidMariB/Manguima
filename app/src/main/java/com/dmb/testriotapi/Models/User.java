@@ -1,10 +1,5 @@
 package com.dmb.testriotapi.Models;
 
-import android.util.Log;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
 /**
  * Created by davidmari on 5/2/18.
  */

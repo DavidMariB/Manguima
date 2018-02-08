@@ -43,8 +43,6 @@ public class RecentMatchesFragment extends Fragment {
     private String championID,gameID,lane,champImg,champName,matchResult,kills,deaths,assists,checkChampID;
     private ProgressDialog progressDialog;
 
-    private Bundle bundle;
-
     private RecyclerView recyclerView;
 
     private RecentMatchesAdapter rma;
@@ -77,8 +75,6 @@ public class RecentMatchesFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_recent_matches, container, false);
 
-        bundle = this.getArguments();
-
         requestLastMatches();
 
         recyclerView = v.findViewById(R.id.recyclerRecentMatches);
@@ -98,11 +94,8 @@ public class RecentMatchesFragment extends Fragment {
         progressDialog.setMessage("Recuperando Partidas...");
         progressDialog.show();
 
-        String url = "https://"+bundle.getString("selectedRegion")+".api.riotgames.com/lol/match/v3/matchlists/by-account/"+bundle.getString("accountID")+"/recent?api_key="+mListener.getApiKey();
-        Log.e("REGION: ",""+bundle.getString("selectedRegion"));
-        Log.e("ACCOUNTID: ",""+bundle.getString("accountID"));
+        String url = "https://"+mListener.getRegion()+".api.riotgames.com/lol/match/v3/matchlists/by-account/"+mListener.getAccountID()+"/recent?api_key="+mListener.getApiKey();
 
-        Log.e("URL: ",url);
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String string) {
@@ -126,11 +119,16 @@ public class RecentMatchesFragment extends Fragment {
 
         try{
             JSONObject object = new JSONObject(jsonString);
+
             JSONArray array = object.getJSONArray("matches");
-            JSONObject obj = array.getJSONObject(0);
-            championID = obj.getString("champion");
-            gameID = obj.getString("gameId");
-            lane = obj.getString("lane");
+
+            for (int i=0;i<array.length();i++){
+                JSONObject obj = array.getJSONObject(i);
+                championID = obj.getString("champion");
+                gameID = obj.getString("gameId");
+                lane = obj.getString("lane");
+
+            }
 
         }catch (JSONException e){
             e.printStackTrace();
@@ -140,7 +138,7 @@ public class RecentMatchesFragment extends Fragment {
 
     public void requestChampByID(){
 
-        String url = "https://"+bundle.getString("selectedRegion")+".api.riotgames.com/lol/static-data/v3/champions/"+championID+"?locale=en_US&tags=image&api_key="+mListener.getApiKey();
+        String url = "https://"+mListener.getRegion()+".api.riotgames.com/lol/static-data/v3/champions/"+championID+"?locale=en_US&tags=image&api_key="+mListener.getApiKey();
 
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -165,6 +163,9 @@ public class RecentMatchesFragment extends Fragment {
             JSONObject object = new JSONObject(jsonString);
             champImg = object.getJSONObject("image").optString("full");
             champName = object.optString("name");
+
+            Log.e("CHAMP IMG: ",""+champImg);
+            Log.e("CHAMP IMG: ",""+champName);
             //Picasso.with(getContext()).load("http://ddragon.leagueoflegends.com/cdn/"+mListener.getGameVersion()+"/img/champion/"+champImg).into(champIcon);
         }catch (JSONException e){
             e.printStackTrace();
@@ -174,7 +175,7 @@ public class RecentMatchesFragment extends Fragment {
 
     public void requestMatchInfo(){
 
-        String url = "https://"+bundle.getString("selectedRegion")+".api.riotgames.com/lol/match/v3/matches/"+gameID+"?api_key="+mListener.getApiKey();
+        String url = "https://"+mListener.getRegion()+".api.riotgames.com/lol/match/v3/matches/"+gameID+"?api_key="+mListener.getApiKey();
 
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -197,12 +198,17 @@ public class RecentMatchesFragment extends Fragment {
             JSONObject object = new JSONObject(jsonString);
             JSONArray array = object.getJSONArray("teams");
 
-            JSONObject obj = array.getJSONObject(0);
-            matchResult = obj.optString("win");
+            for (int x=0;x<array.length();x++){
+                JSONObject obj = array.getJSONObject(0);
+                matchResult = obj.optString("win");
 
-            if (matchResult.equals("Fail")){
-            }else {
+                if (matchResult.equals("Fail")){
+                    matchResult = "DERROTA";
+                }else {
+                    matchResult = "VICTORIA";
+                }
             }
+
 
             JSONArray array1 = object.getJSONArray("participants");
 
@@ -248,7 +254,9 @@ public class RecentMatchesFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
         String getApiKey();
-        String getGameVersion();
         ArrayList<Match> getMatches();
+        String getRegion();
+        String getAccountID();
+        void addMatch(Match match);
     }
 }

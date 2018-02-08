@@ -6,15 +6,18 @@ package com.dmb.testriotapi.Models;
 
 public class Match {
 
-    private String champImg,score,result,champName,lane;
+    private String champImg,lane,champName,result,kills,deaths,assists;
 
-    public Match(String ci, String s, String r, String cn,String l){
+    public Match(String champImg,String lane,String champName,String result,String kills,String deaths,String assists){
 
-        this.champImg = ci;
-        this.score = s;
-        this.result = r;
-        this.champName = cn;
-        this.lane = l;
+        this.champImg = champImg;
+        this.lane = lane;
+        this.champName = champName;
+        this.result = result;
+        this.kills = kills;
+        this.deaths = deaths;
+        this.assists = assists;
+
     }
 
     public String getChampImg() {
@@ -25,20 +28,12 @@ public class Match {
         this.champImg = champImg;
     }
 
-    public String getScore() {
-        return score;
+    public String getLane() {
+        return lane;
     }
 
-    public void setScore(String score) {
-        this.score = score;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
+    public void setLane(String lane) {
+        this.lane = lane;
     }
 
     public String getChampName() {
@@ -49,12 +44,35 @@ public class Match {
         this.champName = champName;
     }
 
-    public String getLane() {
-        return lane;
+    public String getResult() {
+        return result;
     }
 
-    public void setLane(String lane) {
-        this.lane = lane;
+    public void setResult(String result) {
+        this.result = result;
     }
 
+    public String getKills() {
+        return kills;
+    }
+
+    public void setKills(String kills) {
+        this.kills = kills;
+    }
+
+    public String getDeaths() {
+        return deaths;
+    }
+
+    public void setDeaths(String deaths) {
+        this.deaths = deaths;
+    }
+
+    public String getAssists() {
+        return assists;
+    }
+
+    public void setAssists(String assists) {
+        this.assists = assists;
+    }
 }

@@ -53,15 +53,12 @@ public class MainActivity extends AppCompatActivity
     private ArrayList<Champion> champions = new ArrayList<>();
     private ArrayList<Match> matches = new ArrayList<>();
 
-    private String apiKey,gameVersion;
+    private String apiKey,gameVersion,selectedRegion,accountID;
 
     private TextView tvUser,tvEmail;
     private ImageView profileIcon;
 
     private DatabaseReference dbr;
-
-    private User user;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +84,7 @@ public class MainActivity extends AppCompatActivity
 
         mAuth = FirebaseAuth.getInstance();
 
-        apiKey = "RGAPI-1b9cdf8b-b160-47e6-8f5e-96ecdaca9100";
+        apiKey = "RGAPI-40038ce6-5b9e-404c-af57-265e5fc00d00";
         gameVersion = "8.2.1";
 
         getUserData();
@@ -197,16 +194,42 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public String getApiKey() {
-        return apiKey;
+        return this.apiKey;
     }
 
     @Override
     public String getGameVersion() {
-        return gameVersion;
+        return this.gameVersion;
+    }
+
+    @Override
+    public void setRegion(String region) {
+        this.selectedRegion = region;
+    }
+
+    @Override
+    public void setAccountID(String account) {
+        this.accountID = account;
     }
 
     @Override
     public ArrayList<Match> getMatches() {
         return this.matches;
     }
+
+    @Override
+    public String getRegion() {
+        return selectedRegion;
+    }
+
+    @Override
+    public String getAccountID() {
+        return accountID;
+    }
+
+    @Override
+    public void addMatch(Match match) {
+        this.matches.add(match);
+    }
+
 }

@@ -62,7 +62,6 @@ public class RecentMatchesAdapter extends RecyclerView.Adapter<RecentMatchesAdap
         matchViewHolder.champName.setText(match.getChampName());
         matchViewHolder.matchLane.setText(match.getLane());
         matchViewHolder.matchResult.setText(match.getResult());
-        matchViewHolder.matchScore.setText(match.getScore());
     }
 
     @Override

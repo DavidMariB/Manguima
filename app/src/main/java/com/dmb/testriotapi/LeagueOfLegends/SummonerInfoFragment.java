@@ -5,8 +5,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,9 @@ public class SummonerInfoFragment extends Fragment {
     private CardView summonerInfoCard;
     private TextView tvSummonerName,tvSummonerLevel,tvSummonerTier;
     private ImageView imgSummonerIcon,imgSummonerTier;
+
+    private FragmentManager fm;
+    private FragmentTransaction ft;
 
     public SummonerInfoFragment() {
         // Required empty public constructor
@@ -144,6 +148,7 @@ public class SummonerInfoFragment extends Fragment {
                         System.out.print("Lo mismo no funciona");
                         break;
                 }
+                mListener.setRegion(selectedRegion);
             }
 
             @Override
@@ -232,6 +237,7 @@ public class SummonerInfoFragment extends Fragment {
             summonerLevel = object.optString("summonerLevel");
             summonerID = object.optString("id");
             accountID = object.optString("accountId");
+            mListener.setAccountID(accountID);
             summonerProfileIcon = object.optString("profileIconId");
             summonerInfoCard.setVisibility(View.VISIBLE);
             tvSummonerName.setText(summonerName);
@@ -314,19 +320,13 @@ public class SummonerInfoFragment extends Fragment {
     }
 
     public void callRecentMatchesFragment(){
-        Bundle bundle = new Bundle();
-        bundle.putString("selectedRegion",selectedRegion);
-        bundle.putString("accountID",accountID);
 
-        Log.e("BUNDLE: ",""+bundle);
-
-        RecentMatchesFragment rmf = new RecentMatchesFragment();
-        rmf.setArguments(bundle);
-
-        getActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.mainFragment,RecentMatchesFragment.newInstance("",""))
-                .commit();
+        fm = getActivity().getSupportFragmentManager();
+        fm.popBackStack();
+        ft = fm.beginTransaction();
+        ft.add(R.id.mainFragment,RecentMatchesFragment.newInstance("",""));
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
     public void onButtonPressed(Uri uri) {
@@ -358,5 +358,8 @@ public class SummonerInfoFragment extends Fragment {
         ArrayList<Champion> getChampions();
         String getApiKey();
         String getGameVersion();
+        void setRegion(String region);
+        void setAccountID(String account);
     }
+
 }

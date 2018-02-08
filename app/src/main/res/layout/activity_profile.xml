@@ -28,13 +28,15 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="User"
-            android:textSize="18sp" />
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="20dp"
             android:text="Nombre"
             android:textSize="18sp" />
 
@@ -42,15 +44,23 @@
             android:id="@+id/apellido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="20dp"
             android:text="Apellido"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/nacionalidad2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Fecha de Nacimiento"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/nacionalidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:text="Nacionalidad"
             android:textSize="18sp" />
 
@@ -58,7 +68,7 @@
             android:id="@+id/juegos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:text="Juegos"
             android:textSize="18sp" />
 

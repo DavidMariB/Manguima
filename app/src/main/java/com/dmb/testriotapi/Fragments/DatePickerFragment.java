@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 
+import com.dmb.testriotapi.R;
+
 import java.util.Calendar;
 
 /**
@@ -36,6 +38,6 @@ public class DatePickerFragment extends DialogFragment {
         int dia = c.get(Calendar.DAY_OF_MONTH);
 
         // Devolvemos la información
-        return new DatePickerDialog(getActivity(), listener, anyo, mes, dia);
+        return new DatePickerDialog(getActivity(), R.style.Calendario, listener, anyo, mes, dia);
     }
 }

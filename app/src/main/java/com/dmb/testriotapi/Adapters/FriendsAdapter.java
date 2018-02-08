@@ -1,5 +1,6 @@
 package com.dmb.testriotapi.Adapters;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,35 +12,17 @@ import android.widget.TextView;
 import com.dmb.testriotapi.Models.Friend;
 import com.dmb.testriotapi.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendViewHolder> {
 
-    public static class FriendViewHolder extends RecyclerView.ViewHolder {
-        CardView cv;
-        TextView friendName;
-        TextView friendUsername;
-        TextView friendSurname;
-        TextView friendConected;
-        ImageView imgFriend;
-        ImageView imgFriendConected;
+    private ArrayList<Friend> friends;
+    private static RecyclerViewOnItemClickListener recyclerViewOnClickItemListener;
 
-            FriendViewHolder(View itemView) {
-            super(itemView);
-            cv = itemView.findViewById(R.id.friendInfoCard);
-            friendName = itemView.findViewById(R.id.tvFriendName);
-            friendUsername = itemView.findViewById(R.id.tvFriendUserName);
-            friendSurname = itemView.findViewById(R.id.tvFriendSurname);
-            friendConected = itemView.findViewById(R.id.tvFriendConected);
-            imgFriend = itemView.findViewById(R.id.imgFriendIcon);
-            imgFriendConected = itemView.findViewById(R.id.imgFriendConected);
-        }
-    }
-
-    List<Friend> friends;
-
-    public FriendsAdapter(List<Friend> friends){
+    public FriendsAdapter(ArrayList<Friend> friends, @NonNull RecyclerViewOnItemClickListener recyclerViewOnItemClickListener){
         this.friends = friends;
+        this.recyclerViewOnClickItemListener = recyclerViewOnItemClickListener;
     }
 
     @Override
@@ -66,6 +49,38 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendVi
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    public static class FriendViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        CardView cv;
+        TextView friendName;
+        TextView friendUsername;
+        TextView friendSurname;
+        TextView friendConected;
+        ImageView imgFriend;
+        ImageView imgFriendConected;
+
+        FriendViewHolder(View itemView) {
+            super(itemView);
+            cv = itemView.findViewById(R.id.friendInfoCard);
+            friendName = itemView.findViewById(R.id.tvFriendName);
+            friendUsername = itemView.findViewById(R.id.tvFriendUserName);
+            friendSurname = itemView.findViewById(R.id.tvFriendSurname);
+            friendConected = itemView.findViewById(R.id.tvFriendConected);
+            imgFriend = itemView.findViewById(R.id.imgFriendIcon);
+            imgFriendConected = itemView.findViewById(R.id.imgFriendConected);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v){
+            recyclerViewOnClickItemListener.onClick(v, getAdapterPosition());
+        }
+    }
+
+    public interface RecyclerViewOnItemClickListener{
+        void onClick(View v, int position);
     }
 
 }

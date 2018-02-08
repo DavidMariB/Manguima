@@ -2,10 +2,13 @@ package com.dmb.testriotapi.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -69,7 +72,30 @@ public class FriendsFragment extends Fragment {
 
         recyclerView = v.findViewById(R.id.recyclerFriends);
 
-        fa = new FriendsAdapter(mListener.getFriends());
+        fa = new FriendsAdapter(mListener.getFriends(), new FriendsAdapter.RecyclerViewOnItemClickListener() {
+            @Override
+            public void onClick(final View v, final int position) {
+                Log.e("AMIGOS: ",""+mListener.getFriends().size());
+                AlertDialog.Builder alertBox = new AlertDialog.Builder(v.getRootView().getContext());
+                alertBox.setMessage("¿Estás seguro de que quieres eliminar a "+
+                        mListener.getFriends().get(position).getUsername()+" de amigos?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Snackbar.make(v,mListener.getFriends().get(position).getUsername()+" "+
+                                        " eliminado de amigos",Snackbar.LENGTH_LONG).show();
+                                mListener.getFriends().remove(position);
+                                recyclerView.getAdapter().notifyDataSetChanged();
+                                Log.e("AMIGOS: ",""+mListener.getFriends().size());
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                            }
+                        });
+                alertBox.show();
+            }
+        });
 
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llm);

@@ -20,9 +20,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.dmb.testriotapi.Fragments.FriendsFragment;
 import com.dmb.testriotapi.LeagueOfLegends.RecentMatchesFragment;
 import com.dmb.testriotapi.LeagueOfLegends.SummonerInfoFragment;
 import com.dmb.testriotapi.Models.Champion;
+import com.dmb.testriotapi.Models.Friend;
 import com.dmb.testriotapi.Models.Match;
 import com.dmb.testriotapi.Models.User;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
@@ -41,7 +43,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, SummonerInfoFragment.OnFragmentInteractionListener,
-        RecentMatchesFragment.OnFragmentInteractionListener{
+        RecentMatchesFragment.OnFragmentInteractionListener, FriendsFragment.OnFragmentInteractionListener{
 
     private FragmentManager fm;
     private FragmentTransaction ft;
@@ -52,13 +54,17 @@ public class MainActivity extends AppCompatActivity
 
     private ArrayList<Champion> champions = new ArrayList<>();
     private ArrayList<Match> matches = new ArrayList<>();
+    private ArrayList<Friend> friends = new ArrayList<>();
 
-    private String apiKey,gameVersion,selectedRegion,accountID;
+    private String apiKey,gameVersion;
 
     private TextView tvUser,tvEmail;
     private ImageView profileIcon;
 
     private DatabaseReference dbr;
+
+    private User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +90,12 @@ public class MainActivity extends AppCompatActivity
 
         mAuth = FirebaseAuth.getInstance();
 
-        apiKey = "RGAPI-40038ce6-5b9e-404c-af57-265e5fc00d00";
+        apiKey = "RGAPI-1b9cdf8b-b160-47e6-8f5e-96ecdaca9100";
         gameVersion = "8.2.1";
 
         getUserData();
+
+        addFriend();
 
     }
 
@@ -119,6 +127,11 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+    }
+
+    public void addFriend(){
+        Friend friend = new Friend("gsfef","grgr","greg",null,"conectado");
+        this.friends.add(friend);
     }
 
     @Override
@@ -171,7 +184,18 @@ public class MainActivity extends AppCompatActivity
             ft.addToBackStack(null);
             ft.commit();
             Snackbar.make(findViewById(R.id.mainFragment),"League of Legends",Snackbar.LENGTH_LONG).show();
-        } else if (id == R.id.navSettings) {
+        }
+        else if (id==R.id.navFriends){
+            fm = getSupportFragmentManager();
+            fm.popBackStack();
+            ft = fm.beginTransaction();
+            ft.add(R.id.mainFragment, FriendsFragment.newInstance("",""));
+            ft.addToBackStack(null);
+            ft.commit();
+            Snackbar.make(findViewById(R.id.mainFragment),"Lista de amigos",Snackbar.LENGTH_LONG).show();
+        }
+
+        else if (id == R.id.navSettings) {
 
         } else if (id == R.id.navAboutApp) {
 
@@ -188,28 +212,23 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public ArrayList<Friend> getFriends() {
+        return this.friends;
+    }
+
+    @Override
     public ArrayList<Champion> getChampions() {
         return this.champions;
     }
 
     @Override
     public String getApiKey() {
-        return this.apiKey;
+        return apiKey;
     }
 
     @Override
     public String getGameVersion() {
-        return this.gameVersion;
-    }
-
-    @Override
-    public void setRegion(String region) {
-        this.selectedRegion = region;
-    }
-
-    @Override
-    public void setAccountID(String account) {
-        this.accountID = account;
+        return gameVersion;
     }
 
     @Override
@@ -217,19 +236,5 @@ public class MainActivity extends AppCompatActivity
         return this.matches;
     }
 
-    @Override
-    public String getRegion() {
-        return selectedRegion;
-    }
-
-    @Override
-    public String getAccountID() {
-        return accountID;
-    }
-
-    @Override
-    public void addMatch(Match match) {
-        this.matches.add(match);
-    }
 
 }

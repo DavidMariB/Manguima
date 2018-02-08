@@ -69,7 +69,7 @@ public class FriendsFragment extends Fragment {
 
         recyclerView = v.findViewById(R.id.recyclerFriends);
 
-        //fa = new FriendsAdapter(mListener);
+        fa = new FriendsAdapter(mListener.getFriends());
 
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llm);

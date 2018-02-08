@@ -76,6 +76,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        mAuth = FirebaseAuth.getInstance();
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -86,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tvEmail = headerLayout.findViewById(R.id.tvMail);
         profileIcon = headerLayout.findViewById(R.id.imgUser);
 
+        getUserData();
     }
 
     @Override
@@ -146,6 +150,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void getUserData() {
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        dbr = FirebaseDatabase.getInstance().getReference("usuarios");
+
+        Query q = dbr.orderByKey().equalTo(mUser.getUid());
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                    tvUser.setText(dataSnapshot1.getValue(User.class).getUserName());
+                    tvUser.setText(dataSnapshot1.getValue(User.class).getUserName());
+                    if (dataSnapshot1.getValue(User.class).getProfileImage() != null) {
+                        storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot1.getValue(User.class).getProfileImage());
+                        Glide.with(getApplicationContext())
+                                .using(new FirebaseImageLoader())
+                                .load(storageReference)
+                                .into(profileIcon);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override

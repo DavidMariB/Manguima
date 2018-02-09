@@ -26,9 +26,12 @@
     <string name="error_incorrect_password">"Aquesta contrasenya és incorrecta "</string>
     <string name="error_field_required">"Aquest camp és requerit "</string>
     <string name="permission_rationale">"Permisos d'contactes són necessitats per al correu electrònic "</string>
-    <string name="action_settings">"ajustaments "</string>
+    <string name="action_settings">"Ajustaments "</string>
     <string name="title_activity_login2">Entrar</string>
     <string name="notRegistered"><u> No hi esteu registrat? Fes clic aquí. </u></string>
     <string name="alreadyRegistered">"<u> Què està passant? Inicia Sessió. </u> "</string>
     <string name="amigos">Amics</string>
+    <string name="AcercaDe">Sobre</string>
+    <string name="Preferencias">Preferències</string>
+    <string name="Birth">"Data de naixement "</string>
 </resources>

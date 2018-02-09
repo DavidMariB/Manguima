@@ -43,4 +43,7 @@
     <string name="Summoner">Summoner Name</string>
     <string name="SearchSummoner">Search Summoner</string>
     <string name="RecentGames">Recent Games</string>
+    <string name="AcercaDe">About</string>
+    <string name="Preferencias">Preferences</string>
+    <string name="Birth">Birthdate</string>
 </resources>

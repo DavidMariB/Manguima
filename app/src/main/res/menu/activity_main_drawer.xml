@@ -11,7 +11,7 @@
             <item
                 android:id="@+id/navFriends"
                 android:icon="@mipmap/friends"
-                android:title="Amigos" />
+                android:title="@string/amigos" />
             <item
                 android:id="@+id/navChat"
                 android:icon="@mipmap/chat"
@@ -26,16 +26,16 @@
 
     </group>
 
-    <item android:title="Preferencias">
+    <item android:title="@string/Preferencias">
         <menu>
             <item
                 android:id="@+id/navSettings"
                 android:icon="@mipmap/ic_settings_black_24dp"
-                android:title="Ajustes" />
+                android:title="@string/action_settings" />
             <item
                 android:id="@+id/navAboutApp"
                 android:icon="@mipmap/ic_copyright_black_24dp"
-                android:title="Acerca De" />
+                android:title="@string/AcercaDe" />
         </menu>
     </item>
 

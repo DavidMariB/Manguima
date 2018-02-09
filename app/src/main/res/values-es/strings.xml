@@ -31,4 +31,7 @@
     <string name="Summoner">Nombre de Invocador</string>
     <string name="SearchSummoner">Buscar Invocador</string>
     <string name="RecentGames">Partidas Recientes</string>
+    <string name="AcercaDe">Acerca De</string>
+    <string name="Preferencias">Preferencias</string>
+    <string name="Birth">Fecha de nacimiento</string>
 </resources>

@@ -26,4 +26,8 @@
         <item name="colorAccent">@color/morado</item>
     </style>
 
+    <style name="Dialog" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="colorAccent">@color/negro</item>
+    </style>
+
 </resources>

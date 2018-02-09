@@ -32,7 +32,7 @@
             android:id="@+id/etSummonerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de Invocador"
+            android:hint="@string/Summoner"
             android:imeActionId="6"
             android:imeOptions="actionSearch"
             android:maxLines="1"
@@ -44,7 +44,7 @@
     android:id="@+id/btnSearchSummoner"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Buscar Invocador"
+    android:text="@string/SearchSummoner"
     android:layout_marginTop="10dp"/>
 
     <android.support.v7.widget.CardView
@@ -110,7 +110,7 @@
         android:id="@+id/btnRecentMatches"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Partidas Recientes"
+        android:text="@string/RecentGames"
         android:visibility="gone"/>
 
 </LinearLayout>

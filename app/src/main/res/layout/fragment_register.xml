@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:text="¡Únete a Mänguima!"
+                android:text="@string/Join"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="30sp"
@@ -44,7 +44,7 @@
                     android:id="@+id/Reg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Nombre de Usuario"
+                    android:hint="@string/NombreUser"
                     android:textColorHint="@color/white">
 
                     <EditText
@@ -70,7 +70,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_weight="1"
-                            android:text="¡Añade una foto de perfil!"
+                            android:text="@string/AddPhoto"
                             android:textColor="@color/white"
                             android:textSize="18sp"
                             android:textStyle="italic" />
@@ -108,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:hint="Apellidos"
+                    android:hint="@string/Surname"
                     android:textColorHint="@color/white">
 
                     <EditText
@@ -153,7 +153,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Correo electrónico"
+                    android:hint="@string/prompt_email"
                     android:textColorHint="@color/white">
 
                     <EditText
@@ -170,7 +170,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Contraseña"
+                    android:hint="@string/prompt_password"
                     android:textColorHint="@color/white">
 
                     <EditText
@@ -180,7 +180,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_weight="1"
                         android:ems="12"
-                        android:hint="Contraseña"
+                        android:hint="@string/prompt_password"
                         android:inputType="textPassword"
                         android:textColor="@color/white"
                         android:textColorHint="@color/white" />
@@ -207,7 +207,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_weight="1"
                     android:background="@color/amarillo"
-                    android:text="Registrarse"
+                    android:text="@string/Register"
                     android:textColor="@color/negro" />
 
             </LinearLayout>

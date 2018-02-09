@@ -36,7 +36,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Correo Electrónico"
+                android:hint="@string/prompt_email"
                 android:textColorHint="@color/white">
 
                 <EditText
@@ -54,7 +54,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Contraseña"
+                android:hint="@string/prompt_password"
                 android:textColorHint="@color/white">
 
                 <EditText

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TestRiotAPI</string>
+    <string name="RecentGames">partides Recents</string>
+    <string name="SearchSummoner">"Cercar Invocador "</string>
+    <string name="Summoner">"Nom de Invocador "</string>
+    <string name="Register">"registrar-se "</string>
+    <string name="AddBirth">"Afegeix ara una data de naixement! "</string>
+    <string name="AddPhoto">"Afegeix ara una foto de perfil! "</string>
+    <string name="NombreUser">"Nom d'usuari "</string>
+    <string name="Join">"Uneix-te a Mänguima! "</string>
+    <string name="prompt_email">"Correu Electrònic "</string>
+    <string name="Comment">Comentar ()</string>
+    <string name="Like">"M'agrada () "</string>
+    <string name="Games">Jocs</string>
+    <string name="Nationality">"Nacionalitat "</string>
+    <string name="Surname">"Cognom "</string>
+    <string name="Name">Nom</string>
+    <string name="User">"Usuari "</string>
+    <string name="Menu">Menú</string>
+    <string name="prompt_password">Clau</string>
+    <string name="action_sign_in">"Entrar o registrar-se "</string>
+    <string name="action_sign_in_short">Entrar</string>
+    <string name="error_invalid_email">Aquesta adreça de correu electrònic no és vàlida</string>
+    <string name="error_invalid_password">Aquesta contrasenya és molt curta</string>
+    <string name="error_incorrect_password">"Aquesta contrasenya és incorrecta "</string>
+    <string name="error_field_required">"Aquest camp és requerit "</string>
+    <string name="permission_rationale">"Permisos d'contactes són necessitats per al correu electrònic "</string>
+    <string name="action_settings">"ajustaments "</string>
+    <string name="title_activity_login2">Entrar</string>
+    <string name="notRegistered"><u> No hi esteu registrat? Fes clic aquí. </u></string>
+    <string name="alreadyRegistered">"<u> Què està passant? Inicia Sessió. </u> "</string>
+    <string name="amigos">Amics</string>
+</resources>

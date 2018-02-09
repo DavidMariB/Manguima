@@ -20,7 +20,7 @@
             android:layout_weight="1"
             android:background="@drawable/back"
             android:fontFamily="casual"
-            android:text="Amigos"
+            android:text="@string/amigos"
             android:textAlignment="center"
             android:textColor="@color/amarillo"
             android:textSize="36sp"

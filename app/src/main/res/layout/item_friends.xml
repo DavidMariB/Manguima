@@ -7,8 +7,12 @@
     android:layout_marginLeft="30dp"
     android:layout_marginRight="30dp"
     android:layout_marginTop="20dp"
-    app:cardBackgroundColor="@color/morado"
-    app:cardCornerRadius="20dp">
+    android:background="@drawable/cardborder"
+    app:cardBackgroundColor="@color/amarillo"
+    app:cardCornerRadius="20dp"
+    app:contentPadding="10dp"
+    app:cardElevation="6dp">>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,45 +20,58 @@
 
         <ImageView
             android:id="@+id/imgFriendIcon"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true" />
-
-        <TextView
-            android:id="@+id/tvFriendName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/imgFriendIcon" />
-
-        <TextView
-            android:id="@+id/tvFriendUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvFriendName"
-            android:layout_toEndOf="@+id/tvFriendName" />
-
-        <TextView
-            android:id="@+id/tvFriendSurname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvFriendUserName"
-            android:layout_toEndOf="@+id/imgFriendIcon" />
-
-        <TextView
-            android:id="@+id/tvFriendConected"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvFriendSurname"
-            android:layout_toEndOf="@+id/imgFriendIcon" />
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="12dp" />
 
         <ImageView
             android:id="@+id/imgFriendConected"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/imgFriendIcon"
-            android:layout_marginEnd="27dp" />
+            android:layout_below="@+id/tvFriendSurname"
+            android:layout_marginEnd="16dp" />
+
+        <TextView
+            android:id="@+id/tvFriendName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imgFriendIcon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/negro"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvFriendUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tvFriendName"
+            android:layout_below="@+id/tvFriendName"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/negro"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvFriendSurname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tvFriendUserName"
+            android:layout_below="@+id/tvFriendUserName"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/negro"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvFriendConected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tvFriendSurname"
+            android:layout_below="@+id/tvFriendSurname"
+            android:textColor="@color/negro"
+            android:textSize="18sp" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

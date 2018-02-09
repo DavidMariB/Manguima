@@ -56,6 +56,7 @@ public class LoginFragment extends Fragment {
     private View mProgressView;
     private View mLoginFormView;
     private TextView tvNotRegistered;
+    private TextView tvResetPassword;
     private Button btnSignIn;
 
     Boolean checkFields;
@@ -109,11 +110,19 @@ public class LoginFragment extends Fragment {
         mLoginFormView = v.findViewById(R.id.login_form);
         tvNotRegistered = v.findViewById(R.id.tvNotRegistered);
         btnSignIn = v.findViewById(R.id.btnSignIn);
+        tvResetPassword = v.findViewById(R.id.tvForgetPassword);
 
         tvNotRegistered.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callRegisterFragment();
+            }
+        });
+
+        tvResetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                passwordForget();
             }
         });
 
@@ -140,6 +149,14 @@ public class LoginFragment extends Fragment {
         ft.commit();
     }
 
+    public void passwordForget(){
+        fm = getActivity().getSupportFragmentManager();
+        fm.popBackStack();
+        ft = fm.beginTransaction();
+        ft.add(R.id.loginFragment,PasswordFragment.newInstance("",""));
+        ft.addToBackStack(null);
+        ft.commit();
+    }
 
     public void logInUser(){
         getLogEmail = etLogEmail.getText().toString();

@@ -14,13 +14,14 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.dmb.testriotapi.Users.LoginFragment;
+import com.dmb.testriotapi.Users.PasswordFragment;
 import com.dmb.testriotapi.Users.RegisterFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener,
-        RegisterFragment.OnFragmentInteractionListener {
+        RegisterFragment.OnFragmentInteractionListener, PasswordFragment.OnFragmentInteractionListener {
 
     private FragmentManager fm;
     private FragmentTransaction ft;

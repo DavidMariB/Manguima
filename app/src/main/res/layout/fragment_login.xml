@@ -85,6 +85,19 @@
                 android:textSize="18sp"
                 android:textStyle="italic" />
 
+            <TextView
+                android:id="@+id/tvForgetPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                android:text="@string/forgetPassword"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
             <Button
                 android:id="@+id/btnSignIn"
                 style="?android:textAppearanceSmall"

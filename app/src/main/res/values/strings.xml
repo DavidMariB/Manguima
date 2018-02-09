@@ -25,6 +25,7 @@
     <string name="title_activity_login2">Sign in</string>
 
     <string name="notRegistered"><u>Are you not registered? Click here.</u></string>
+    <string name="forgetPassword"><u>Did you forget your password? Click here.</u></string>
     <string name="alreadyRegistered"><u>Already registered? Log in.</u></string>
     <string name="amigos">Friends</string>
     <string name="Menu">Menu</string>
@@ -36,6 +37,8 @@
     <string name="Like">Like ()</string>
     <string name="Comment">Comment ()</string>
     <string name="Join">Join Mänguima!</string>
+    <string name="Resetpass">Password Reset</string>
+    <string name="Sendmail">Send Password Reset</string>
     <string name="NombreUser">Name of User</string>
     <string name="AddPhoto">Add a profile picture!</string>
     <string name="AddBirth">Add a date of birth!</string>

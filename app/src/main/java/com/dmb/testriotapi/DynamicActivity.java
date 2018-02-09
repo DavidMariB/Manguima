@@ -18,7 +18,7 @@ import com.dmb.testriotapi.Fragments.FragmentDynTorneos;
 
 import java.util.ArrayList;
 
-public class DynamicActivity extends FragmentActivity {
+public class DynamicActivity extends MainActivity {
 
     private ViewPager viewPager;
     private PagerAdapter mPagerAdapter;

@@ -61,7 +61,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
         }
 
         public void bindProducto(Forum item) {
-            txt_mensaje.setText(item.getMensaje());
+            txt_mensaje.setText(item.getTitulo());
         }
     }
 

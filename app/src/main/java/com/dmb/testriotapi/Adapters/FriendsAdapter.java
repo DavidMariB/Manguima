@@ -13,7 +13,6 @@ import com.dmb.testriotapi.Models.Friend;
 import com.dmb.testriotapi.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendViewHolder> {
 

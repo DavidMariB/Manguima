@@ -3,7 +3,6 @@ package com.dmb.testriotapi.Fragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -15,12 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.dmb.testriotapi.Adapters.ChatAdapter;
 import com.dmb.testriotapi.Adapters.FriendsAdapter;
 import com.dmb.testriotapi.Models.Friend;
 import com.dmb.testriotapi.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 

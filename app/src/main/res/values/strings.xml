@@ -47,4 +47,9 @@
     <string name="Preferencias">Preferences</string>
     <string name="Birth">Birthdate</string>
     <string name="Exit">Exit</string>
+    <string name="selecciona_idioma">Select Language:</string>
+    <string name="visita_nuestra_web">Visit Our Web:</string>
+    <string name="salir_manguima">Leave Mangüima:</string>
+    <string name="salir_boton">Leave</string>
+    <string name="desarrolador_por">Developed by</string>
 </resources>

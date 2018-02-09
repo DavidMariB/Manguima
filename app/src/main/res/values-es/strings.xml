@@ -35,4 +35,9 @@
     <string name="Preferencias">Preferencias</string>
     <string name="Birth">Fecha de nacimiento</string>
     <string name="Exit">Salir</string>
+    <string name="selecciona_idioma">Selecciona Lenguaje:</string>
+    <string name="visita_nuestra_web">Visita Nuestra Web:</string>
+    <string name="salir_boton">Salir</string>
+    <string name="salir_manguima">Sal de Mangüima:</string>
+    <string name="desarrolador_por">Desarrollado por</string>
 </resources>

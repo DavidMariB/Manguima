@@ -35,4 +35,9 @@
     <string name="Preferencias">Preferències</string>
     <string name="Birth">"Data de naixement "</string>
     <string name="Exit">Eixir</string>
+    <string name="selecciona_idioma">Selecciona Llenguatge:</string>
+    <string name="visita_nuestra_web">Visita la Nostra Web:</string>
+    <string name="salir_manguima">Ix de Mangüima:</string>
+    <string name="salir_boton">Eixir</string>
+    <string name="desarrolador_por">Desenvolupat per</string>
 </resources>

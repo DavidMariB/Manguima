@@ -34,4 +34,5 @@
     <string name="AcercaDe">Sobre</string>
     <string name="Preferencias">Preferències</string>
     <string name="Birth">"Data de naixement "</string>
+    <string name="Exit">Eixir</string>
 </resources>

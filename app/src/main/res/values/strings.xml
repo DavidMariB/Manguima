@@ -46,4 +46,5 @@
     <string name="AcercaDe">About</string>
     <string name="Preferencias">Preferences</string>
     <string name="Birth">Birthdate</string>
+    <string name="Exit">Exit</string>
 </resources>

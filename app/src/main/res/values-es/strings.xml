@@ -34,4 +34,5 @@
     <string name="AcercaDe">Acerca De</string>
     <string name="Preferencias">Preferencias</string>
     <string name="Birth">Fecha de nacimiento</string>
+    <string name="Exit">Salir</string>
 </resources>

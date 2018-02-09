@@ -143,6 +143,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         else if (id == R.id.navSettings) {
 
+            Intent refresh = new Intent(MainActivity.this, ConfigActivity.class);
+            startActivity(refresh);
+            finish();
+
         } else if (id == R.id.navAboutApp) {
 
         }

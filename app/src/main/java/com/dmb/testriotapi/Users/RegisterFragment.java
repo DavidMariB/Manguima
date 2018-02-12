@@ -239,12 +239,9 @@ public class RegisterFragment extends Fragment {
         getRegPassword = etRegPassword.getText().toString();
 
         if(checkRegFields()){
-
             createAccount();
-
         }
     }
-
 
     public boolean checkRegFields(){
 

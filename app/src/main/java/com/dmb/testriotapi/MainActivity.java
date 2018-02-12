@@ -2,6 +2,7 @@ package com.dmb.testriotapi;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -67,14 +70,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
+
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.negro));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window w = getWindow(); // in Activity's onCreate() for instance
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        /*ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        toggle.syncState();*/
 
         mAuth = FirebaseAuth.getInstance();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -102,12 +111,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -166,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
                     tvUser.setText(dataSnapshot1.getValue(User.class).getUserName());
-                    tvUser.setText(dataSnapshot1.getValue(User.class).getUserName());
+                    tvEmail.setText(dataSnapshot1.getValue(User.class).getEmail());
                     if (dataSnapshot1.getValue(User.class).getProfileImage() != null) {
                         storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot1.getValue(User.class).getProfileImage());
                         Glide.with(getApplicationContext())

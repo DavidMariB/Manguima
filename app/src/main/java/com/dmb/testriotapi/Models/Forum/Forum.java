@@ -20,12 +20,10 @@ public class Forum {
 
     }
 
-    public Forum(String titulo, String uid, String mensaje, Map<String, Object> comentarios, Map<String, Object> likes) {
+    public Forum(String titulo, String uid, String mensaje) {
         this.titulo = titulo;
         this.uid = uid;
         this.mensaje = mensaje;
-        this.comentarios = comentarios;
-        this.likes = likes;
     }
 
     public String getTitulo() {

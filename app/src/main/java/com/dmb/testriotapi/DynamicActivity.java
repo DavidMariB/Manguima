@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -15,10 +16,12 @@ import com.dmb.testriotapi.Fragments.FragmentDynForo;
 import com.dmb.testriotapi.Fragments.FragmentDynInfo;
 import com.dmb.testriotapi.Fragments.FragmentDynNoticias;
 import com.dmb.testriotapi.Fragments.FragmentDynTorneos;
+import com.dmb.testriotapi.Fragments.NuevoTemaFragment;
 
 import java.util.ArrayList;
 
-public class DynamicActivity extends MainActivity {
+public class DynamicActivity extends MainActivity implements NuevoTemaFragment.OnFragmentInteractionListener,
+FragmentDynForo.OnFragmentInteractionListener{
 
     private ViewPager viewPager;
     private PagerAdapter mPagerAdapter;
@@ -32,6 +35,23 @@ public class DynamicActivity extends MainActivity {
         viewPager = (ViewPager) findViewById(R.id.dynamicPager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mPagerAdapter);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void creaVentanaNuevoTema() {
+
+        FragmentManager fm = getSupportFragmentManager();
+        fm.popBackStack();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        NuevoTemaFragment f = NuevoTemaFragment.newInstance(null, null);
+        ft.add(f, "fragment_tema");
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter
@@ -79,17 +99,17 @@ public class DynamicActivity extends MainActivity {
         }
 
         @Override
-        public void cosasDelForo(Uri uri) {
-
-        }
-
-        @Override
         public void cosasDelTorneo(Uri uri) {
 
         }
 
         @Override
         public void cosasDelInfo(Uri uri) {
+
+        }
+
+        @Override
+        public void creaVentanaNuevoTema() {
 
         }
     }

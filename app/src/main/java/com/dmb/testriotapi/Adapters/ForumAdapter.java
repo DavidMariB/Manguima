@@ -7,10 +7,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.dmb.testriotapi.Models.Forum.Forum;
+import com.dmb.testriotapi.Models.User;
 import com.dmb.testriotapi.R;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Ricardo Borrull on 07/02/2018.
@@ -19,6 +32,8 @@ import java.util.List;
 public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHolder> implements View.OnClickListener {
     private List<Forum> items;
     private View.OnClickListener listener;
+    static DatabaseReference bbdd;
+    static StorageReference storageReference;
 
     public ForumAdapter(List<Forum> items) {
         this.items = items;
@@ -58,10 +73,32 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
             txt_mensaje = (TextView) v.findViewById(R.id.txt_mensaje);
             txt_comment = (TextView) v.findViewById(R.id.txt_comment);
             txt_like = (TextView) v.findViewById(R.id.txt_like);
+            img_Profile = (ImageView) v.findViewById(R.id.img_Profile);
         }
 
         public void bindProducto(Forum item) {
             txt_mensaje.setText(item.getTitulo());
+            /*String uid = item.getUid();
+            bbdd = FirebaseDatabase.getInstance().getReference().child("usuario");
+            Query q = bbdd.orderByKey().equalTo(uid);
+            q.addValueEventListener(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot datasnapshot: dataSnapshot.getChildren()){
+                        if (dataSnapshot.getValue(User.class).getProfileImage() != null) {
+                            storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
+                            Glide.with(getApplicationContext())
+                                    .using(new FirebaseImageLoader())
+                                    .load(storageReference)
+                                    .into(img_Profile);
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });*/
         }
     }
 
@@ -71,3 +108,4 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
             listener.onClick(view);
     }
 }
+

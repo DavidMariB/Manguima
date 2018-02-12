@@ -4,8 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,6 +23,7 @@ import com.dmb.testriotapi.Models.Forum.Comentario;
 import com.dmb.testriotapi.Models.Forum.Forum;
 import com.dmb.testriotapi.Models.Forum.Like;
 import com.dmb.testriotapi.R;
+import com.dmb.testriotapi.Users.LoginFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,17 +33,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FragmentDynForo extends Fragment {
+public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFragmentInteractionListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    DatabaseReference bbdd, bbddComentario, bbddLike;
+    DatabaseReference bbdd;
     private RecyclerView rv_Forum;
-    private ArrayList<Comentario> comentario = new ArrayList<>();
-    private ArrayList<Like> like = new ArrayList<>();
+    private FloatingActionButton fab_NuevoTema;
     private ArrayList<Forum> foro = new ArrayList<>();
+
     ForumAdapter adaptador;
 
     // TODO: Rename and change types of parameters
@@ -76,10 +80,25 @@ public class FragmentDynForo extends Fragment {
         View v = inflater.inflate(R.layout.fragment_fragment_dyn_foro, container, false);
 
         rv_Forum = (RecyclerView) v.findViewById(R.id.rv_Forum);
+        fab_NuevoTema = (FloatingActionButton) v.findViewById(R.id.fab_NuevoTema);
+
+        fab_NuevoTema.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 //Paco acuerdate de arreglar esto bien
+                //mListener.creaVentanaNuevoTema();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.popBackStack();
+                NuevoTemaFragment f = NuevoTemaFragment.newInstance(null, null);
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.add(R.id.foro_container, f, "nuevo_tema");
+                ft.addToBackStack(null);
+                ft.commit();
+                fab_NuevoTema.setEnabled(false);
+            }
+        });
 
         bbdd = FirebaseDatabase.getInstance().getReference().child("forum");
-        bbddComentario = bbdd.child("comentarios");
-        bbddLike = bbdd.child("likes");
 
         bbdd.addValueEventListener(new ValueEventListener() {
 
@@ -98,26 +117,21 @@ public class FragmentDynForo extends Fragment {
         });
 
         rv_Forum.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        return v;
-    }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.cosasDelForo(uri);
-        }
+
+        return v;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        /*
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener2");
-        }*/
+        }
     }
 
     @Override
@@ -126,8 +140,13 @@ public class FragmentDynForo extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void cosasDelForo(Uri uri);
+        void creaVentanaNuevoTema();
     }
 }

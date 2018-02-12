@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/amarillo"
-                android:text="Login"
+                android:text="@string/login"
                 android:textColor="@color/negro"
                 android:textSize="18sp"
                 android:textStyle="bold" />

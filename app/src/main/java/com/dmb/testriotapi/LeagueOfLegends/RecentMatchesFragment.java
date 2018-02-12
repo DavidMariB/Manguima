@@ -91,7 +91,7 @@ public class RecentMatchesFragment extends Fragment {
 
     public void requestLastMatches(){
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Recuperando Partidas...");
+        progressDialog.setMessage(getText(R.string.RecuPartidas));
         progressDialog.show();
 
         String url = "https://"+mListener.getRegion()+".api.riotgames.com/lol/match/v3/matchlists/by-account/"+mListener.getAccountID()+"/recent?api_key="+mListener.getApiKey();
@@ -106,7 +106,7 @@ public class RecentMatchesFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(getContext(), "No se ha podido recuperar la informacion", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getText(R.string.FalloRecuperar), Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
             }
         });
@@ -149,7 +149,7 @@ public class RecentMatchesFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(getContext(), "No se ha podido recuperar la informacion", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getText(R.string.FalloRecuperar), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -185,7 +185,7 @@ public class RecentMatchesFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(getContext(), "No se ha podido recuperar la informacion", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getText(R.string.FalloRecuperar), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -203,9 +203,9 @@ public class RecentMatchesFragment extends Fragment {
                 matchResult = obj.optString("win");
 
                 if (matchResult.equals("Fail")){
-                    matchResult = "DERROTA";
+                    matchResult = getText(R.string.Derrota).toString();
                 }else {
-                    matchResult = "VICTORIA";
+                    matchResult = getText(R.string.Victoria).toString();
                 }
             }
 

@@ -78,8 +78,8 @@ public class ConfigActivity extends MainActivity {
 
 
                 final AlertDialog.Builder alertBox = new AlertDialog.Builder(view.getContext(),  R.style.Dialog);
-                alertBox.setMessage("¿Estás seguro de que quieres salir?")
-                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                alertBox.setMessage(getText(R.string.CheckSalir))
+                        .setPositiveButton(getText(R.string.Si), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 finish();
 
@@ -114,19 +114,19 @@ public class ConfigActivity extends MainActivity {
 
             Toast.makeText(this, "Idioma cambiado al Español", Toast.LENGTH_SHORT).show();
 
-        }else if (idioma ==2){
+        }else if (idioma == 2){
 
             locale = new Locale("ca");
             config.locale =locale;
 
-            Toast.makeText(this, "Idioma cambiado al Valenciano", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Llenguatge canviat al Valencià", Toast.LENGTH_SHORT).show();
 
         }else if(idioma == 3){
 
             locale = new Locale("en");
             config.locale =locale;
 
-            Toast.makeText(this, "Idioma cambiado al Ingles", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Language changed to English", Toast.LENGTH_SHORT).show();
 
         }
 

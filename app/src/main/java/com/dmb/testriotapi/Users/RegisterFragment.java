@@ -173,7 +173,7 @@ public class RegisterFragment extends Fragment {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Selecciona Imagen"), PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, getText(R.string.SelectImagen)), PICK_IMAGE_REQUEST);
     }
 
     @Override
@@ -199,7 +199,7 @@ public class RegisterFragment extends Fragment {
         if(filePath != null)
         {
             final ProgressDialog progressDialog = new ProgressDialog(getContext());
-            progressDialog.setTitle("Subiendo Imagen...");
+            progressDialog.setTitle(getText(R.string.SubiendoImagen));
             progressDialog.show();
 
             StorageReference ref = sr.child("imagenes/"+ UUID.randomUUID().toString());
@@ -209,14 +209,14 @@ public class RegisterFragment extends Fragment {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Imagen Subida", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getText(R.string.ImagenSubida), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Fallo al subir la imagen "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getText(R.string.FalloImagen)+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -224,7 +224,7 @@ public class RegisterFragment extends Fragment {
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Subiendo: "+(int)progress+"%");
+                            progressDialog.setMessage(getText(R.string.Subiendo) + " " + (int)progress+"%");
                         }
                     });
         }
@@ -248,23 +248,24 @@ public class RegisterFragment extends Fragment {
 
     public boolean checkRegFields(){
 
+
         if (TextUtils.isEmpty(getRegUsername)){
-            etRegUsername.setError("Introduce un usuario");
+            etRegUsername.setError(getText(R.string.CheckUsuario));
             checkFields = false;
         }else if(TextUtils.isEmpty(getRegName)){
-            etRegName.setError("Introduce un nombre");
+            etRegName.setError(getText(R.string.CheckNombre));
             checkFields = false;
         }else if(TextUtils.isEmpty(getRegSurname)){
-            etRegSurname.setError("Introduce un apellido");
+            etRegSurname.setError(getText(R.string.CheckUsuario));
             checkFields = false;
         }else if(TextUtils.isEmpty(getRegAge)){
-            etRegAge.setError("Introduce una edad");
+            etRegAge.setError(getText(R.string.CheckEdad));
             checkFields = false;
         }else if(TextUtils.isEmpty(getRegEmail)){
-            etRegEmail.setError("Introduce un email");
+            etRegEmail.setError(getText(R.string.CheckEmail));
             checkFields = false;
         }else if(TextUtils.isEmpty(getRegPassword)){
-            etRegPassword.setError("Introduce una contraseña");
+            etRegPassword.setError(getText(R.string.CheckContraseña));
             checkFields = false;
         }else {
             checkFields = true;
@@ -295,18 +296,18 @@ public class RegisterFragment extends Fragment {
                                 createUser(user.getUid());
                                 getActivity().getIntent().putExtra("userUID",user.getUid());
                                 getActivity().setResult(RESULT_OK,getActivity().getIntent());
-                                Toast.makeText(getContext(), "Usuario Añadido", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), getText(R.string.AddUsuario), Toast.LENGTH_SHORT).show();
                                 callLoginFragment();
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.e("TAG", "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(getContext(), "No se ha podido crear el usuario.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), getText(R.string.FalloUsuario), Toast.LENGTH_SHORT).show();
                             }
 
                         }
                     });
 
-                    Toast.makeText(getContext(), "Debes escoger un nombre de usuario o correo diferentes", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getText(R.string.OtroUsuario), Toast.LENGTH_SHORT).show();
                 }
             }
 

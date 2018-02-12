@@ -160,7 +160,7 @@ public class SummonerInfoFragment extends Fragment {
 
     public void requestAllChamps(){
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Obteniendo Campeones...");
+        progressDialog.setMessage(getText(R.string.ObtnCampeones));
         progressDialog.show();
 
         String url = "http://ddragon.leagueoflegends.com/cdn/"+mListener.getGameVersion()+"/data/es_ES/champion.json";
@@ -173,7 +173,7 @@ public class SummonerInfoFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(getContext(), "No se ha podido recuperar la información", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getText(R.string.FalloRecuperar), Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
             }
         });
@@ -204,7 +204,7 @@ public class SummonerInfoFragment extends Fragment {
 
     public void requestSummonerInfo() {
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Buscando Summoner...");
+        progressDialog.setMessage(getText(R.string.BuscandoSummoner));
         progressDialog.show();
 
         String url = "https://"+selectedRegion+".api.riotgames.com/lol/summoner/v3/summoners/by-name/"+
@@ -219,7 +219,7 @@ public class SummonerInfoFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(getContext(), "No se ha encontrado el Invocador", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getText(R.string.FalloInvocador), Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
             }
         });
@@ -241,7 +241,7 @@ public class SummonerInfoFragment extends Fragment {
             summonerProfileIcon = object.optString("profileIconId");
             summonerInfoCard.setVisibility(View.VISIBLE);
             tvSummonerName.setText(summonerName);
-            tvSummonerLevel.setText("Nivel: "+summonerLevel);
+            tvSummonerLevel.setText(getText(R.string.Nivel)+" "+summonerLevel);
             Picasso.with(getContext()).load("http://ddragon.leagueoflegends.com/cdn/"+mListener.getGameVersion()+
                     "/img/profileicon/"+summonerProfileIcon+".png").into(imgSummonerIcon);
         } catch (JSONException e) {
@@ -269,7 +269,7 @@ public class SummonerInfoFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(getContext(), "No se ha podido recuperar la informacion", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getText(R.string.FalloRecuperar), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -290,19 +290,19 @@ public class SummonerInfoFragment extends Fragment {
 
                     if(obj.getString("tier").contains("BRONZE")){
                         imgSummonerTier.setImageResource(R.mipmap.bronze_icon);
-                        tvSummonerTier.setText("BRONCE "+summonerRank);
+                        tvSummonerTier.setText( getText(R.string.Bronce)+" "+summonerRank);
                     }else if(obj.getString("tier").contains("SILVER")){
                         imgSummonerTier.setImageResource(R.mipmap.silver_icon);
-                        tvSummonerTier.setText("PLATA "+summonerRank);
+                        tvSummonerTier.setText(getText(R.string.Plata) + " " +summonerRank);
                     }else if(obj.getString("tier").contains("GOLD")){
                         imgSummonerTier.setImageResource(R.mipmap.gold_icon);
-                        tvSummonerTier.setText("ORO "+summonerRank);
+                        tvSummonerTier.setText(getText(R.string.Oro) + " " +summonerRank);
                     }else if(obj.getString("tier").contains("PLATINUM")){
                         imgSummonerTier.setImageResource(R.mipmap.platinum_icon);
-                        tvSummonerTier.setText("PLATINO "+summonerRank);
+                        tvSummonerTier.setText(getText(R.string.Platino) + " "+summonerRank);
                     }else if(obj.getString("tier").contains("DIAMOND")){
                         imgSummonerTier.setImageResource(R.mipmap.diamond_icon);
-                        tvSummonerTier.setText("DIAMANTE "+summonerRank);
+                        tvSummonerTier.setText(getText(R.string.Diamante)+ " "+summonerRank);
                     }else if(obj.getString("tier").contains("MASTER")){
                         imgSummonerTier.setImageResource(R.mipmap.master_icon);
                         tvSummonerTier.setText(summonerTier+" "+summonerRank);

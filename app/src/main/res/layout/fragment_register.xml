@@ -90,7 +90,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Nombre"
+                    android:hint="@string/Name"
                     android:textColorHint="@color/white">
 
                     <EditText
@@ -133,7 +133,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_weight="1"
-                            android:text="¡Añade una fecha de nacimiento!"
+                            android:text="@string/AddBirth"
                             android:textColor="@color/white"
                             android:textSize="18sp"
                             android:textStyle="italic" />

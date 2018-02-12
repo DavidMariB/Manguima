@@ -3,7 +3,7 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
+    <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
@@ -55,4 +55,41 @@
     <string name="salir_manguima">Leave Mangüima:</string>
     <string name="salir_boton">Leave</string>
     <string name="desarrolador_por">Developed by</string>
+    <string name="login">Login</string>
+    <string name="SesionIniciada">Session Started</string>
+    <string name="FalloLogin">Failed to login.</string>
+    <string name="CheckEmail">Enter an email</string>
+    <string name="CheckUsuario">Enter a user</string>
+    <string name="CheckNombre">Enter a name</string>
+    <string name="CheckApellido">Enter a surname</string>
+    <string name="CheckEdad">Enter an age</string>
+    <string name="CheckContraseña">Enter a password</string>
+    <string name="ImagenSubida">Uploaded image</string>
+    <string name="FalloImagen">Failed to upload the image</string>
+    <string name="SelectImagen">Select Image</string>
+    <string name="Subiendo">Uploading</string>
+    <string name="AddUsuario">Added User</string>
+    <string name="FalloUsuario">The user could not be created.</string>
+    <string name="OtroUsuario">You must choose a different username or email</string>
+    <string name="SubiendoImagen">Uploading Image...</string>
+    <string name="CheckReset">Check email to reset your password!</string>
+    <string name="FalloReset">Fail to send reset password email!</string>
+    <string name="CheckSalir">Are you sure you want to leave?</string>
+    <string name="Si">Yes</string>
+    <string name="RecuPartidas">Recovering Games...</string>
+    <string name="FalloRecuperar">Unable to retrieve information</string>
+    <string name="ObtnCampeones">Obtaining Champions...</string>
+    <string name="BuscandoSummoner">Looking for Summoner...</string>
+    <string name="FalloInvocador">The Summoner was not found</string>
+    <string name="Bronce">Bronze</string>
+    <string name="Oro">Gold</string>
+    <string name="Plata">Silver</string>
+    <string name="Platino">Platinum</string>
+    <string name="Diamante">Diamond</string>
+    <string name="Nivel">Level</string>
+    <string name="Derrota">Defeat</string>
+    <string name="Victoria">Victory</string>
+    <string name="EliminarAmigos">Removed from friends</string>
+    <string name="DeAmigos">Of friends?</string>
+    <string name="SeguroEliminar">Are you sure you want to delete</string>
 </resources>

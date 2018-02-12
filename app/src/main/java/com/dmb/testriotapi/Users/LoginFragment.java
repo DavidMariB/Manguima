@@ -170,7 +170,7 @@ public class LoginFragment extends Fragment {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "signInWithEmail:success");
-                            Toast.makeText(getContext(), "Sesion iniciada.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), R.string.SesionIniciada, Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             getActivity().getIntent().putExtra("userUID",user.getUid());
                             getActivity().setResult(RESULT_OK,getActivity().getIntent());
@@ -180,7 +180,7 @@ public class LoginFragment extends Fragment {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("TAG", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(getContext(), "Fallo al iniciar sesión.",
+                            Toast.makeText(getContext(), R.string.FalloLogin,
                                     Toast.LENGTH_SHORT).show();
                         }
 
@@ -193,10 +193,10 @@ public class LoginFragment extends Fragment {
         getLogPassword = etLogPassword.getText().toString();
 
         if (TextUtils.isEmpty(getLogEmail)){
-            etLogEmail.setError("Introduce un email");
+            etLogEmail.setError(getText(R.string.CheckEmail));
             checkFields = false;
         }else if(TextUtils.isEmpty(getLogPassword)){
-            etLogPassword.setError("Introduce una contraseña");
+            etLogPassword.setError(getText(R.string.CheckContraseña));
             checkFields = false;
 
         }else {

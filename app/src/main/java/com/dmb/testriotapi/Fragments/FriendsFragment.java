@@ -75,12 +75,12 @@ public class FriendsFragment extends Fragment {
             public void onClick(final View v, final int position) {
                 Log.e("AMIGOS: ",""+mListener.getFriends().size());
                 AlertDialog.Builder alertBox = new AlertDialog.Builder(v.getRootView().getContext());
-                alertBox.setMessage("¿Estás seguro de que quieres eliminar a "+
-                        mListener.getFriends().get(position).getUsername()+" de amigos?")
-                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                alertBox.setMessage(getText(R.string.SeguroEliminar) + " "+
+                        mListener.getFriends().get(position).getUsername()+" " + " "+ getText(R.string.DeAmigos))
+                        .setPositiveButton(getText(R.string.Si), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Snackbar.make(v,mListener.getFriends().get(position).getUsername()+" "+
-                                        " eliminado de amigos",Snackbar.LENGTH_LONG).show();
+                                        getText(R.string.EliminarAmigos),Snackbar.LENGTH_LONG).show();
                                 mListener.getFriends().remove(position);
                                 recyclerView.getAdapter().notifyDataSetChanged();
                                 Log.e("AMIGOS: ",""+mListener.getFriends().size());

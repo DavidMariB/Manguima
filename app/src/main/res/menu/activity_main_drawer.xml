@@ -5,6 +5,7 @@
     tools:showIn="navigation_view">
 
     <item
+        android:id="@+id/Social"
         android:icon="@mipmap/social"
         android:title="Social">
         <menu>
@@ -26,7 +27,9 @@
 
     </group>
 
-    <item android:title="@string/Preferencias">
+    <item
+        android:id="@+id/Preferencias"
+        android:title="@string/Preferencias">
         <menu>
             <item
                 android:id="@+id/navSettings"

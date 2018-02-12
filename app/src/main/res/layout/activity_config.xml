@@ -36,7 +36,7 @@
         android:id="@+id/tvCatalan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
+        android:layout_marginStart="16dp"
         android:background="@color/amarillo"
         app:layout_constraintStart_toEndOf="@+id/tvEspanol"
         app:layout_constraintTop_toTopOf="@+id/tvEspanol"
@@ -46,10 +46,11 @@
         android:id="@+id/tvIngles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:background="@color/amarillo"
-        app:layout_constraintEnd_toEndOf="@+id/tvVisitaWeb"
-        app:layout_constraintStart_toEndOf="@+id/tvVisitaWeb"
-        app:layout_constraintTop_toTopOf="@+id/tvCatalan"
+        app:layout_constraintStart_toEndOf="@+id/tvCatalan"
+        app:layout_constraintTop_toBottomOf="@+id/tvSeleccionaIdioma"
         app:srcCompat="@mipmap/icono_uk" />
 
     <TextView

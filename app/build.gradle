@@ -39,10 +39,10 @@ dependencies {
     compile 'com.android.support:design:26.0.1'
     compile 'com.firebaseui:firebase-ui:0.6.2'
     compile 'com.rockerhieu.emojicon:library:1.3.3'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    //Funcionalidad notificaciones
-    // compile 'com.google.firebase:firebase-messaging:11.8.0'
+
 }
 apply plugin: 'com.google.gms.google-services'

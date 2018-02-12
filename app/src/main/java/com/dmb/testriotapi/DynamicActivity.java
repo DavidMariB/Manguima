@@ -35,6 +35,8 @@ FragmentDynForo.OnFragmentInteractionListener{
         viewPager = (ViewPager) findViewById(R.id.dynamicPager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mPagerAdapter);
+
+
     }
 
     @Override

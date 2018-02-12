@@ -34,9 +34,14 @@
         <activity android:name=".FriendsActivity" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".ConfigActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".DynamicActivity">
+        <activity android:name=".ProfileActivity">
+            <intent-filter>
+                <action android:name="com.dmb.testriotapi_TARGET_NOTIFICATION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
+        <activity android:name=".DynamicActivity"/>
+        <activity android:name=".UsersActivity"/>
     </application>
 
 </manifest>

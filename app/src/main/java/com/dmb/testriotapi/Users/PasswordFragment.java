@@ -40,6 +40,7 @@ public class PasswordFragment extends Fragment {
 
     private EditText etMailReset;
     private Button btnSendPasswordReset;
+    private ImageButton imgButtonBack;
 
     private FragmentManager fm;
     private FragmentTransaction ft;
@@ -76,6 +77,14 @@ public class PasswordFragment extends Fragment {
         etMailReset = v.findViewById(R.id.etMailReset);
         btnSendPasswordReset = v.findViewById(R.id.btnSendPasswordReset);
         mAuth = FirebaseAuth.getInstance();
+        imgButtonBack = v.findViewById(R.id.imgBtnBack);
+
+        imgButtonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callLoginFragment();
+            }
+        });
 
         btnSendPasswordReset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +113,7 @@ public class PasswordFragment extends Fragment {
         });
         return v;
     }
+
     public void callLoginFragment(){
         fm = getActivity().getSupportFragmentManager();
         fm.popBackStack();

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dmb.testriotapi.Models.Friend;
+import com.dmb.testriotapi.Models.User;
 import com.dmb.testriotapi.R;
 
 import java.util.ArrayList;
@@ -19,11 +20,13 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendVi
     private ArrayList<Friend> friends;
     private static RecyclerViewOnItemClickListener recyclerViewOnClickItemListener;
 
+    //MODIFICADO
     public FriendsAdapter(ArrayList<Friend> friends, @NonNull RecyclerViewOnItemClickListener recyclerViewOnItemClickListener){
         this.friends = friends;
         this.recyclerViewOnClickItemListener = recyclerViewOnItemClickListener;
     }
 
+    //MODIFICADO
     @Override
     public int getItemCount() {
         return friends.size();

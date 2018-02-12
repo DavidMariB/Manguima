@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import com.dmb.testriotapi.Adapters.ChatAdapter;
 import com.dmb.testriotapi.Adapters.FriendsAdapter;
 import com.dmb.testriotapi.Models.Friend;
+import com.dmb.testriotapi.Models.User;
 import com.dmb.testriotapi.R;
 
 import java.util.ArrayList;

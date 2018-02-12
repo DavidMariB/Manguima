@@ -6,4 +6,9 @@
         android:orderInCategory="100"
         android:title="Cerrar Sesión"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/actionAllUsers"
+        android:orderInCategory="110"
+        android:title="Usuarios"
+        app:showAsAction="never"/>
 </menu>

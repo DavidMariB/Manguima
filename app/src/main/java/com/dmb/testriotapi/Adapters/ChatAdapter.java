@@ -70,6 +70,5 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
             tTargetUser = itemView.findViewById(R.id.tTargetUser);
             tCurrentUser = itemView.findViewById(R.id.tCurrentUser);
         }
-
     }
 }

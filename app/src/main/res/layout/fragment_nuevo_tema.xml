@@ -20,7 +20,7 @@
                 android:id="@+id/img_NuevoTema"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
-                android:background="@drawable/register" />
+                android:src="@drawable/newpost" />
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -38,6 +39,7 @@ public class UsersActivity extends AppCompatActivity {
     private static StorageReference storageReference;
 
     private LinearLayoutManager mLayoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,14 +76,30 @@ public class UsersActivity extends AppCompatActivity {
 
         ) {
             @Override
-            protected void populateViewHolder(UsersViewHolder usersViewHolder, User user, int position) {
+            protected void populateViewHolder(final UsersViewHolder usersViewHolder, User user, int position) {
 
                 usersViewHolder.setDisplayName(user.getName());
                 usersViewHolder.setUserName(user.getUserName());
                 usersViewHolder.setUserImage(user.getProfileImage(), getApplicationContext());
 
+
                 final String user_id = getRef(position).getKey();
 
+                mUsersDatabase.child(user_id).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.hasChild("online")) {
+
+                            String userOnline = dataSnapshot.child("online").getValue().toString();
+                            usersViewHolder.setUserOnline(userOnline);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
                 usersViewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -100,7 +118,6 @@ public class UsersActivity extends AppCompatActivity {
         mUsersList.setAdapter(firebaseRecyclerAdapter);
 
     }
-
 
     public static class UsersViewHolder extends RecyclerView.ViewHolder {
 
@@ -135,6 +152,7 @@ public class UsersActivity extends AppCompatActivity {
             mUsersDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+
                     
                     if (dataSnapshot.getValue(User.class).getProfileImage() != null){
                         storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
@@ -157,7 +175,14 @@ public class UsersActivity extends AppCompatActivity {
 
         }
 
-
+        public void setUserOnline(String online_status) {
+            ImageView imgConection = (ImageView) mView.findViewById(R.id.imgConection);
+            if(online_status.equals("true")){
+                imgConection.setImageResource(R.mipmap.conected);
+            } else {
+                imgConection.setImageResource(R.mipmap.disconected);
+            }
+        }
     }
 
 }

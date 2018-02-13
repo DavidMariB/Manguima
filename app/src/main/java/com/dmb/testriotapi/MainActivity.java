@@ -1,14 +1,19 @@
 package com.dmb.testriotapi;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +26,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.dmb.testriotapi.Fragments.FriendsFragment;
+import com.dmb.testriotapi.LeagueOfLegends.RecentMatchesFragment;
+import com.dmb.testriotapi.LeagueOfLegends.SummonerInfoFragment;
+import com.dmb.testriotapi.Models.Champion;
+import com.dmb.testriotapi.Models.Friend;
+import com.dmb.testriotapi.Models.Match;
 import com.dmb.testriotapi.Models.User;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,15 +41,21 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
 
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
     private StorageReference storageReference;
+
+    private String apiKey,gameVersion,selectedRegion,accountID;
 
     private LinearLayout holderLayout;
 
@@ -46,6 +63,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ImageView profileIcon;
 
     private DatabaseReference dbr;
+
+    private User user;
+
+    private DatabaseReference mUserRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +101,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tvEmail = headerLayout.findViewById(R.id.tvMail);
         profileIcon = headerLayout.findViewById(R.id.imgUser);
 
+        if (mAuth.getCurrentUser() != null) {
+            mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mAuth.getCurrentUser().getUid());
+        }
+
         getUserData();
     }
 
@@ -109,6 +135,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //noinspection SimplifiableIfStatement
         if (id == R.id.actionSignOut) {
             mAuth.signOut();
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+
+            if(currentUser != null) {
+                mUserRef.child("online").setValue("false");
+            }
             Intent intent = new Intent(this,LoginActivity.class);
             startActivity(intent);
             this.finish();
@@ -188,6 +219,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             View stubView = inflater.inflate(layoutResID, holderLayout, false);
             holderLayout.addView(stubView, lp);
         }
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();;
+        if(currentUser == null){
+            sendToStart();
+        } else {
+            mUserRef.child("online").setValue("true");
+        }
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if(currentUser != null) {
+            mUserRef.child("online").setValue("false");
+        }
+    }
+    private void sendToStart() {
+        Intent startIntent = new Intent(MainActivity.this, DynamicActivity.class);
+        startActivity(startIntent);
+        finish();
     }
 }
 

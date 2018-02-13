@@ -43,6 +43,7 @@ public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFra
     private RecyclerView rv_Forum;
     private FloatingActionButton fab_NuevoTema;
     private ArrayList<Forum> foro = new ArrayList<>();
+    private String comentarios, likes;
 
     ForumAdapter adaptador;
 
@@ -99,6 +100,7 @@ public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFra
         });
 
         bbdd = FirebaseDatabase.getInstance().getReference().child("forum");
+
 
         bbdd.addValueEventListener(new ValueEventListener() {
 

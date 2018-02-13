@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dmb.testriotapi.Models.Forum.Forum;
@@ -32,8 +33,6 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHolder> implements View.OnClickListener {
     private List<Forum> items;
     private View.OnClickListener listener;
-    static DatabaseReference bbdd;
-    static StorageReference storageReference;
 
     public ForumAdapter(List<Forum> items) {
         this.items = items;
@@ -78,19 +77,28 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 
         public void bindProducto(Forum item) {
             txt_mensaje.setText(item.getTitulo());
-            /*String uid = item.getUid();
-            bbdd = FirebaseDatabase.getInstance().getReference().child("usuario");
+            String cmt = String.valueOf(item.getComentarios().size());
+            txt_comment.setText("Comentarios: ("+cmt+")");
+            String lk = String.valueOf(item.getLikes().size());
+            txt_like.setText("Likes: ("+lk+")");
+
+
+            String uid = item.getUid();
+            DatabaseReference bbdd = FirebaseDatabase.getInstance().getReference().child("usuario");
+
             Query q = bbdd.orderByKey().equalTo(uid);
-            q.addValueEventListener(new ValueEventListener() {
+            Toast.makeText(getApplicationContext(), q.toString(), Toast.LENGTH_SHORT).show();
+
+            q.addListenerForSingleValueEvent(new ValueEventListener() {
 
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot datasnapshot: dataSnapshot.getChildren()){
                         if (dataSnapshot.getValue(User.class).getProfileImage() != null) {
-                            storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
+                            StorageReference sR = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
                             Glide.with(getApplicationContext())
                                     .using(new FirebaseImageLoader())
-                                    .load(storageReference)
+                                    .load(sR)
                                     .into(img_Profile);
                         }
                     }
@@ -98,7 +106,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                 }
-            });*/
+            });
         }
     }
 

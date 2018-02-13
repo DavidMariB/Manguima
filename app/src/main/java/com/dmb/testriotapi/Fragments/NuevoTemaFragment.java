@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 public class NuevoTemaFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,7 +35,7 @@ public class NuevoTemaFragment extends Fragment {
 
     private EditText etNombre, etMensaje;
     private Button btnNuevoTema;
-    private String getNombre,getMensaje, getUser;
+    private String getNombre,getMensaje, getUser, getHora;
     boolean checkFields;
     private FirebaseAuth mAuth;
     DatabaseReference bbdd;
@@ -75,7 +77,6 @@ public class NuevoTemaFragment extends Fragment {
         btnNuevoTema.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Hola", Toast.LENGTH_SHORT).show();
                 checkTemaFields();
                 crearTema();
                 Toast.makeText(getContext(), "¡Tema creado!", Toast.LENGTH_SHORT).show();
@@ -125,13 +126,14 @@ public class NuevoTemaFragment extends Fragment {
 
     public void crearTema() {
         getNombre = etNombre.getText().toString();
-        getMensaje = etNombre.getText().toString();
+        getMensaje = etMensaje.getText().toString();
+        getHora = Calendar.getInstance().getTime().toString();
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser user = mAuth.getCurrentUser();
         getUser = user.getUid();
 
-        Forum f = new Forum(getNombre, getUser, getMensaje);
+        Forum f = new Forum(getNombre, getUser, getMensaje, getHora);
 
         bbdd.child(bbdd.push().getKey()).setValue(f);
 

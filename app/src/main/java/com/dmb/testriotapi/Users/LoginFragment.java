@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dmb.testriotapi.DynamicActivity;
 import com.dmb.testriotapi.MainActivity;
 import com.dmb.testriotapi.R;
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -172,7 +173,7 @@ public class LoginFragment extends Fragment {
                             getActivity().getIntent().putExtra("userUID",user.getUid());
                             getActivity().setResult(RESULT_OK,getActivity().getIntent());
                             getActivity().finish();
-                            Intent intent = new Intent(getContext(), MainActivity.class);
+                            Intent intent = new Intent(getContext(), DynamicActivity.class);
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.

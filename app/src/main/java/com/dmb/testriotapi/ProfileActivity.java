@@ -3,12 +3,16 @@ package com.dmb.testriotapi;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.dmb.testriotapi.Models.User;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,9 +20,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-import com.pusher.pushnotifications.PushNotifications;
 
 
 import java.text.DateFormat;
@@ -38,13 +44,15 @@ public class ProfileActivity extends AppCompatActivity {
 
     private DatabaseReference mFriendReqDatabase;
     private DatabaseReference mFriendDatabase;
-    private DatabaseReference mNotificationDatabase;
+    private DatabaseReference mImageReference;
 
     private DatabaseReference mRootRef;
 
     private FirebaseUser mCurrent_user;
 
     private String mCurrent_state;
+
+    private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,20 +66,18 @@ public class ProfileActivity extends AppCompatActivity {
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios").child(user_id);
         mFriendReqDatabase = FirebaseDatabase.getInstance().getReference().child("Friend_req");
         mFriendDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
-        mNotificationDatabase = FirebaseDatabase.getInstance().getReference().child("notifications");
         mCurrent_user = FirebaseAuth.getInstance().getCurrentUser();
+        mImageReference = FirebaseDatabase.getInstance().getReference().child("usuarios");
 
         mProfileImage = findViewById(R.id.profile_image);
         mProfileName = findViewById(R.id.profile_displayName);
         mProfileSendReqBtn = findViewById(R.id.profile_send_req_btn);
         mDeclineBtn = findViewById(R.id.profile_decline_btn);
 
-
         mCurrent_state = "not_friends";
 
         mDeclineBtn.setVisibility(View.INVISIBLE);
         mDeclineBtn.setEnabled(false);
-
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setTitle("Cargando Informacion del Usuario");
@@ -79,18 +85,22 @@ public class ProfileActivity extends AppCompatActivity {
         mProgressDialog.setCanceledOnTouchOutside(false);
         mProgressDialog.show();
 
-
-
         mUsersDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 String display_name = dataSnapshot.child("userName").getValue().toString();
-                String image = dataSnapshot.child("profileImage").getValue().toString();
-
                 mProfileName.setText(display_name);
 
-                Picasso.with(ProfileActivity.this).load(image).placeholder(R.mipmap.default_avatar).into(mProfileImage);
+                if (dataSnapshot.getValue(User.class).getProfileImage() != null){
+                    storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
+                    Glide.with(getApplicationContext())
+                            .using(new FirebaseImageLoader())
+                            .load(storageReference)
+                            .into(mProfileImage);
+                }else {
+                    Picasso.with(getApplicationContext()).load(R.mipmap.default_avatar).into(mProfileImage);
+                }
+
 
                 if(mCurrent_user.getUid().equals(user_id)){
 
@@ -197,17 +207,9 @@ public class ProfileActivity extends AppCompatActivity {
                 if(mCurrent_state.equals("not_friends")){
 
 
-                    DatabaseReference newNotificationref = mRootRef.child("notifications").child(user_id).push();
-                    String newNotificationId = newNotificationref.getKey();
-
-                    HashMap<String, String> notificationData = new HashMap<>();
-                    notificationData.put("from", mCurrent_user.getUid());
-                    notificationData.put("type", "request");
-
                     Map requestMap = new HashMap();
                     requestMap.put("Friend_req/" + mCurrent_user.getUid() + "/" + user_id + "/request_type", "sent");
                     requestMap.put("Friend_req/" + user_id + "/" + mCurrent_user.getUid() + "/request_type", "received");
-                    requestMap.put("notifications/" + user_id + "/" + newNotificationId, notificationData);
 
                     mRootRef.updateChildren(requestMap, new DatabaseReference.CompletionListener() {
                         @Override
@@ -215,15 +217,12 @@ public class ProfileActivity extends AppCompatActivity {
 
                             if(databaseError != null){
 
-                                Toast.makeText(ProfileActivity.this, "There was some error in sending request", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileActivity.this, "Error al enviar la peticion", Toast.LENGTH_SHORT).show();
 
                             } else {
 
                                 mCurrent_state = "req_sent";
                                 mProfileSendReqBtn.setText("CANCELAR PETICION DE AMISTAD");
-
-                                PushNotifications.start(getApplicationContext(), "318a071d-5687-461d-b1e7-66e7f221c50c");
-                                PushNotifications.subscribe("hello");
 
                             }
 

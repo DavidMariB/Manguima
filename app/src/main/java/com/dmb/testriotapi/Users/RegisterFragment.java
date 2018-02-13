@@ -25,6 +25,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dmb.testriotapi.DynamicActivity;
 import com.dmb.testriotapi.Fragments.DatePickerFragment;
 import com.dmb.testriotapi.LoginActivity;
 import com.dmb.testriotapi.Models.User;
@@ -294,7 +295,9 @@ public class RegisterFragment extends Fragment {
                                 getActivity().getIntent().putExtra("userUID",user.getUid());
                                 getActivity().setResult(RESULT_OK,getActivity().getIntent());
                                 Toast.makeText(getContext(), getText(R.string.AddUsuario), Toast.LENGTH_SHORT).show();
-                                callLoginFragment();
+                                Intent intent = new Intent(getContext(), DynamicActivity.class);
+                                startActivity(intent);
+                                getActivity().finish();
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.e("TAG", "createUserWithEmail:failure", task.getException());

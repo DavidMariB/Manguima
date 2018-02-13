@@ -1,19 +1,14 @@
 package com.dmb.testriotapi;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,12 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.dmb.testriotapi.Fragments.FriendsFragment;
-import com.dmb.testriotapi.LeagueOfLegends.RecentMatchesFragment;
-import com.dmb.testriotapi.LeagueOfLegends.SummonerInfoFragment;
-import com.dmb.testriotapi.Models.Champion;
-import com.dmb.testriotapi.Models.Friend;
-import com.dmb.testriotapi.Models.Match;
 import com.dmb.testriotapi.Models.User;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,16 +34,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-
 
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
     private StorageReference storageReference;
-
-    private String apiKey,gameVersion,selectedRegion,accountID;
 
     private LinearLayout holderLayout;
 
@@ -62,9 +46,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ImageView profileIcon;
 
     private DatabaseReference dbr;
-
-    private User user;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

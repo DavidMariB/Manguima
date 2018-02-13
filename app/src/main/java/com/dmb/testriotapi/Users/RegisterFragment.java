@@ -303,8 +303,6 @@ public class RegisterFragment extends Fragment {
 
                         }
                     });
-
-                    Toast.makeText(getContext(), getText(R.string.OtroUsuario), Toast.LENGTH_SHORT).show();
                 }
             }
 

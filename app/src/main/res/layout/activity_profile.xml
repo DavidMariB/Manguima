@@ -1,76 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/darkColor"
     tools:context="com.dmb.testriotapi.ProfileActivity">
 
     <ImageView
-        android:id="@+id/fotoPerfil"
+        android:id="@+id/profile_image"
         android:layout_width="match_parent"
-        android:layout_height="277dp"
-        android:layout_weight="0"
-        android:baselineAlignBottom="false"
-        app:srcCompat="@mipmap/thresh_background" />
+        android:layout_height="220dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:srcCompat="@mipmap/default_avatar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/profile_displayName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:text="Display Name"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="@string/User"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+    <Button
+        android:id="@+id/profile_send_req_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/profile_decline_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/redColor"
+        android:text="ENVIAR PETICION DE AMISTAD"
+        android:textColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/nombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="@string/Name"
-            android:textSize="18sp" />
+    <Button
+        android:id="@+id/profile_decline_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/redColor"
+        android:text="RECHAZAR PETICION DE AMISTAD"
+        android:textColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/apellido"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="@string/Surname"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/nacionalidad2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="@string/Birth"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/nacionalidad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="@string/Nationality"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/juegos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="@string/Games"
-            android:textSize="18sp" />
-
-    </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

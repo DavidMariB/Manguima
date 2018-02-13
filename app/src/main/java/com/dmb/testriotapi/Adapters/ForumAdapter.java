@@ -84,9 +84,9 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 
 
             String uid = item.getUid();
-            DatabaseReference bbdd = FirebaseDatabase.getInstance().getReference().child("usuario");
+            DatabaseReference bbdd = FirebaseDatabase.getInstance().getReference().child("usuarios");
 
-            Query q = bbdd.orderByKey().equalTo(uid);
+            /*Query q = bbdd.orderByKey().equalTo(uid);
             Toast.makeText(getApplicationContext(), q.toString(), Toast.LENGTH_SHORT).show();
 
             q.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -106,7 +106,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                 }
-            });
+            });*/
         }
     }
 

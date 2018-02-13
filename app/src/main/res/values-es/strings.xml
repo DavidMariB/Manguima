@@ -38,7 +38,7 @@
     <string name="selecciona_idioma">Selecciona Lenguaje:</string>
     <string name="visita_nuestra_web">Visita Nuestra Web:</string>
     <string name="salir_boton">Salir</string>
-    <string name="salir_manguima">Sal de Mangüima:</string>
+    <string name="salir_manguima">Sal de Mänguima:</string>
     <string name="desarrolador_por">Desarrollado por</string>
     <string name="forgetPassword"><u> ¿Olvidó su contraseña? Haga clic aquí. </u></string>
     <string name="Resetpass">Restablecer Contraseña</string>
@@ -80,4 +80,8 @@
     <string name="EliminarAmigos">Eliminado de amigos</string>
     <string name="DeAmigos">De amigos?</string>
     <string name="SeguroEliminar">¿Estás seguro de que quieres eliminar a</string>
+    <string name="EnviarAmistad">ENVIAR PETICION DE AMISTAD</string>
+    <string name="RechazarAmistad">RECHAZAR PETICION DE AMISTAD</string>
+    <string name="Mensaje">Mensaje</string>
+    <string name="NuevoTema">Crear nuevo tema</string>
 </resources>

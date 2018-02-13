@@ -52,7 +52,7 @@
     <string name="Exit">Exit</string>
     <string name="selecciona_idioma">Select Language:</string>
     <string name="visita_nuestra_web">Visit Our Web:</string>
-    <string name="salir_manguima">Leave Mangüima:</string>
+    <string name="salir_manguima">Leave Mänguima:</string>
     <string name="salir_boton">Leave</string>
     <string name="desarrolador_por">Developed by</string>
     <string name="login">Login</string>
@@ -92,4 +92,8 @@
     <string name="EliminarAmigos">Removed from friends</string>
     <string name="DeAmigos">Of friends?</string>
     <string name="SeguroEliminar">Are you sure you want to delete</string>
+    <string name="EnviarAmistad">"SEND PETITION FOR FRIENDSHIP "</string>
+    <string name="RechazarAmistad">"REJECT PETITION FOR FRIENDSHIP "</string>
+    <string name="Mensaje">Message</string>
+    <string name="NuevoTema">Create new theme</string>
 </resources>

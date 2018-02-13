@@ -36,7 +36,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="12dp"
         android:backgroundTint="@color/redColor"
-        android:text="ENVIAR PETICION DE AMISTAD"
+        android:text="@string/EnviarAmistad"
         android:textColor="@android:color/white" />
 
     <Button
@@ -47,7 +47,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/redColor"
-        android:text="RECHAZAR PETICION DE AMISTAD"
+        android:text="@string/RechazarAmistad"
         android:textColor="@android:color/white" />
 
 </RelativeLayout>

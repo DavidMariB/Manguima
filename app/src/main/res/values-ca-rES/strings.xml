@@ -37,7 +37,7 @@
     <string name="Exit">Eixir</string>
     <string name="selecciona_idioma">Selecciona Llenguatge:</string>
     <string name="visita_nuestra_web">Visita la Nostra Web:</string>
-    <string name="salir_manguima">Ix de Mangüima:</string>
+    <string name="salir_manguima">Ix de Mänguima:</string>
     <string name="salir_boton">Eixir</string>
     <string name="desarrolador_por">Desenvolupat per</string>
     <string name="forgetPassword"><u> Has oblidat la teva contrasenya? Feu clic aquí. </u></string>
@@ -80,4 +80,8 @@
     <string name="EliminarAmigos">"Eliminat d'amics "</string>
     <string name="DeAmigos">De amics?</string>
     <string name="SeguroEliminar">"¿Estàs segur de que vols eliminar a "</string>
+    <string name="EnviarAmistad">"ENVIAR PETICIÓ D'AMISTAT "</string>
+    <string name="RechazarAmistad">"REBUTJAR PETICIÓ D'AMISTAT "</string>
+    <string name="Mensaje">Missatge</string>
+    <string name="NuevoTema">"Crear nou tema "</string>
 </resources>

@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dmb.testriotapi.Adapters.ForumAdapter;
+import com.dmb.testriotapi.ComentariosActivity;
 import com.dmb.testriotapi.Models.Forum.Comentario;
 import com.dmb.testriotapi.Models.Forum.Forum;
 import com.dmb.testriotapi.Models.Forum.Like;
@@ -43,7 +44,6 @@ public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFra
     private RecyclerView rv_Forum;
     private FloatingActionButton fab_NuevoTema;
     private ArrayList<Forum> foro = new ArrayList<>();
-    private String comentarios, likes;
 
     ForumAdapter adaptador;
 
@@ -86,8 +86,6 @@ public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFra
         fab_NuevoTema.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 //Paco acuerdate de arreglar esto bien
-                //mListener.creaVentanaNuevoTema();
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 fm.popBackStack();
                 NuevoTemaFragment f = NuevoTemaFragment.newInstance(null, null);
@@ -106,11 +104,23 @@ public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFra
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                foro.clear();
                 for (DataSnapshot datasnapshot: dataSnapshot.getChildren()){
                     Forum f = datasnapshot.getValue(Forum.class);
                     foro.add(f);
                 }
                 adaptador = new ForumAdapter(foro);
+                adaptador.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent i = new Intent(getContext(), ComentariosActivity.class);
+                        //Cogemos la posición, elegimos la key de esta y la mandamos a info activity
+                        i.putExtra("key",foro.get(rv_Forum.getChildAdapterPosition(v)).getKey().toString());
+                        startActivity(i);
+
+                    }
+                });
                 rv_Forum.setAdapter(adaptador);
             }
             @Override

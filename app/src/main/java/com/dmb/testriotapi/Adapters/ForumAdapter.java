@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.dmb.testriotapi.Models.Forum.Forum;
 import com.dmb.testriotapi.Models.User;
 import com.dmb.testriotapi.R;
+import com.facebook.FacebookSdk;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +22,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -53,7 +55,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
     @Override
     public void onBindViewHolder(ForumViewHolder viewHolder, int i) {
         Forum item = items.get(i);
-        viewHolder.bindProducto(item);
+        viewHolder.bindForum(item);
     }
 
     @Override
@@ -75,36 +77,33 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
             img_Profile = (ImageView) v.findViewById(R.id.img_Profile);
         }
 
-        public void bindProducto(Forum item) {
+        public void bindForum(Forum item) {
             txt_mensaje.setText(item.getTitulo());
             String cmt = String.valueOf(item.getComentarios().size());
-            txt_comment.setText("Comentarios: ("+cmt+")");
+            txt_comment.setText("Comentarios: (" + cmt + ")");
             String lk = String.valueOf(item.getLikes().size());
-            txt_like.setText("Likes: ("+lk+")");
+            txt_like.setText("Likes: (" + lk + ")");
 
 
-            String uid = item.getUid();
+            /*String uid = item.getUid();
             DatabaseReference bbdd = FirebaseDatabase.getInstance().getReference().child("usuarios");
-
-            /*Query q = bbdd.orderByKey().equalTo(uid);
-            Toast.makeText(getApplicationContext(), q.toString(), Toast.LENGTH_SHORT).show();
-
-            q.addListenerForSingleValueEvent(new ValueEventListener() {
-
+            bbdd.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot datasnapshot: dataSnapshot.getChildren()){
                         if (dataSnapshot.getValue(User.class).getProfileImage() != null) {
-                            StorageReference sR = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
+                            StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
                             Glide.with(getApplicationContext())
                                     .using(new FirebaseImageLoader())
-                                    .load(sR)
+                                    .load(storageReference)
                                     .into(img_Profile);
+                        } else {
+                            Picasso.with(getApplicationContext()).load(R.mipmap.default_avatar).into(img_Profile);
                         }
-                    }
                 }
+
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
+
                 }
             });*/
         }

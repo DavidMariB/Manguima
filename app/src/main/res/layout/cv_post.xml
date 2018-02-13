@@ -37,6 +37,7 @@
                     android:id="@+id/txt_mensaje"
                     android:layout_width="wrap_content"
                     android:layout_height="72dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="5"
                     android:text="TextView"
                     android:textColor="@color/white"

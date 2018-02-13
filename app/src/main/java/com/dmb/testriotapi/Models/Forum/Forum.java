@@ -14,6 +14,7 @@ public class Forum {
     private String uid;
     private String mensaje;
     private String fecha;
+    private String key;
     Map <String, Object> comentarios = new HashMap<String, Object>();
     Map<String, Object> likes = new HashMap<String, Object>();
 
@@ -21,11 +22,12 @@ public class Forum {
 
     }
 
-    public Forum(String titulo, String uid, String mensaje, String fecha) {
+    public Forum(String titulo, String uid, String mensaje, String fecha, String key) {
         this.titulo = titulo;
         this.uid = uid;
         this.mensaje = mensaje;
         this.fecha = fecha;
+        this.key = key;
     }
 
     public String getTitulo() {
@@ -76,6 +78,14 @@ public class Forum {
         this.fecha = fecha;
     }
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     @Override
     public String toString() {
         return "Forum{" +
@@ -83,6 +93,7 @@ public class Forum {
                 ", uid='" + uid + '\'' +
                 ", mensaje='" + mensaje + '\'' +
                 ", fecha='" + fecha + '\'' +
+                ", key='" + key + '\'' +
                 ", comentarios=" + comentarios +
                 ", likes=" + likes +
                 '}';

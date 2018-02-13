@@ -37,7 +37,7 @@ public class NuevoTemaFragment extends Fragment {
 
     private EditText etNombre, etMensaje;
     private Button btnNuevoTema;
-    private String getNombre,getMensaje, getUser, getHora;
+    private String getNombre,getMensaje, getUser, getKey;
     boolean checkFields;
     private FirebaseAuth mAuth;
     DatabaseReference bbdd;
@@ -135,9 +135,11 @@ public class NuevoTemaFragment extends Fragment {
         FirebaseUser user = mAuth.getCurrentUser();
         getUser = user.getUid();
 
-        Forum f = new Forum(getNombre, getUser, getMensaje, currentDate);
+        getKey = bbdd.push().getKey();
 
-        bbdd.child(bbdd.push().getKey()).setValue(f);
+        Forum f = new Forum(getNombre, getUser, getMensaje, currentDate, getKey);
+
+        bbdd.child(getKey).setValue(f);
 
         getActivity().getFragmentManager().popBackStack();
 

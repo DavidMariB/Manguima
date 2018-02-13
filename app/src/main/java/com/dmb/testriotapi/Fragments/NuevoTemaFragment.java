@@ -21,7 +21,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class NuevoTemaFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -127,13 +129,13 @@ public class NuevoTemaFragment extends Fragment {
     public void crearTema() {
         getNombre = etNombre.getText().toString();
         getMensaje = etMensaje.getText().toString();
-        getHora = Calendar.getInstance().getTime().toString();
+        final String currentDate = DateFormat.getDateTimeInstance().format(new Date());
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser user = mAuth.getCurrentUser();
         getUser = user.getUid();
 
-        Forum f = new Forum(getNombre, getUser, getMensaje, getHora);
+        Forum f = new Forum(getNombre, getUser, getMensaje, currentDate);
 
         bbdd.child(bbdd.push().getKey()).setValue(f);
 

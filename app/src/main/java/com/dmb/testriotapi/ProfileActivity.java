@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private ImageView mProfileImage;
     private TextView mProfileName, mProfileStatus, mProfileFriendsCount;
-    private Button mProfileSendReqBtn, mDeclineBtn;
+    private Button mProfileSendReqBtn, mDeclineBtn, mChangeProfileImage, mEditUserData;
 
     private DatabaseReference mUsersDatabase;
 
@@ -73,6 +73,8 @@ public class ProfileActivity extends AppCompatActivity {
         mProfileName = findViewById(R.id.profile_displayName);
         mProfileSendReqBtn = findViewById(R.id.profile_send_req_btn);
         mDeclineBtn = findViewById(R.id.profile_decline_btn);
+        mChangeProfileImage = findViewById(R.id.profile_change_image);
+        mEditUserData = findViewById(R.id.profile_edit_user_data);
 
         mCurrent_state = "not_friends";
 
@@ -112,8 +114,20 @@ public class ProfileActivity extends AppCompatActivity {
 
                 }
 
+                //--------------- EDITAR PERFIL ------------------//
 
-                //--------------- PETICION DE AMISTAD -----
+                Log.e("TAG ",""+mCurrent_user.getUid());
+                Log.e("TAG ",""+mUsersDatabase.getKey());
+
+                if (mCurrent_user.getUid().equals(mUsersDatabase.getKey())){
+
+                    mChangeProfileImage.setVisibility(View.VISIBLE);
+                    mEditUserData.setVisibility(View.VISIBLE);
+
+                }
+
+
+                //--------------- PETICION DE AMISTAD --------------//
 
                 mFriendReqDatabase.child(mCurrent_user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

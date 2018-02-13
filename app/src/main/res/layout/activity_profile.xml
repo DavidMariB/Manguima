@@ -50,4 +50,28 @@
         android:text="@string/RechazarAmistad"
         android:textColor="@android:color/white" />
 
+    <Button
+        android:id="@+id/profile_change_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/profile_decline_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/redColor"
+        android:text="Cambiar Foto de Perfil"
+        android:textColor="@android:color/white"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/profile_edit_user_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/redColor"
+        android:text="Editar Datos de Usuario"
+        android:textColor="@android:color/white"
+        android:visibility="gone"/>
+
 </RelativeLayout>

@@ -8,14 +8,16 @@ public class Comentario {
 
     private String mensaje;
     private String uid;
+    private String fecha;
 
     public Comentario () {
 
     }
 
-    public Comentario(String mensaje, String uid) {
+    public Comentario(String mensaje, String uid, String fecha) {
         this.mensaje = mensaje;
         this.uid = uid;
+        this.fecha = fecha;
     }
 
     public String getMensaje() {
@@ -32,6 +34,14 @@ public class Comentario {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     @Override

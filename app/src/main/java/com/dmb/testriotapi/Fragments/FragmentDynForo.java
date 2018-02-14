@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,6 +45,7 @@ public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFra
     private RecyclerView rv_Forum;
     private FloatingActionButton fab_NuevoTema;
     private ArrayList<Forum> foro = new ArrayList<>();
+    private SwipeRefreshLayout foro_container;
 
     ForumAdapter adaptador;
 
@@ -80,6 +82,15 @@ public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFra
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_fragment_dyn_foro, container, false);
 
+        foro_container = (SwipeRefreshLayout) v.findViewById(R.id.foro_container);
+        foro_container.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                cargarForo();
+                foro_container.setRefreshing(false);
+            }
+        });
+
         rv_Forum = (RecyclerView) v.findViewById(R.id.rv_Forum);
         fab_NuevoTema = (FloatingActionButton) v.findViewById(R.id.fab_NuevoTema);
 
@@ -97,10 +108,42 @@ public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFra
             }
         });
 
+        cargarForo();
+        return v;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener2");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void creaVentanaNuevoTema();
+    }
+
+    public void cargarForo() {
         bbdd = FirebaseDatabase.getInstance().getReference().child("forum");
 
-
-        bbdd.limitToLast(10).addValueEventListener(new ValueEventListener() {
+        bbdd.limitToLast(10).addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -131,35 +174,5 @@ public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFra
 
         rv_Forum.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
-
-        return v;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener2");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void creaVentanaNuevoTema();
     }
 }

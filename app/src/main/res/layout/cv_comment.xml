@@ -21,13 +21,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="10"
+                android:layout_weight="30"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/img_Profile"
-                    android:layout_width="40dp"
+                    android:layout_width="44dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
@@ -49,23 +49,42 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="5"
-                app:cardCornerRadius="20dp">
+                android:layout_weight="10"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="4"
+                    app:cardCornerRadius="20dp">
+
+                    <TextView
+                        android:id="@+id/txt_comentario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="4"
+                        android:text="TextView"
+                        android:textColor="@color/negro"
+                        android:textSize="14sp" />
+                </android.support.v7.widget.CardView>
 
                 <TextView
-                    android:id="@+id/txt_comentario"
+                    android:id="@+id/txt_fecha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="4"
                     android:text="TextView"
-                    android:textColor="@color/negro"
-                    android:textSize="18sp" />
-            </android.support.v7.widget.CardView>
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/white"
+                    android:textSize="8sp" />
+            </LinearLayout>
+
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

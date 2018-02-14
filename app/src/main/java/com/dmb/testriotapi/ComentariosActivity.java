@@ -34,7 +34,9 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.security.Key;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -167,6 +169,8 @@ public class ComentariosActivity extends AppCompatActivity {
                     Comentario cmt2 = new Comentario();
                     cmt2.setMensaje(cmt);
                     cmt2.setUid(fu);
+                    final String currentDate = DateFormat.getDateTimeInstance().format(new Date());
+                    cmt2.setFecha(currentDate);
                     bbdd.child(bbdd.push().getKey()).setValue(cmt2);
                     et_Comentario.setText("");
                 }

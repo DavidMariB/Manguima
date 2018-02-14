@@ -70,7 +70,7 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
 
     public static class ComentarioViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
-        public TextView txt_comentario, txt_user;
+        public TextView txt_comentario, txt_user, txt_fecha;
         public ImageView img_Profile;
 
 
@@ -78,6 +78,7 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
             super(v);
             txt_comentario = (TextView) v.findViewById(R.id.txt_comentario);
             txt_user = (TextView) v.findViewById(R.id.txt_user);
+            txt_fecha = (TextView) v.findViewById(R.id.txt_fecha);
             img_Profile = (ImageView) v.findViewById(R.id.img_Profile);
         }
 
@@ -97,7 +98,7 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
                 }
             });
 
-
+            txt_fecha.setText(item.getFecha());
             txt_comentario.setText(item.getMensaje());
         }
     }

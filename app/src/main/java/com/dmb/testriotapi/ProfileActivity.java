@@ -1,6 +1,12 @@
 package com.dmb.testriotapi;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +19,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.dmb.testriotapi.Models.User;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,20 +30,25 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private ImageView mProfileImage;
     private TextView mProfileName, mProfileStatus, mProfileFriendsCount;
     private Button mProfileSendReqBtn, mDeclineBtn, mChangeProfileImage, mEditUserData;
+    private String username,name,surname,birthday;
 
     private DatabaseReference mUsersDatabase;
 
@@ -53,6 +65,15 @@ public class ProfileActivity extends AppCompatActivity {
     private String mCurrent_state;
 
     private StorageReference storageReference;
+
+    static final int PICK_IMAGE_REQUEST = 71;
+
+    private FirebaseStorage fs = FirebaseStorage.getInstance();
+    private StorageReference sr = fs.getReference();
+
+    private Uri filePath;
+
+    private String imgRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +111,11 @@ public class ProfileActivity extends AppCompatActivity {
         mUsersDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String display_name = dataSnapshot.child("userName").getValue().toString();
-                mProfileName.setText(display_name);
+                username = dataSnapshot.child("userName").getValue().toString();
+                name = dataSnapshot.child("name").getValue().toString();
+                surname = dataSnapshot.child("surname").getValue().toString();
+                birthday = dataSnapshot.child("age").getValue().toString();
+                mProfileName.setText(username);
 
                 if (dataSnapshot.getValue(User.class).getProfileImage() != null){
                     storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
@@ -116,13 +140,24 @@ public class ProfileActivity extends AppCompatActivity {
 
                 //--------------- EDITAR PERFIL ------------------//
 
-                Log.e("TAG ",""+mCurrent_user.getUid());
-                Log.e("TAG ",""+mUsersDatabase.getKey());
-
                 if (mCurrent_user.getUid().equals(mUsersDatabase.getKey())){
 
                     mChangeProfileImage.setVisibility(View.VISIBLE);
                     mEditUserData.setVisibility(View.VISIBLE);
+
+                    mChangeProfileImage.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            chooseImage();
+                        }
+                    });
+
+                    mEditUserData.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            editProfile();
+                        }
+                    });
 
                 }
 
@@ -216,7 +251,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 mProfileSendReqBtn.setEnabled(false);
 
-                // --------------- SI NO SON AMIGOS ------------
+                //--------------- SI NO SON AMIGOS -------------//
 
                 if(mCurrent_state.equals("not_friends")){
 
@@ -249,7 +284,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
 
 
-                // - -------------- CANCELAR LA PETICION DE AMISTAD ------------
+                //-------------- CANCELAR LA PETICION DE AMISTAD ---------------//
 
                 if(mCurrent_state.equals("req_sent")){
 
@@ -279,7 +314,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
 
 
-                // ------------ PETICION RECIBIDA ----------
+                //------------ PETICION RECIBIDA ------------//
 
                 if(mCurrent_state.equals("req_received")){
 
@@ -323,7 +358,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
 
 
-                // ------------ AMIGO ELIMINADO ---------
+                //------------ AMIGO ELIMINADO ---------//
 
                 if(mCurrent_state.equals("friends")){
 
@@ -365,6 +400,95 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    //---------- CAMBIO DE IMAGEN DE PERFIL ------------//
+
+    public void chooseImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, getText(R.string.SelectImagen)), PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null )
+        {
+            filePath = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getApplication().getContentResolver(), filePath);
+                uploadImage();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void uploadImage() {
+
+        if(filePath != null){
+
+            /*final ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
+            progressDialog.setTitle(getText(R.string.SubiendoImagen));
+            progressDialog.show();*/
+
+            StorageReference ref = sr.child("imagenes/"+ UUID.randomUUID().toString());
+            imgRef = ref.getPath();
+            ref.putFile(filePath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            //progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), getText(R.string.ImagenSubida), Toast.LENGTH_SHORT).show();
+                            setNewProfileImage();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            //progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), getText(R.string.FalloImagen)+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            //progressDialog.setMessage(getText(R.string.Subiendo) + " " + (int)progress+"%");
+                        }
+                    });
+        }
+    }
+
+    public void setNewProfileImage(){
+
+        mImageReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String key = mCurrent_user.getUid();
+                mImageReference.child(key).child("profileImage").setValue(imgRef);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void editProfile(){
+        Intent intent = new Intent(getApplicationContext(),EditProfileActivity.class);
+        intent.putExtra("name",name);
+        intent.putExtra("surname",surname);
+        intent.putExtra("username",username);
+        startActivity(intent);
     }
 
 

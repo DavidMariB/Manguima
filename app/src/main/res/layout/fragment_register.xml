@@ -67,12 +67,12 @@
 
                         <ImageButton
                             android:id="@+id/btnPickProfileImage"
-                            android:layout_width="30dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="40dp"
-                            android:layout_marginLeft="50dp"
+                            android:layout_gravity="center|end"
                             android:layout_marginRight="50dp"
                             android:layout_weight="1"
-                            android:background="@color/amarillo"
+                            android:background="@drawable/radius"
                             android:src="@mipmap/ic_camera_enhance_black_24dp" />
                     </LinearLayout>
                 </android.support.design.widget.TextInputLayout>
@@ -130,11 +130,12 @@
 
                         <ImageButton
                             android:id="@+id/btnDate"
-                            android:layout_width="15dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="40dp"
+                            android:layout_gravity="center|end"
                             android:layout_marginRight="50dp"
                             android:layout_weight="1"
-                            android:background="@color/amarillo"
+                            android:background="@drawable/radius"
                             android:src="@mipmap/ic_add_circle_outline_black_24dp" />
                     </LinearLayout>
 
@@ -180,7 +181,7 @@
                     android:id="@+id/tvAlreadyRegistered"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:clickable="true"
                     android:text="@string/alreadyRegistered"
@@ -193,12 +194,12 @@
                     android:id="@+id/btnConfirmRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="30dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_margin="20dp"
                     android:layout_weight="1"
-                    android:background="@color/amarillo"
+                    android:background="@drawable/radius"
                     android:text="@string/Register"
-                    android:textColor="@color/negro" />
+                    android:textColor="@color/negro"
+                    android:textSize="18sp" />
 
             </LinearLayout>
         </LinearLayout>

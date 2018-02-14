@@ -39,7 +39,7 @@
     <string name="Join">Join Mänguima!</string>
     <string name="Resetpass">Password Reset</string>
     <string name="Sendmail">Send Password Reset</string>
-    <string name="NombreUser">Name of User</string>
+    <string name="NombreUser">Username</string>
     <string name="AddPhoto">Add a profile picture!</string>
     <string name="AddBirth">Add a date of birth!</string>
     <string name="Register">Register</string>
@@ -92,8 +92,8 @@
     <string name="EliminarAmigos">Removed from friends</string>
     <string name="DeAmigos">Of friends?</string>
     <string name="SeguroEliminar">Are you sure you want to delete</string>
-    <string name="EnviarAmistad">"SEND PETITION FOR FRIENDSHIP "</string>
-    <string name="RechazarAmistad">"REJECT PETITION FOR FRIENDSHIP "</string>
+    <string name="EnviarAmistad">"SEND FRIEND REQUEST "</string>
+    <string name="RechazarAmistad">"REJECT FRIEND REQUEST "</string>
     <string name="Mensaje">Message</string>
-    <string name="NuevoTema">Create new theme</string>
+    <string name="NuevoTema">Create new post</string>
 </resources>

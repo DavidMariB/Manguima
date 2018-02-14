@@ -192,8 +192,8 @@ public class SummonerInfoFragment extends Fragment {
                 champName = champion.optString("name");
                 champKey = champion.optString("key");
                 champImg = champion.optString("full");
-                Champion champ = new Champion(champName,champKey,champImg);
-                mListener.getChampions().add(champ);
+                //Champion champ = new Champion(champName,champKey,champImg);
+                //mListener.getChampions().add(champ);
             }
 
         }catch (JSONException e){

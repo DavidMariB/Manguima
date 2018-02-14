@@ -11,7 +11,7 @@
     app:cardBackgroundColor="@color/amarillo"
     app:cardCornerRadius="20dp"
     app:contentPadding="10dp"
-    app:cardElevation="6dp">>
+    app:cardElevation="6dp">
 
 
     <RelativeLayout
@@ -73,5 +73,7 @@
             android:layout_below="@+id/tvFriendSurname"
             android:textColor="@color/negro"
             android:textSize="18sp" />
+
     </RelativeLayout>
+
 </android.support.v7.widget.CardView>

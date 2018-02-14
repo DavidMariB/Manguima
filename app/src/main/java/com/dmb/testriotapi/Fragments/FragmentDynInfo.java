@@ -1,32 +1,51 @@
 package com.dmb.testriotapi.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.dmb.testriotapi.Adapters.ChampsAdapter;
+import com.dmb.testriotapi.DetailedChampActivity;
+import com.dmb.testriotapi.Models.Champion;
 import com.dmb.testriotapi.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FragmentDynInfo.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FragmentDynInfo#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class FragmentDynInfo extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private RecyclerView recyclerView;
+
+    private String champName,champKey,champTitle,champImg;
+
+    private ProgressDialog progressDialog;
+
+    private ChampsAdapter champsAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -34,15 +53,6 @@ public class FragmentDynInfo extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentDynInfo.
-     */
-    // TODO: Rename and change types and number of parameters
     public static FragmentDynInfo newInstance(String param1, String param2) {
         FragmentDynInfo fragment = new FragmentDynInfo();
         Bundle args = new Bundle();
@@ -65,26 +75,91 @@ public class FragmentDynInfo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment_dyn_info, container, false);
+        View v = inflater.inflate(R.layout.fragment_fragment_dyn_info, container, false);
+
+        requestAllChamps();
+
+        recyclerView = v.findViewById(R.id.recyclerChampList);
+
+        champsAdapter = new ChampsAdapter(mListener.getChampions(), new ChampsAdapter.RecyclerViewOnItemClickListener() {
+            @Override
+            public void onClick(final View v, final int position) {
+                Snackbar.make(v, mListener.getChampions().get(position).getName(),Snackbar.LENGTH_LONG).show();
+                mListener.champDetails(position);
+            }
+        });
+
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(llm);
+
+        recyclerView.setAdapter(champsAdapter);
+
+        return v;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.cosasDelInfo(uri);
         }
     }
 
+    public void requestAllChamps(){
+
+        String url = "http://ddragon.leagueoflegends.com/cdn/8.3.1/data/es_ES/champion.json";
+
+        StringRequest request = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String string) {
+                parseAllChamps(string);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(getContext(), getText(R.string.FalloRecuperar), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        RequestQueue rQueue = Volley.newRequestQueue(getContext());
+        rQueue.add(request);
+    }
+
+    public void parseAllChamps(String jsonString){
+        try{
+            JSONObject obj = new JSONObject(jsonString);
+            JSONObject object = obj.getJSONObject("data");
+            Iterator<String> it = object.keys();
+            while(it.hasNext()){
+                JSONObject champion = (JSONObject) object.get(it.next());
+
+                    champName = champion.optString("name");
+                    champKey = champion.optString("key");
+                    champTitle = champion.optString("title");
+
+                    JSONObject object1 = champion.getJSONObject("image");
+
+                        champImg = object1.optString("full");
+                        Champion champ = new Champion(champName, champKey, champTitle, champImg);
+                        mListener.addChampion(champ);
+            }
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        champsAdapter.notifyDataSetChanged();
+
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        /*
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener4");
-        }*/
+        }
     }
 
     @Override
@@ -93,18 +168,11 @@ public class FragmentDynInfo extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void cosasDelInfo(Uri uri);
+        ArrayList<Champion> getChampions();
+        void addChampion(Champion champion);
+        Champion getSingleChampion(int position);
+        void champDetails(int position);
     }
 }

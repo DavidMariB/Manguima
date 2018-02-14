@@ -30,7 +30,7 @@ public class TorneosAdapter extends RecyclerView.Adapter<TorneosAdapter.TorneoVi
     @Override
     public TorneosAdapter.TorneoViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.cv_post, viewGroup, false);
+                .inflate(R.layout.cv_torneo, viewGroup, false);
         v.setOnClickListener(this);
         return new TorneosAdapter.TorneoViewHolder(v);
     }
@@ -53,7 +53,7 @@ public class TorneosAdapter extends RecyclerView.Adapter<TorneosAdapter.TorneoVi
 
         public TorneoViewHolder(View v) {
             super(v);
-            txt_titulo = (TextView) v.findViewById(R.id.txt_mensaje);
+            txt_titulo = (TextView) v.findViewById(R.id.txt_titulo);
             txt_p1 = (TextView) v.findViewById(R.id.txt_p1);
             txt_p2 = (TextView) v.findViewById(R.id.txt_p2);
             txt_p3 = (TextView) v.findViewById(R.id.txt_p3);

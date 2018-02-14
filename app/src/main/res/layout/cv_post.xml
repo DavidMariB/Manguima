@@ -70,12 +70,12 @@
 
                     <ImageView
                         android:id="@+id/imageView4"
-                        android:layout_width="1dp"
-                        android:layout_height="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
                         android:layout_weight="1"
                         android:foregroundGravity="center_vertical|center_horizontal"
-                        app:srcCompat="@drawable/comment" />
+                        app:srcCompat="@drawable/ic_chat" />
 
                     <TextView
                         android:id="@+id/txt_comment"
@@ -91,12 +91,12 @@
 
                     <ImageView
                         android:id="@+id/imageView6"
-                        android:layout_width="1dp"
-                        android:layout_height="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="3dp"
                         android:layout_weight="1"
                         android:foregroundGravity="center"
-                        app:srcCompat="@drawable/like" />
+                        app:srcCompat="@drawable/ic_like" />
 
                     <TextView
                         android:id="@+id/txt_like"

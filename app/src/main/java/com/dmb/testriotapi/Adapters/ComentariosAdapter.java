@@ -10,16 +10,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.dmb.testriotapi.ComentariosActivity;
 import com.dmb.testriotapi.Models.Forum.Comentario;
 import com.dmb.testriotapi.Models.Forum.Forum;
+import com.dmb.testriotapi.Models.User;
 import com.dmb.testriotapi.R;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
 import java.util.List;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Ricardo Borrull on 13/02/2018.
@@ -71,8 +82,22 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
         }
 
         public void bindProducto(Comentario item) {
-            DatabaseReference bbdd = FirebaseDatabase.getInstance().getReference().child("usuarios").child(item.getUid()).child("userName");
-            txt_user.setText(bbdd.getKey());
+            DatabaseReference bbdd = FirebaseDatabase.getInstance().getReference().child("usuarios").child(item.getUid());
+            bbdd.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    User u = dataSnapshot.getValue(User.class);
+                    String user = u.getUserName();
+                    txt_user.setText(user);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
             txt_comentario.setText(item.getMensaje());
         }
     }

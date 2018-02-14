@@ -117,6 +117,7 @@ public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFra
                         Intent i = new Intent(getContext(), ComentariosActivity.class);
                         //Cogemos la posición, elegimos la key de esta y la mandamos a info activity
                         i.putExtra("key",foro.get(rv_Forum.getChildAdapterPosition(v)).getKey().toString());
+                        i.putExtra("uid", foro.get(rv_Forum.getChildAdapterPosition(v)).getUid().toString());
                         startActivity(i);
 
                     }

@@ -1,5 +1,6 @@
 package com.dmb.testriotapi.Adapters;
 
+import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,7 +66,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 
     public static class ForumViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
-        public TextView txt_mensaje, txt_comment, txt_like;
+        public TextView txt_mensaje, txt_comment, txt_like, txt_user2;
         public ImageView img_Profile;
 
 
@@ -74,31 +75,32 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
             txt_mensaje = (TextView) v.findViewById(R.id.txt_mensaje);
             txt_comment = (TextView) v.findViewById(R.id.txt_comment);
             txt_like = (TextView) v.findViewById(R.id.txt_like);
+            txt_user2 = (TextView) v.findViewById(R.id.txt_user2);
             img_Profile = (ImageView) v.findViewById(R.id.img_Profile);
         }
 
         public void bindForum(Forum item) {
+            //txt_user2.setText(item.get);
             txt_mensaje.setText(item.getTitulo());
             String cmt = String.valueOf(item.getComentarios().size());
-            txt_comment.setText("Comentarios: (" + cmt + ")");
+            txt_comment.setText("(" + cmt + ")");
             String lk = String.valueOf(item.getLikes().size());
-            txt_like.setText("Likes: (" + lk + ")");
+            txt_like.setText("(" + lk + ")");
 
+            /*DatabaseReference bbdd = FirebaseDatabase.getInstance().getReference().child("usuarios").child(item.getUid());
 
-            /*String uid = item.getUid();
-            DatabaseReference bbdd = FirebaseDatabase.getInstance().getReference().child("usuarios");
             bbdd.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.getValue(User.class).getProfileImage() != null) {
-                            StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
-                            Glide.with(getApplicationContext())
-                                    .using(new FirebaseImageLoader())
-                                    .load(storageReference)
-                                    .into(img_Profile);
-                        } else {
-                            Picasso.with(getApplicationContext()).load(R.mipmap.default_avatar).into(img_Profile);
-                        }
+                    if (dataSnapshot.getValue(User.class).getProfileImage() != null) {
+                        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
+                        Glide.with(getApplicationContext())
+                                .using(new FirebaseImageLoader())
+                                .load(storageReference)
+                                .into(img_Profile);
+                    } else {
+                        Picasso.with(getApplicationContext()).load(R.mipmap.default_avatar).into(img_Profile);
+                    }
                 }
 
                 @Override

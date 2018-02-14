@@ -100,7 +100,7 @@ public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFra
         bbdd = FirebaseDatabase.getInstance().getReference().child("forum");
 
 
-        bbdd.addValueEventListener(new ValueEventListener() {
+        bbdd.limitToLast(10).addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

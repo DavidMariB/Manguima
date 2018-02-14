@@ -1,6 +1,7 @@
 package com.dmb.testriotapi;
 
 import android.os.Build;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,6 +48,7 @@ public class ComentariosActivity extends AppCompatActivity {
     private ArrayList<Comentario> comentario = new ArrayList<>();
     DatabaseReference bbdd, bbddFoto, bbddTema, bbddFotoPropia;
     ComentariosAdapter adaptador;
+    private FloatingActionButton like;
     private EditText et_Comentario;
     private ImageView img_ProfileT, btn_Send, img_ProfileC;
     private TextView txt_mensaje, txt_titulo, txt_user2;
@@ -67,6 +69,7 @@ public class ComentariosActivity extends AppCompatActivity {
         uid = getIntent().getStringExtra("uid");
 
         rv_Comments = (RecyclerView) findViewById(R.id.rv_Comments);
+        like = (FloatingActionButton) findViewById(R.id.fab_Like);
         et_Comentario = (EditText) findViewById(R.id.et_Comentario);
         btn_Send = (ImageView) findViewById(R.id.btn_Send);
         img_ProfileT = (ImageView) findViewById(R.id.img_ProfileT);

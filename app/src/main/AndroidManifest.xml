@@ -16,12 +16,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <service android:name=".FirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.Firebase.MessagingEvent" />
-            </intent-filter>
-        </service>
-
         <activity
             android:name=".LogoActivity"
             android:label="@string/app_name">

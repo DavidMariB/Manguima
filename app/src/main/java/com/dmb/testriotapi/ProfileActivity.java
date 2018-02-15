@@ -490,6 +490,12 @@ public class ProfileActivity extends AppCompatActivity {
         intent.putExtra("username",username);
         startActivity(intent);
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(ProfileActivity.this,UsersActivity.class);
+        startActivity(i);
+    }
 
 
 }

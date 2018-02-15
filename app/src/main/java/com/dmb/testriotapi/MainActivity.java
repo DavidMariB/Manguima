@@ -101,8 +101,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tvEmail = headerLayout.findViewById(R.id.tvMail);
         profileIcon = headerLayout.findViewById(R.id.imgUser);
 
-        if (mAuth.getCurrentUser() != null) {
-            mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mAuth.getCurrentUser().getUid());
+        if (mUser != null) {
+            mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
         }
 
         getUserData();
@@ -134,17 +134,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.actionSignOut) {
-            mAuth.signOut();
             FirebaseUser currentUser = mAuth.getCurrentUser();
-
+            if (currentUser != null) {
+                mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
+            }
             if(currentUser != null) {
                 mUserRef.child("online").setValue("false");
             }
+            mAuth.signOut();
             Intent intent = new Intent(this,LoginActivity.class);
             startActivity(intent);
             this.finish();
             return true;
         }else if (id == R.id.actionAllUsers){
+
             Intent intent = new Intent(this,UsersActivity.class);
             startActivity(intent);
             this.finish();
@@ -224,23 +227,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();;
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
+        }
         if(currentUser == null){
             sendToStart();
         } else {
             mUserRef.child("online").setValue("true");
         }
     }
+
     @Override
     protected void onStop() {
         super.onStop();
-
         FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        if(currentUser != null) {
+        if (currentUser != null) {
+            mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
+        }
+        if(currentUser != null){
             mUserRef.child("online").setValue("false");
         }
     }
+
     private void sendToStart() {
         Intent startIntent = new Intent(MainActivity.this, DynamicActivity.class);
         startActivity(startIntent);

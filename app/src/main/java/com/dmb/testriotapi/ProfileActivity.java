@@ -103,8 +103,8 @@ public class ProfileActivity extends AppCompatActivity {
         mDeclineBtn.setEnabled(false);
 
         mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setTitle("Cargando Informacion del Usuario");
-        mProgressDialog.setMessage("Espera mientas cargamos la información del usuario.");
+        mProgressDialog.setTitle(getText(R.string.CargandoUsuario));
+        mProgressDialog.setMessage(getText(R.string.EsperaUsuario));
         mProgressDialog.setCanceledOnTouchOutside(false);
         mProgressDialog.show();
 
@@ -175,7 +175,7 @@ public class ProfileActivity extends AppCompatActivity {
                             if(req_type.equals("received")){
 
                                 mCurrent_state = "req_received";
-                                mProfileSendReqBtn.setText("ACEPTAR SOLICITUD DE AMISTAD");
+                                mProfileSendReqBtn.setText(getText(R.string.AceptarAmistad));
 
                                 mDeclineBtn.setVisibility(View.VISIBLE);
                                 mDeclineBtn.setEnabled(true);
@@ -184,7 +184,7 @@ public class ProfileActivity extends AppCompatActivity {
                             } else if(req_type.equals("sent")) {
 
                                 mCurrent_state = "req_sent";
-                                mProfileSendReqBtn.setText("CANCELAR PETICION DE AMISTAD");
+                                mProfileSendReqBtn.setText(getText(R.string.CancelarAmistad));
 
                                 mDeclineBtn.setVisibility(View.INVISIBLE);
                                 mDeclineBtn.setEnabled(false);
@@ -204,7 +204,7 @@ public class ProfileActivity extends AppCompatActivity {
                                     if(dataSnapshot.hasChild(user_id)){
 
                                         mCurrent_state = "friends";
-                                        mProfileSendReqBtn.setText("ELIMINAR AMIGO");
+                                        mProfileSendReqBtn.setText(getText(R.string.EliminarAmigo));
 
                                         mDeclineBtn.setVisibility(View.INVISIBLE);
                                         mDeclineBtn.setEnabled(false);
@@ -266,12 +266,12 @@ public class ProfileActivity extends AppCompatActivity {
 
                             if(databaseError != null){
 
-                                Toast.makeText(ProfileActivity.this, "Error al enviar la peticion", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileActivity.this, getText(R.string.ErrorPeticion), Toast.LENGTH_SHORT).show();
 
                             } else {
 
                                 mCurrent_state = "req_sent";
-                                mProfileSendReqBtn.setText("CANCELAR PETICION DE AMISTAD");
+                                mProfileSendReqBtn.setText(getText(R.string.CancelarAmistad));
 
                             }
 
@@ -299,7 +299,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                                     mProfileSendReqBtn.setEnabled(true);
                                     mCurrent_state = "not_friends";
-                                    mProfileSendReqBtn.setText("ENVIAR PETICION DE AMISTAD");
+                                    mProfileSendReqBtn.setText(getText(R.string.EnviarAmistad));
 
                                     mDeclineBtn.setVisibility(View.INVISIBLE);
                                     mDeclineBtn.setEnabled(false);
@@ -338,7 +338,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                                 mProfileSendReqBtn.setEnabled(true);
                                 mCurrent_state = "friends";
-                                mProfileSendReqBtn.setText("ELIMINAR AMIGO");
+                                mProfileSendReqBtn.setText(getText(R.string.EliminarAmigo));
 
                                 mDeclineBtn.setVisibility(View.INVISIBLE);
                                 mDeclineBtn.setEnabled(false);
@@ -374,7 +374,7 @@ public class ProfileActivity extends AppCompatActivity {
                             if(databaseError == null){
 
                                 mCurrent_state = "not_friends";
-                                mProfileSendReqBtn.setText("ENVIAR PETICION DE AMISTAD");
+                                mProfileSendReqBtn.setText(getText(R.string.EnviarAmistad));
 
                                 mDeclineBtn.setVisibility(View.INVISIBLE);
                                 mDeclineBtn.setEnabled(false);

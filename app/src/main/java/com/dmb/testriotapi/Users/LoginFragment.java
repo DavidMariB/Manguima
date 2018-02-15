@@ -105,7 +105,7 @@ public class LoginFragment extends Fragment {
 
         etLogEmail = v.findViewById(R.id.etLoginEmail);
         etLogPassword = v.findViewById(R.id.etLoginPassword);
-        mLoginFormView = v.findViewById(R.id.login_form);
+        //mLoginFormView = v.findViewById(R.id.login_form);
         tvNotRegistered = v.findViewById(R.id.tvNotRegistered);
         btnSignIn = v.findViewById(R.id.btnSignIn);
         tvResetPassword = v.findViewById(R.id.tvForgetPassword);

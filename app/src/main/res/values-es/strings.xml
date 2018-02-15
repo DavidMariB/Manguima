@@ -84,4 +84,16 @@
     <string name="RechazarAmistad">RECHAZAR PETICION DE AMISTAD</string>
     <string name="Mensaje">Mensaje</string>
     <string name="NuevoTema">Crear nuevo tema</string>
+    <string name="EditarPerfil">EDITAR PERFIL</string>
+    <string name="FalloComentario">El comentario no puede estar vacío</string>
+    <string name="TemaCreado">¡Tema creado!</string>
+    <string name="IntroduceTema">Introduce un nombre de tema</string>
+    <string name="TemaVacio">¡El tema no puede estar vacío!</string>
+    <string name="TodosUsuarios">Todos los usuarios</string>
+    <string name="CargandoUsuario">Cargando Informacion del Usuario</string>
+    <string name="EsperaUsuario">Espera mientras cargamos la información del usuario.</string>
+    <string name="AceptarAmistad">ACEPTAR SOLICITUD DE AMISTAD</string>
+    <string name="CancelarAmistad">CANCELAR PETICIÓN DE AMISTAD</string>
+    <string name="EliminarAmigo">ELIMINAR AMIGO</string>
+    <string name="ErrorPeticion">Error al enviar la petición</string>
 </resources>

@@ -81,7 +81,7 @@ public class NuevoTemaFragment extends Fragment {
             public void onClick(View view) {
                 checkTemaFields();
                 crearTema();
-                Toast.makeText(getContext(), "¡Tema creado!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.TemaCreado, Toast.LENGTH_SHORT).show();
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 fm.popBackStack();
                 FragmentTransaction ft = fm.beginTransaction();
@@ -115,10 +115,10 @@ public class NuevoTemaFragment extends Fragment {
     public boolean checkTemaFields(){
 
         if (TextUtils.isEmpty(getNombre)){
-            etNombre.setError("Introduce un nombre de tema");
+            etNombre.setError(getText(R.string.IntroduceTema));
             checkFields = false;
         }else if(TextUtils.isEmpty(getMensaje)){
-            etMensaje.setError("¡El tema no puede estar vacío!");
+            etMensaje.setError(getText(R.string.TemaVacio));
             checkFields = false;
         }else {
             checkFields = true;

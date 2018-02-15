@@ -84,4 +84,16 @@
     <string name="RechazarAmistad">"REBUTJAR PETICIÓ D'AMISTAT "</string>
     <string name="Mensaje">Missatge</string>
     <string name="NuevoTema">"Crear nou tema "</string>
+    <string name="EditarPerfil">EDITAR PERFIL</string>
+    <string name="FalloComentario">"El comentari no pot estar buit "</string>
+    <string name="TemaCreado">"¡Tema creat! "</string>
+    <string name="IntroduceTema">"Introdueix un nom de tema "</string>
+    <string name="TemaVacio">"¡El tema no pot estar buit! "</string>
+    <string name="TodosUsuarios">"Tots els usuaris "</string>
+    <string name="CargandoUsuario">"Carregant Informació de l'Usuari "</string>
+    <string name="EsperaUsuario">"Espera mentre carreguem la informació de l'usuari. "</string>
+    <string name="AceptarAmistad">"ACCEPTAR SOL·LICITUD D'AMISTAT "</string>
+    <string name="CancelarAmistad">"CANCEL·LAR PETICIÓ D'AMISTAT "</string>
+    <string name="EliminarAmigo">"ELIMINAR AMIC "</string>
+    <string name="ErrorPeticion">"Error a l'enviar la petició "</string>
 </resources>

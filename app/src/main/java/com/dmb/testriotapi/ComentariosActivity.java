@@ -167,7 +167,7 @@ public class ComentariosActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String cmt = et_Comentario.getText().toString();
                 if (TextUtils.isEmpty(cmt)) {
-                    et_Comentario.setError("El comentario no puede estar vacío");
+                    et_Comentario.setError(getText(R.string.FalloComentario));
                 } else {
                     Comentario cmt2 = new Comentario();
                     cmt2.setMensaje(cmt);

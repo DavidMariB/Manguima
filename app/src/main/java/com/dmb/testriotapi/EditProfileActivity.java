@@ -2,6 +2,7 @@ package com.dmb.testriotapi;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private String name,surname,username;
     private EditText etName,etSurname,etUsername;
     private Button btnConfirmEdit;
+
+    private Boolean checkFields;
 
     private DatabaseReference dbr;
 
@@ -46,7 +49,9 @@ public class EditProfileActivity extends AppCompatActivity {
         btnConfirmEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkFields();
+                if(checkFields){
+                    editProfile();
+                }
             }
         });
     }
@@ -61,12 +66,22 @@ public class EditProfileActivity extends AppCompatActivity {
         etUsername.setText(username);
     }
 
-    public void checkFields(){
-        if(etName.getText().toString().isEmpty() || etSurname.getText().toString().isEmpty() || etUsername.getText().toString().isEmpty()){
-            Toast.makeText(this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
-        }else{
-            editProfile();
-        }
+    public boolean checkEditFields(){
+            if (TextUtils.isEmpty(etName.getText().toString())){
+                etName.setError(getText(R.string.CheckNombre));
+                checkFields = false;
+            }else if(TextUtils.isEmpty(etSurname.getText().toString())){
+                etSurname.setError(getText(R.string.CheckApellido));
+                checkFields = false;
+            }else if(TextUtils.isEmpty(etUsername.getText().toString())){
+                etUsername.setError(getText(R.string.CheckUsuario));
+                checkFields = false;
+
+            }else {
+                checkFields = true;
+            }
+            return checkFields;
+
     }
 
     public void editProfile(){

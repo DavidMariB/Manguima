@@ -19,11 +19,7 @@
         android:layout_weight="1"
         fab:srcCompat="@drawable/logo" />
 
-    <ScrollView
-        android:id="@+id/login_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -111,6 +107,5 @@
         </LinearLayout>
 
 
-    </ScrollView>
 
 </LinearLayout>

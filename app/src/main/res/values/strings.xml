@@ -96,4 +96,16 @@
     <string name="RechazarAmistad">"REJECT FRIEND REQUEST "</string>
     <string name="Mensaje">Message</string>
     <string name="NuevoTema">Create new post</string>
+    <string name="EditarPerfil">"EDIT PROFILE "</string>
+    <string name="FalloComentario">"The comment can not be empty "</string>
+    <string name="TemaCreado">Theme created!</string>
+    <string name="IntroduceTema">Enter a topic name</string>
+    <string name="TemaVacio">The theme can not be empty!</string>
+    <string name="TodosUsuarios">"All users "</string>
+    <string name="CargandoUsuario">Loading User Information</string>
+    <string name="EsperaUsuario">Wait while we load the user\'s information.</string>
+    <string name="AceptarAmistad">ACCEPT FRIEND REQUEST</string>
+    <string name="CancelarAmistad">CANCEL PETITION FOR FRIENDSHIP</string>
+    <string name="EliminarAmigo">ELIMINATE FRIEND</string>
+    <string name="ErrorPeticion">Error sending the request</string>
 </resources>

@@ -63,15 +63,12 @@ public class ComentariosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comentarios);
 
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window w = getWindow(); // in Activity's onCreate() for instance
-            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }*/
-
         fu = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         key = getIntent().getStringExtra("key");
         uid = getIntent().getStringExtra("uid");
+
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
 
         rv_Comments = (RecyclerView) findViewById(R.id.rv_Comments);
         fab_Options = (FloatingActionButton) findViewById(R.id.fab_Options);

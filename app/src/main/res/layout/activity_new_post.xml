@@ -36,6 +36,7 @@
                 android:layout_weight="1"
                 android:ems="12"
                 android:hint="@string/Name"
+                android:inputType="textEmailSubject"
                 android:textColor="@color/negro" />
 
             <EditText

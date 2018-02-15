@@ -11,4 +11,5 @@
     <color name="negroLogo">#302431</color>
     <color name="darkColor">#222222</color>
     <color name="redColor">#ff5521</color>
+    <color name="transparente">#ffffff</color>
 </resources>

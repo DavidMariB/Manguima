@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
-public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
+public class ChatAdapter extends RecyclerView.Adapter {
 
     private final static int MESSAGE_SENT = 1;
     private final static int MESSAGE_RECEIVED = 2;
@@ -47,34 +47,36 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     }
 
     @Override
-    public ChatViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v;
 
-        i = 1;
-        if (i == 1) {
+        if (i == MESSAGE_SENT) {
              v = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.mensaje_enviado, viewGroup, false);
-            Log.d("chat inflater", "inflando layout enviado " + i);
-        } else {
-            v = LayoutInflater.from(viewGroup.getContext())
                     .inflate(R.layout.mensaje_recibido, viewGroup, false);
+            Log.d("chat inflater", "inflando layout enviado " + i);
+            return new ChatViewHolder(v);
+        } else if (i == MESSAGE_RECEIVED){
+            v = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.mensaje_enviado, viewGroup, false);
             Log.d("chat inflater", "inflando layout recibido " + i);
+            return new RecibedMessageHolder(v);
         }
 
-        ChatViewHolder cvh = new ChatViewHolder(v);
-        return cvh;
+        return null;
     }
 
     @Override
-    public void onBindViewHolder(ChatViewHolder chatViewHolder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
 
-        Mensaje message = messages.get(position);
-        if (message.getUid().equals(currentUser.getUid())) {
+        Mensaje m = messages.get(position);
 
-            chatViewHolder.tCurrentUser.setText(message.getText());
-        } else {
-
-            chatViewHolder.tTargetUser.setText(message.getText());
+        switch (viewHolder.getItemViewType()) {
+            case MESSAGE_SENT:
+                ((ChatViewHolder) viewHolder).bindView(m);
+                break;
+            case MESSAGE_RECEIVED:
+                ((RecibedMessageHolder) viewHolder).bindView(m);
+                break;
         }
     }
 
@@ -84,13 +86,30 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     }
 
     public static class ChatViewHolder extends RecyclerView.ViewHolder {
-        TextView tTargetUser;
         TextView tCurrentUser;
 
-        ChatViewHolder(View itemView) {
+        public ChatViewHolder(View itemView) {
             super(itemView);
-            tTargetUser = itemView.findViewById(R.id.tTargetUserChat);
-            tCurrentUser = itemView.findViewById(R.id.tCurrentUserChat);
+            tCurrentUser = itemView.findViewById(R.id.tTargetUserChat);
+        }
+
+        public void bindView (Mensaje m) {
+
+                tCurrentUser.setText(m.getText());
+        }
+    }
+
+    public static class RecibedMessageHolder extends RecyclerView.ViewHolder {
+        TextView tTargetUser;
+
+        public RecibedMessageHolder(View itemView) {
+            super(itemView);
+            tTargetUser = itemView.findViewById(R.id.tCurrentUserChat);
+        }
+
+        public void bindView (Mensaje m) {
+
+            tTargetUser.setText(m.getText());
         }
     }
 }

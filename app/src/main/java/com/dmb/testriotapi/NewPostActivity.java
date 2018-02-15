@@ -1,10 +1,13 @@
 package com.dmb.testriotapi;
 
+import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -37,19 +40,17 @@ public class NewPostActivity extends AppCompatActivity {
         btnNuevoTema = (Button) findViewById(R.id.btnNuevoTema);
         bbdd = (FirebaseDatabase.getInstance().getReference("forum"));
 
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.negro));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.negro));
 
-        btnNuevoTema.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkTemaFields();
-                crearTema();
-            }
-        });
-
-
-        Toast.makeText(NewPostActivity.this, "¡Tema creado!", Toast.LENGTH_SHORT).show();
-
-    }
+            btnNuevoTema.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    checkTemaFields();
+                    crearTema();
+                }
+            });
+        }
 
     public boolean checkTemaFields(){
 
@@ -79,7 +80,7 @@ public class NewPostActivity extends AppCompatActivity {
         Forum f = new Forum(getNombre, getUser, getMensaje, currentDate, getKey);
 
         bbdd.child(getKey).setValue(f);
-
+        Toast.makeText(NewPostActivity.this, "¡Tema creado!", Toast.LENGTH_SHORT).show();
         finish();
 
     }

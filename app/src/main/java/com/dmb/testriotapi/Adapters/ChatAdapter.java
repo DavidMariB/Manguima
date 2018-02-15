@@ -52,12 +52,12 @@ public class ChatAdapter extends RecyclerView.Adapter {
 
         if (i == MESSAGE_SENT) {
              v = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.mensaje_recibido, viewGroup, false);
+                    .inflate(R.layout.mensaje_enviado, viewGroup, false);
             Log.d("chat inflater", "inflando layout enviado " + i);
             return new ChatViewHolder(v);
         } else if (i == MESSAGE_RECEIVED){
             v = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.mensaje_enviado, viewGroup, false);
+                    .inflate(R.layout.mensaje_recibido, viewGroup, false);
             Log.d("chat inflater", "inflando layout recibido " + i);
             return new RecibedMessageHolder(v);
         }
@@ -90,7 +90,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
 
         public ChatViewHolder(View itemView) {
             super(itemView);
-            tCurrentUser = itemView.findViewById(R.id.tTargetUserChat);
+            tCurrentUser = itemView.findViewById(R.id.tCurrentUserChat);
         }
 
         public void bindView (Mensaje m) {
@@ -104,7 +104,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
 
         public RecibedMessageHolder(View itemView) {
             super(itemView);
-            tTargetUser = itemView.findViewById(R.id.tCurrentUserChat);
+            tTargetUser = itemView.findViewById(R.id.tTargetUserChat);
         }
 
         public void bindView (Mensaje m) {

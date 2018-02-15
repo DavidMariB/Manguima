@@ -1,5 +1,6 @@
 package com.dmb.testriotapi.Adapters;
 
+import android.content.Context;
 import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.dmb.testriotapi.DynamicActivity;
 import com.dmb.testriotapi.Models.Forum.Forum;
 import com.dmb.testriotapi.Models.User;
 import com.dmb.testriotapi.R;
@@ -86,20 +88,21 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
             txt_comment.setText("(" + cmt + ")");
             String lk = String.valueOf(item.getLikes().size());
             txt_like.setText("(" + lk + ")");
+            final Context c = img_Profile.getContext();
 
-            /*DatabaseReference bbdd = FirebaseDatabase.getInstance().getReference().child("usuarios").child(item.getUid());
+            DatabaseReference bbdd = FirebaseDatabase.getInstance().getReference().child("usuarios").child(item.getUid());
 
             bbdd.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.getValue(User.class).getProfileImage() != null) {
                         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
-                        Glide.with(getApplicationContext())
+                        Glide.with(c)
                                 .using(new FirebaseImageLoader())
                                 .load(storageReference)
                                 .into(img_Profile);
                     } else {
-                        Picasso.with(getApplicationContext()).load(R.mipmap.default_avatar).into(img_Profile);
+                        Picasso.with(c).load(R.mipmap.default_avatar).into(img_Profile);
                     }
                 }
 
@@ -107,7 +110,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
                 public void onCancelled(DatabaseError databaseError) {
 
                 }
-            });*/
+            });
         }
     }
 

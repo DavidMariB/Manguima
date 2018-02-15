@@ -50,7 +50,8 @@
         <activity android:name=".UsersActivity" />
         <activity android:name=".ComentariosActivity" />
         <activity android:name=".EditProfileActivity" />
-        <activity android:name=".DetailedChampActivity"></activity>
+        <activity android:name=".DetailedChampActivity" />
+        <activity android:name=".NewPostActivity"></activity>
     </application>
 
 </manifest>

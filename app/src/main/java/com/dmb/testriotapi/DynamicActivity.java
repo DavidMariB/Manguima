@@ -14,12 +14,11 @@ import com.dmb.testriotapi.Fragments.FragmentDynForo;
 import com.dmb.testriotapi.Fragments.FragmentDynInfo;
 import com.dmb.testriotapi.Fragments.FragmentDynNoticias;
 import com.dmb.testriotapi.Fragments.FragmentDynTorneos;
-import com.dmb.testriotapi.Fragments.NuevoTemaFragment;
 import com.dmb.testriotapi.Models.Champion;
 
 import java.util.ArrayList;
 
-public class DynamicActivity extends MainActivity implements NuevoTemaFragment.OnFragmentInteractionListener,
+public class DynamicActivity extends MainActivity implements
 FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteractionListener{
 
     private ViewPager viewPager;
@@ -37,23 +36,6 @@ FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteract
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mPagerAdapter);
 
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-
-    @Override
-    public void creaVentanaNuevoTema() {
-
-        FragmentManager fm = getSupportFragmentManager();
-        fm.popBackStack();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        NuevoTemaFragment f = NuevoTemaFragment.newInstance(null, null);
-        ft.add(f, "fragment_tema");
-        ft.addToBackStack(null);
-        ft.commit();
     }
 
     @Override
@@ -83,6 +65,11 @@ FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteract
         Intent intent = new Intent(this,DetailedChampActivity.class);
         intent.putExtra("champion",champion);
         startActivity(intent);
+    }
+
+    @Override
+    public void creaVentanaNuevoTema() {
+
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter

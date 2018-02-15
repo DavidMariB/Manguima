@@ -24,6 +24,7 @@ import com.dmb.testriotapi.ComentariosActivity;
 import com.dmb.testriotapi.Models.Forum.Comentario;
 import com.dmb.testriotapi.Models.Forum.Forum;
 import com.dmb.testriotapi.Models.Forum.Like;
+import com.dmb.testriotapi.NewPostActivity;
 import com.dmb.testriotapi.R;
 import com.dmb.testriotapi.Users.LoginFragment;
 import com.google.firebase.database.DataSnapshot;
@@ -35,9 +36,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFragmentInteractionListener{
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+public class FragmentDynForo extends Fragment {
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -97,14 +97,8 @@ public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFra
         fab_NuevoTema.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.popBackStack();
-                NuevoTemaFragment f = NuevoTemaFragment.newInstance(null, null);
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.add(R.id.foro_container, f, "nuevo_tema");
-                ft.addToBackStack(null);
-                ft.commit();
-                fab_NuevoTema.setEnabled(false);
+                Intent i = new Intent(getContext(), NewPostActivity.class);
+                startActivity(i);
             }
         });
 
@@ -128,11 +122,6 @@ public class FragmentDynForo extends Fragment implements NuevoTemaFragment.OnFra
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
     public interface OnFragmentInteractionListener {

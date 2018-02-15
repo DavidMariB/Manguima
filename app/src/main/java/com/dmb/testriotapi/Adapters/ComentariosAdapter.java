@@ -83,6 +83,7 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
         }
 
         public void bindProducto(Comentario item) {
+            final Context c = txt_comentario.getContext();
             DatabaseReference bbdd = FirebaseDatabase.getInstance().getReference().child("usuarios").child(item.getUid());
             bbdd.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -90,6 +91,15 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
                     User u = dataSnapshot.getValue(User.class);
                     String user = u.getUserName();
                     txt_user.setText(user);
+                    if (dataSnapshot.getValue(User.class).getProfileImage() != null) {
+                        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
+                        Glide.with(c)
+                                .using(new FirebaseImageLoader())
+                                .load(storageReference)
+                                .into(img_Profile);
+                    } else {
+                        Picasso.with(c).load(R.mipmap.default_avatar).into(img_Profile);
+                    }
                 }
 
                 @Override

@@ -1,7 +1,10 @@
 package com.dmb.testriotapi;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +13,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -48,10 +52,11 @@ public class ComentariosActivity extends AppCompatActivity {
     private ArrayList<Comentario> comentario = new ArrayList<>();
     DatabaseReference bbdd, bbddFoto, bbddTema, bbddFotoPropia;
     ComentariosAdapter adaptador;
-    private FloatingActionButton like;
+    private FloatingActionButton fab_Options;
     private EditText et_Comentario;
     private ImageView img_ProfileT, btn_Send, img_ProfileC;
     private TextView txt_mensaje, txt_titulo, txt_user2;
+    private ArrayList<String> opciones = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +74,7 @@ public class ComentariosActivity extends AppCompatActivity {
         uid = getIntent().getStringExtra("uid");
 
         rv_Comments = (RecyclerView) findViewById(R.id.rv_Comments);
-        like = (FloatingActionButton) findViewById(R.id.fab_Like);
+        fab_Options = (FloatingActionButton) findViewById(R.id.fab_Options);
         et_Comentario = (EditText) findViewById(R.id.et_Comentario);
         btn_Send = (ImageView) findViewById(R.id.btn_Send);
         img_ProfileT = (ImageView) findViewById(R.id.img_ProfileT);
@@ -77,6 +82,13 @@ public class ComentariosActivity extends AppCompatActivity {
         txt_mensaje = (TextView) findViewById(R.id.txt_mensaje);
         txt_titulo = (TextView) findViewById(R.id.txt_titulo);
         txt_user2 = (TextView) findViewById(R.id.txt_user2);
+
+        fab_Options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //MostrarDialogo();
+            }
+        });
 
         bbddTema = FirebaseDatabase.getInstance().getReference().child("forum").child(key);
 
@@ -148,13 +160,14 @@ public class ComentariosActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 comentario.clear();
-                for (DataSnapshot datasnapshot: dataSnapshot.getChildren()){
+                for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
                     Comentario c = datasnapshot.getValue(Comentario.class);
                     comentario.add(c);
                 }
                 adaptador = new ComentariosAdapter(comentario);
                 rv_Comments.setAdapter(adaptador);
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
@@ -188,4 +201,18 @@ public class ComentariosActivity extends AppCompatActivity {
         txt_titulo.setText(f.getTitulo());
         txt_mensaje.setText(f.getMensaje());
     }
+
+    /*public Dialog MostrarDialogo() {
+        ArrayList<String> opciones = new ArrayList<String>();
+        opciones.add("Hola");
+        AlertDialog.Builder builder = new AlertDialog.Builder(ComentariosActivity.this);
+        builder.setTitle("Opciones")
+                .setItems(1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        return builder.create();
+    }*/
 }

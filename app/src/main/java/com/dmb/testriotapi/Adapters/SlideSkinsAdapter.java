@@ -37,12 +37,10 @@ public class SlideSkinsAdapter extends PagerAdapter {
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-
     @Override
     public int getCount() {
         return skins.size();
     }
-
 
     @Override
     public boolean isViewFromObject(View view, Object object) {

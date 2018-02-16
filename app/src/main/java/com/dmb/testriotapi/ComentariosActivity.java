@@ -11,14 +11,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dmb.testriotapi.Adapters.ComentariosAdapter;
@@ -27,25 +22,24 @@ import com.dmb.testriotapi.Models.Forum.Forum;
 import com.dmb.testriotapi.Models.User;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.security.Key;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 
-public class ComentariosActivity extends AppCompatActivity {
+/**
+ * Created by Ricardo Borrull on 07/02/2018.
+ */
+
+public class ComentariosActivity extends MainActivity {
 
     private String key, fu, uid;
     private RecyclerView rv_Comments;
@@ -68,7 +62,8 @@ public class ComentariosActivity extends AppCompatActivity {
         key = getIntent().getStringExtra("key");
         uid = getIntent().getStringExtra("uid");
 
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.negro));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.negro));
 
         rv_Comments = (RecyclerView) findViewById(R.id.rv_Comments);
         fab_Options = (FloatingActionButton) findViewById(R.id.fab_Options);

@@ -15,7 +15,7 @@
                 android:title="@string/amigos" />
             <item
                 android:id="@+id/navChat"
-                android:icon="@mipmap/chat"
+                android:icon="@drawable/ic_chat"
                 android:title="Chat" />
         </menu>
     </item>

@@ -1,13 +1,9 @@
 package com.dmb.testriotapi;
 
-import android.os.Build;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,7 +17,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class NewPostActivity extends AppCompatActivity {
+/**
+ * Created by Ricardo Borrull on 09/02/2018.
+ */
+
+public class NewPostActivity extends MainActivity {
 
     private EditText etNombre, etMensaje;
     private Button btnNuevoTema;

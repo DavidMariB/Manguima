@@ -15,10 +15,12 @@ public class LogoActivity extends AppCompatActivity {
     private ImageView logo;
     private Handler handler;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logo);
+        startService(new Intent(getBaseContext(), MyService.class));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance

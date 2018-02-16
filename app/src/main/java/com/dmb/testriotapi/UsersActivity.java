@@ -22,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageException;
@@ -58,6 +59,9 @@ public class UsersActivity extends MainActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (mUser != null) {
+            mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
+        }
 
     }
 
@@ -68,20 +72,11 @@ public class UsersActivity extends MainActivity {
         startActivity(i);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
-        mUserRef.child("online").setValue("false");
-    }
+
 
     @Override
     public void onStart() {
         super.onStart();
-
-                mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
-                mUserRef.child("online").setValue("true");
-
 
         FirebaseRecyclerAdapter<User, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<User, UsersViewHolder>(
 

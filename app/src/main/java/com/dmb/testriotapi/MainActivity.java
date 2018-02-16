@@ -253,38 +253,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             holderLayout.addView(stubView, lp);
         }
     }
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
-        }
-        if(currentUser == null){
-            sendToStart();
-        } else {
-            mUserRef.child("online").setValue("true");
-        }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
-        }
-        if(currentUser != null){
-            mUserRef.child("online").setValue("false");
-        }
-    }
-
-    private void sendToStart() {
-        Intent startIntent = new Intent(MainActivity.this, DynamicActivity.class);
-        startActivity(startIntent);
-        finish();
-    }
 
     public void alertInfo() {
 

@@ -44,7 +44,9 @@ import java.util.Map;
 import java.util.UUID;
 
 public class ProfileActivity extends AppCompatActivity {
-
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+    private DatabaseReference mUserRef;
     private ImageView mProfileImage;
     private TextView mProfileName, mProfileStatus, mProfileFriendsCount;
     private Button mProfileSendReqBtn, mDeclineBtn, mChangeProfileImage, mEditUserData;
@@ -79,7 +81,11 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
+        mAuth = FirebaseAuth.getInstance();
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (mUser != null) {
+            mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
+        }
         final String user_id = getIntent().getStringExtra("user_id");
 
         mRootRef = FirebaseDatabase.getInstance().getReference();

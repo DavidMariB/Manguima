@@ -9,10 +9,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -21,7 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.dmb.testriotapi.Adapters.ChampsAdapter;
-import com.dmb.testriotapi.DetailedChampActivity;
+import com.dmb.testriotapi.ChampsActivity;
 import com.dmb.testriotapi.Models.Champion;
 import com.dmb.testriotapi.R;
 
@@ -39,13 +39,7 @@ public class FragmentDynInfo extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private RecyclerView recyclerView;
-
-    private String champName,champKey,champTitle,champImg;
-
-    private ProgressDialog progressDialog;
-
-    private ChampsAdapter champsAdapter;
+    private Button btnChampsActivity;
 
     private OnFragmentInteractionListener mListener;
 
@@ -77,22 +71,15 @@ public class FragmentDynInfo extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_fragment_dyn_info, container, false);
 
-        requestAllChamps();
+        btnChampsActivity = v.findViewById(R.id.btnChampsActivity);
 
-        recyclerView = v.findViewById(R.id.recyclerChampList);
-
-        champsAdapter = new ChampsAdapter(mListener.getChampions(), new ChampsAdapter.RecyclerViewOnItemClickListener() {
+        btnChampsActivity.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(final View v, final int position) {
-                Snackbar.make(v, mListener.getChampions().get(position).getName(),Snackbar.LENGTH_LONG).show();
-                mListener.champDetails(position);
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ChampsActivity.class);
+                startActivity(intent);
             }
         });
-
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(llm);
-
-        recyclerView.setAdapter(champsAdapter);
 
         return v;
     }
@@ -101,53 +88,6 @@ public class FragmentDynInfo extends Fragment {
         if (mListener != null) {
             mListener.cosasDelInfo(uri);
         }
-    }
-
-    public void requestAllChamps(){
-
-        String url = "http://ddragon.leagueoflegends.com/cdn/8.3.1/data/es_ES/champion.json";
-
-        StringRequest request = new StringRequest(url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String string) {
-                parseAllChamps(string);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(getContext(), getText(R.string.FalloRecuperar), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        RequestQueue rQueue = Volley.newRequestQueue(getContext());
-        rQueue.add(request);
-    }
-
-    public void parseAllChamps(String jsonString){
-        try{
-            JSONObject obj = new JSONObject(jsonString);
-            JSONObject object = obj.getJSONObject("data");
-            Iterator<String> it = object.keys();
-            while(it.hasNext()){
-                JSONObject champion = (JSONObject) object.get(it.next());
-
-                    champName = champion.optString("name");
-                    champKey = champion.optString("key");
-                    champTitle = champion.optString("title");
-
-                    JSONObject object1 = champion.getJSONObject("image");
-
-                        champImg = object1.optString("full");
-                        Champion champ = new Champion(champName, champKey, champTitle, champImg);
-                        mListener.addChampion(champ);
-            }
-
-        }catch (JSONException e){
-            e.printStackTrace();
-        }
-
-        champsAdapter.notifyDataSetChanged();
-
     }
 
     @Override
@@ -170,9 +110,5 @@ public class FragmentDynInfo extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void cosasDelInfo(Uri uri);
-        ArrayList<Champion> getChampions();
-        void addChampion(Champion champion);
-        Champion getSingleChampion(int position);
-        void champDetails(int position);
     }
 }

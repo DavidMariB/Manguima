@@ -86,7 +86,7 @@ public class DetailedChampActivity extends AppCompatActivity {
         tvChampTitle.setText(champion.getTitle());
         getChampKey = champion.getKey();
         getChampName = champion.getName();
-        Picasso.with(getApplicationContext()).load("https://ddragon.leagueoflegends.com/cdn/8.3.1/img/champion/"+champion.getImage()).into(imgChampIcon);
+        Picasso.with(getApplicationContext()).load("https://ddragon.leagueoflegends.com/cdn/"+gameVersion+"/img/champion/"+champion.getImage()).into(imgChampIcon);
         getChampionLore();
         getChampionSkins();
     }
@@ -152,9 +152,6 @@ public class DetailedChampActivity extends AppCompatActivity {
 
                 Skin skin = new Skin(getSkinName,getSkin);
                 skins.add(skin);
-
-                /*Picasso.with(getApplicationContext()).load("http://ddragon.leagueoflegends.com/" +
-                        "cdn/img/champion/splash/"+getChampName+"_"+getSkin+".jpg").into(imgSkin1);*/
 
                 SlideSkinsAdapter slideSkinsAdapter = new SlideSkinsAdapter(getApplicationContext(),getChampName,skins);
                 viewPager.setAdapter(slideSkinsAdapter);

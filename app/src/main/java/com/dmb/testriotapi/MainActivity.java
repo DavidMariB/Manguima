@@ -158,21 +158,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.navLol) {
+        if (id == R.id.navUsers) {
 
-        }
-        else if (id==R.id.navFriends){
-            Intent ref = new Intent(MainActivity.this, ChatActivity.class);
+            Intent intent = new Intent(this,UsersActivity.class);
+            startActivity(intent);
+        } else if (id==R.id.navFriends){
+
+            //Esto cambialo cuando este disponible la lista de amigos
+            /*Intent ref = new Intent(MainActivity.this, ChatActivity.class);
             startActivity(ref);
-            finish();
-        }
-
-        else if (id == R.id.navSettings) {
+            finish();*/
+        } else if (id == R.id.navSettings) {
 
             Intent refresh = new Intent(MainActivity.this, ConfigActivity.class);
             startActivity(refresh);
+        } else if (id == R.id.navLogOut) {
 
-        } else if (id == R.id.navAboutApp) {
+            mAuth.signOut();
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+
+            if(currentUser != null) {
+                mUserRef.child("online").setValue("false");
+            }
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
+            this.finish();
+            return true;
+        } else if (id == R.id.navForum) {
+
+
+
+        } else if (id == R.id.navInfo) {
+
+        } else if (id == R.id.navTournament) {
 
             alertInfo();
         }

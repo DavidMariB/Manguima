@@ -1,5 +1,6 @@
 package com.dmb.testriotapi;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -26,6 +27,7 @@ FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteract
 
     private ViewPager viewPager;
     private PagerAdapter mPagerAdapter;
+    private static Context dynContext;
 
     private ArrayList<Champion> champions = new ArrayList<>();
 
@@ -33,6 +35,7 @@ FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteract
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dynamic);
+        dynContext = getApplicationContext();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
@@ -54,6 +57,16 @@ FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteract
     @Override
     public void creaVentanaNuevoTema() {
 
+    }
+
+    public void setCurrentPage (int pagina) {
+
+        viewPager.setCurrentItem(pagina);
+    }
+
+    public static Context getDynamicContext() {
+
+        return dynContext;
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter

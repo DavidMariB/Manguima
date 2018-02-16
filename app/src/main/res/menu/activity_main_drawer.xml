@@ -5,41 +5,27 @@
     tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/Social"
-        android:icon="@mipmap/social"
-        android:title="Social">
-        <menu>
-            <item
-                android:id="@+id/navFriends"
-                android:icon="@mipmap/friends"
-                android:title="@string/amigos" />
-            <item
-                android:id="@+id/navChat"
-                android:icon="@drawable/ic_chat"
-                android:title="Chat" />
-        </menu>
-    </item>
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/navLol"
-            android:icon="@mipmap/lol_logo"
-            android:title="League of Legends" />
-
-    </group>
-
+        android:id="@+id/navFriends"
+        android:icon="@mipmap/friends"
+        android:title="@string/amigos" />
     <item
-        android:id="@+id/Preferencias"
-        android:title="@string/Preferencias">
-        <menu>
-            <item
-                android:id="@+id/navSettings"
-                android:icon="@mipmap/ic_settings_black_24dp"
-                android:title="@string/action_settings" />
-            <item
-                android:id="@+id/navAboutApp"
-                android:icon="@mipmap/ic_copyright_black_24dp"
-                android:title="@string/AcercaDe" />
-        </menu>
-    </item>
+        android:id="@+id/navSettings"
+        android:icon="@mipmap/ic_settings_black_24dp"
+        android:title="@string/action_settings" />
+    <item
+        android:id="@+id/navUsers"
+        android:title="Users" />
+    <item
+        android:id="@+id/navForum"
+        android:title="Forum" />
+    <item
+        android:id="@+id/navTournament"
+        android:title="Tournaments" />
+    <item
+        android:id="@+id/navInfo"
+        android:title="Information" />
+    <item
+        android:id="@+id/navLogOut"
+        android:title="Log out" />
 
 </menu>

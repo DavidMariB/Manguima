@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -37,7 +38,7 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
     FirebaseUser currentUser;
     private ArrayList<Mensaje> listaMensajes;
     private DatabaseReference ref;
-    private Button send;
+    private ImageView send;
     private EditText etMensaje;
     private String uid2;
     String keyChat;
@@ -49,9 +50,12 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
         ref = (FirebaseDatabase.getInstance().getReference("chats"));
         listaMensajes = new ArrayList<Mensaje>();
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        send = (Button) findViewById(R.id.btnSendChat);
+        send = (ImageView) findViewById(R.id.btnSendChat);
         etMensaje = (EditText) findViewById(R.id.etMessageChat);
         uid2 = "necesito que alguien me pase una uid";
+
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.morado));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.negro));
 
         send.setOnClickListener(this);
 
@@ -88,8 +92,6 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
 
             }
         });
-
-
 
     }
 

@@ -76,12 +76,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
 
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.negro));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window w = getWindow(); // in Activity's onCreate() for instance
-            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         /*ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -98,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         holderLayout = (LinearLayout) findViewById(R.id.holderLayout);
 
         tvUser = headerLayout.findViewById(R.id.tvUser);
-        tvEmail = headerLayout.findViewById(R.id.tvMail);
         profileIcon = headerLayout.findViewById(R.id.imgUser);
 
         if (mAuth.getCurrentUser() != null) {
@@ -163,14 +156,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
         else if (id==R.id.navFriends){
-
+            Intent ref = new Intent(MainActivity.this, ChatActivity.class);
+            startActivity(ref);
+            finish();
         }
 
         else if (id == R.id.navSettings) {
 
             Intent refresh = new Intent(MainActivity.this, ConfigActivity.class);
             startActivity(refresh);
-            finish();
 
         } else if (id == R.id.navAboutApp) {
 
@@ -191,7 +185,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
                     tvUser.setText(dataSnapshot1.getValue(User.class).getUserName());
-                    tvEmail.setText(dataSnapshot1.getValue(User.class).getEmail());
                     if (dataSnapshot1.getValue(User.class).getProfileImage() != null) {
                         storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot1.getValue(User.class).getProfileImage());
                         Glide.with(getApplicationContext())

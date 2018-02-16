@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private TextView tvUser,tvEmail;
     private ImageView profileIcon;
+    private static boolean isInDynamic;
+    private static NavigationView navigationView;
 
     private DatabaseReference dbr;
 
@@ -76,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_main);
+
+        isInDynamic = true;
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
 
@@ -88,8 +92,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mAuth = FirebaseAuth.getInstance();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        if (!isInDynamic) {
+
+            hideItems();
+        }
 
         View headerLayout = navigationView.getHeaderView(0);
         holderLayout = (LinearLayout) findViewById(R.id.holderLayout);
@@ -187,12 +196,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.navForum) {
 
 
+                DynamicActivity.setCurrentPage(1);
 
         } else if (id == R.id.navInfo) {
 
+                DynamicActivity.setCurrentPage(3);
+
         } else if (id == R.id.navTournament) {
 
-            alertInfo();
+             DynamicActivity.setCurrentPage(2);
+
+            //Te lo comento y cambialo al de about us
+            //alertInfo();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -270,6 +285,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(startIntent);
         finish();
     }
+
     public void alertInfo() {
 
         final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
@@ -291,6 +307,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         dialog.show();
 
+    }
+
+    public static void setIsInDynamicTrue() {
+
+        isInDynamic = true;
+    }
+
+    public static void setIsInDynamicFalse() {
+
+        hideItems();
+        isInDynamic = false;
+    }
+
+    public static void hideItems() {
+
+        Menu menu = navigationView.getMenu();
+        menu.findItem(R.id.navForum).setVisible(false);
+        menu.findItem(R.id.navTournament).setVisible(false);
+        menu.findItem(R.id.navInfo).setVisible(false);
     }
 }
 

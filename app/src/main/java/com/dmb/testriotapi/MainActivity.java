@@ -205,9 +205,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.navTournament) {
 
              DynamicActivity.setCurrentPage(2);
+        } else if(id == R.id.navAboutUs) {
 
-            //Te lo comento y cambialo al de about us
-            //alertInfo();
+            alertInfo();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -279,6 +279,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public static void setIsInDynamicTrue() {
 
+        showItems();
         isInDynamic = true;
     }
 
@@ -294,6 +295,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         menu.findItem(R.id.navForum).setVisible(false);
         menu.findItem(R.id.navTournament).setVisible(false);
         menu.findItem(R.id.navInfo).setVisible(false);
+    }
+
+    public static void showItems() {
+
+        Menu menu = navigationView.getMenu();
+        menu.findItem(R.id.navForum).setVisible(true);
+        menu.findItem(R.id.navTournament).setVisible(true);
+        menu.findItem(R.id.navInfo).setVisible(true);
     }
 }
 

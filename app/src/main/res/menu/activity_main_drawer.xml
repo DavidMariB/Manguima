@@ -5,27 +5,32 @@
     tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/navFriends"
-        android:icon="@mipmap/friends"
-        android:title="@string/amigos" />
-    <item
-        android:id="@+id/navSettings"
-        android:icon="@mipmap/ic_settings_black_24dp"
-        android:title="@string/action_settings" />
-    <item
         android:id="@+id/navUsers"
+        android:icon="@drawable/ic_users"
         android:title="Users" />
     <item
+        android:id="@+id/navFriends"
+        android:icon="@drawable/ic_friends"
+        android:title="@string/amigos" />
+    <item
         android:id="@+id/navForum"
+        android:icon="@drawable/ic_foro"
         android:title="Forum" />
     <item
         android:id="@+id/navTournament"
+        android:icon="@drawable/ic_trophy"
         android:title="Tournaments" />
     <item
         android:id="@+id/navInfo"
+        android:icon="@drawable/ic_info"
         android:title="Information" />
     <item
+        android:id="@+id/navSettings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/action_settings" />
+    <item
         android:id="@+id/navLogOut"
+        android:icon="@drawable/ic_logout"
         android:title="Log out" />
 
 </menu>

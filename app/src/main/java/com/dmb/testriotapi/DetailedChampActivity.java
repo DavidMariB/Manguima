@@ -45,6 +45,9 @@ public class DetailedChampActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_champ);
 
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.negro));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.negro));
+
         imgChampIcon = findViewById(R.id.detailedChampIcon);
         tvChampName = findViewById(R.id.detailedChampName);
         tvChampTitle = findViewById(R.id.detailedChampTitle);

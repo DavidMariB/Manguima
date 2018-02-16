@@ -5,6 +5,7 @@
     android:id="@+id/friendsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/negro"
     android:orientation="vertical"
     tools:context="com.dmb.testriotapi.FriendsActivity">
 
@@ -19,12 +20,8 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <FrameLayout
-            android:id="@+id/frameLayoutFriends"
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/back">
-
-        </FrameLayout>
+            android:layout_height="match_parent" />
     </LinearLayout>
 </LinearLayout>

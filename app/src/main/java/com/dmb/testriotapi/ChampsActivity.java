@@ -43,6 +43,9 @@ public class ChampsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champs);
 
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.negro));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.negro));
+
         recyclerView = findViewById(R.id.recyclerChampList);
 
         requestAllChamps();

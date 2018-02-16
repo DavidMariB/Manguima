@@ -30,5 +30,8 @@
     <style name="Dialog" parent="Theme.AppCompat.DayNight.Dialog">
         <item name="colorAccent">@color/negro</item>
     </style>
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/negro</item>
+    </style>
 
 </resources>

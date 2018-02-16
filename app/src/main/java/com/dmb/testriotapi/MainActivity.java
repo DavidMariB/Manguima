@@ -1,5 +1,7 @@
 package com.dmb.testriotapi;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -11,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -171,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.navAboutApp) {
 
+            alertInfo();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -247,6 +251,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent startIntent = new Intent(MainActivity.this, DynamicActivity.class);
         startActivity(startIntent);
         finish();
+    }
+    public void alertInfo() {
+
+        final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                .setTitle(R.string.infoTitle)
+                .setMessage(R.string.thx)
+
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                }).create();
+        dialog.setOnShowListener( new DialogInterface.OnShowListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onShow(DialogInterface arg0) {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(R.color.negro);
+            }
+        });
+
+        dialog.show();
+
     }
 }
 

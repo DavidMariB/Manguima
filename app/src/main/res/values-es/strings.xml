@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TestRiotAPI</string>
+    <string name="app_name">Mänguima Project</string>
+    <string name="infoTitle">Acerca de...</string>
+    <string name="thx">Gracias por usar Mänguima!\nVisitanos en www.manguimaproject.com\nVersion 1.0</string>
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Entrar o registrarse</string>
     <string name="action_sign_in_short">Entrar</string>

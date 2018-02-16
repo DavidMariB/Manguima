@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">TestRiotAPI</string>
-
+    <string name="app_name">Mänguima Project</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -23,7 +22,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="title_activity_login2">Sign in</string>
-
+    <string name="infoTitle">About...</string>
+    <string name="thx">Thank you for using Mänguima!\nVisit us on www.manguimaproject.com\nVersion 1.0</string>
     <string name="notRegistered"><u>Are you not registered? Click here.</u></string>
     <string name="forgetPassword"><u>Did you forget your password? Click here.</u></string>
     <string name="alreadyRegistered"><u>Already registered? Log in.</u></string>

@@ -46,7 +46,7 @@
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".DetailedChampActivity" />
         <activity android:name=".NewPostActivity" />
-        <activity android:name=".ChampsActivity"></activity>
+        <activity android:name=".ChampsActivity" />
     </application>
 
 </manifest>

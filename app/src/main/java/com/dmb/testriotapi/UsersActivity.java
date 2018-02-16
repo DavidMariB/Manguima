@@ -32,8 +32,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UsersActivity extends MainActivity {
 
-    private Toolbar mToolbar;
-
     private RecyclerView mUsersList;
 
     private static DatabaseReference mUsersDatabase;
@@ -74,11 +72,15 @@ public class UsersActivity extends MainActivity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
+        mUserRef.child("online").setValue("false");
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
-
-            // Check if user is signed in (non-null) and update UI accordingly.
-            FirebaseUser currentUser = mAuth.getCurrentUser();
 
                 mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
                 mUserRef.child("online").setValue("true");
@@ -200,6 +202,7 @@ public class UsersActivity extends MainActivity {
                 imgConection.setImageResource(R.mipmap.disconected);
             }
         }
+
     }
 
 }

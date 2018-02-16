@@ -48,9 +48,6 @@ public class UsersActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
 
-        getSupportActionBar().setTitle(getText(R.string.TodosUsuarios));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
 
         mLayoutManager = new LinearLayoutManager(this);

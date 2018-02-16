@@ -26,13 +26,11 @@ public class SlideSkinsAdapter extends PagerAdapter {
     Context mContext;
     LayoutInflater mLayoutInflater;
     private List<Skin> skins;
-    private DetailedChampActivity dca = new DetailedChampActivity();
-    private String champName,skinNumber;
+    private String champName;
 
     public SlideSkinsAdapter(Context context,String champName, List<Skin> skins) {
         mContext = context;
         this.champName = champName;
-        this.skinNumber = skinNumber;
         this.skins = skins;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

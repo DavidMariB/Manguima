@@ -52,30 +52,6 @@ FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteract
     }
 
     @Override
-    public ArrayList<Champion> getChampions() {
-        return this.champions;
-    }
-
-    @Override
-    public void addChampion(Champion champion) {
-            this.champions.add(champion);
-    }
-
-    @Override
-    public Champion getSingleChampion(int position) {
-        return this.champions.get(position);
-    }
-
-    @Override
-    public void champDetails(int position) {
-        Champion champion = this.champions.get(position);
-
-        Intent intent = new Intent(this,DetailedChampActivity.class);
-        intent.putExtra("champion",champion);
-        startActivity(intent);
-    }
-
-    @Override
     public void creaVentanaNuevoTema() {
 
     }

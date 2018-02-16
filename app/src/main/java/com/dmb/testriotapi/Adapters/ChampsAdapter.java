@@ -1,6 +1,7 @@
 package com.dmb.testriotapi.Adapters;
 
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -9,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dmb.testriotapi.Models.Champion;
 import com.dmb.testriotapi.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -46,6 +49,9 @@ public class ChampsAdapter extends RecyclerView.Adapter<ChampsAdapter.ChampViewH
     public void onBindViewHolder(ChampsAdapter.ChampViewHolder champViewHolder, final int position) {
         Champion champion = champions.get(position);
         champViewHolder.champName.setText(champion.getName());
+        final Context m = champViewHolder.champName.getContext();
+        String GameVersion = "8.3.1";
+        Picasso.with(m).load("http://ddragon.leagueoflegends.com/cdn/"+GameVersion+"/img/champion/"+champion.getImage()).into(champViewHolder.img_Champ);
     }
 
     @Override
@@ -55,11 +61,12 @@ public class ChampsAdapter extends RecyclerView.Adapter<ChampsAdapter.ChampViewH
 
     public static class ChampViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView champName;
+        ImageView img_Champ;
 
         ChampViewHolder(View itemView) {
             super(itemView);
             champName = itemView.findViewById(R.id.tvChampName);
-
+            img_Champ = itemView.findViewById(R.id.img_Champ);
             itemView.setOnClickListener(this);
         }
 

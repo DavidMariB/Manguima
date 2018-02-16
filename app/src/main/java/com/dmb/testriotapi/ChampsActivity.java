@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -59,7 +60,8 @@ public class ChampsActivity extends AppCompatActivity {
         });
 
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(llm);
+        GridLayoutManager gm = new GridLayoutManager(getApplicationContext(), 3);
+        recyclerView.setLayoutManager(gm);
 
         recyclerView.setAdapter(champsAdapter);
 

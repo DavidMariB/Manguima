@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,14 +41,14 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
     private ChatAdapter chatAdapter;
     private FirebaseUser currentUser;
     private ArrayList<Mensaje> listaMensajes;
+    private ArrayList<String> uidKey;
     private ArrayList<Chat> listaChats;
     private DatabaseReference ref;
     private ImageView send;
     private EditText etMensaje;
-    private String uid2;
+    private String uid2, uid1;
     private TextView targetUser;
     private String keyChat;
-    private String uid1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
         ref = (FirebaseDatabase.getInstance().getReference("chats"));
         listaMensajes = new ArrayList<Mensaje>();
         listaChats = new ArrayList<Chat>();
+        uidKey = new ArrayList<String>();
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         send = (ImageView) findViewById(R.id.btnSendChat);
@@ -63,6 +66,12 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
 
         Intent i = getIntent();
         uid2 = i.getStringExtra("uid");
+        uid1 = currentUser.getUid();
+        uidKey.add(uid1);
+        uidKey.add(uid2);
+        Collections.sort(uidKey);
+
+        keyChat = uidKey.get(0) + uidKey.get(1);
 
         getWindow().setNavigationBarColor(getResources().getColor(R.color.morado));
         getWindow().setStatusBarColor(getResources().getColor(R.color.negro));
@@ -73,18 +82,36 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
         recycler = (RecyclerView) findViewById(R.id.recycler_view_chat);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        String etMensaje = this.etMensaje.getText().toString();
-        uid1 = currentUser.getUid();
-
+        createChat();
         checkChat();
+    }
 
-        if (keyChat == null) {
+    @Override
+    public void onClick(View view) {
 
-            createChat();
+        //Boton de enviar
+        if (view.getId() == R.id.btnSendChat) {
+            if (!etMensaje.getText().toString().equals("")) {
+                String keyMensaje = ref.push().getKey();
+                ref.child(keyChat).child(keyMensaje)
+                        .setValue(new Mensaje(etMensaje.getText().toString(), currentUser.getUid()));
+                etMensaje.setText("");
+            }
         }
+    }
 
-        Query q = ref.child(keyChat).child("messages");
+    //------------------------Dropeo de chat que seguramente acabare quitando porque no me gusta--//
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
+        //ref.child(keyChat).removeValue();
+    }
+
+    //--------------------Metodo para comprobar si ya se ha creado un chat-----------------//
+    public void checkChat() {
+
+        Query q = ref.child(keyChat);
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -104,66 +131,10 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
         });
     }
 
-    @Override
-    public void onClick(View view) {
-
-        //Boton de enviar
-        if (view.getId() == R.id.btnSendChat) {
-            if (!etMensaje.getText().toString().equals("")) {
-                String keyMensaje = ref.push().getKey();
-                ref.child(keyChat).child("messages").child(keyMensaje)
-                        .setValue(new Mensaje(etMensaje.getText().toString(), currentUser.getUid()));
-                etMensaje.setText("");
-            }
-        }
-    }
-
-    //------------------------Dropeo de chat que seguramente acabare quitando porque no me gusta--//
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        ref.child(keyChat).removeValue();
-    }
-
-    //--------------------Metodo para comprobar si ya se ha creado un chat-----------------//
-    public void checkChat() {
-
-        Query q = ref.orderByChild("uid1").equalTo(uid1);
-        q.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot child: dataSnapshot.getChildren()) {
-                    listaChats.add(child.getValue(Chat.class));
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        if (!listaChats.isEmpty()) {
-            for (int i = 0; i > listaChats.size(); i++) {
-
-                if (listaChats.get(i).getUid2().equals(uid2)) {
-
-                    keyChat = listaChats.get(i).getKey();
-                }
-            }
-        }
-    }
-
     //--------------------Metodo para crear un chat-----------------//
     public void createChat() {
 
-        keyChat = ref.push().getKey();
-        Chat chat = new Chat(uid1, uid2, keyChat);
-
-        ref.child(keyChat).setValue(chat);
-        ref.child(keyChat).child("messages").child("recordatorio")
+        ref.child(keyChat).child("recordatorio")
                 .setValue(new Mensaje("Recuerda no dar contraseñas", "ElBuenoDeManguima"));
     }
 }

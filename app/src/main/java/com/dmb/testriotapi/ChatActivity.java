@@ -82,7 +82,9 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
         recycler = (RecyclerView) findViewById(R.id.recycler_view_chat);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
+        //Crea el chat
         createChat();
+        //Comprueba los mensajes en tiempo real
         checkChat();
     }
 

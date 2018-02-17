@@ -30,25 +30,25 @@
 
     <Button
         android:id="@+id/profile_send_req_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/profile_decline_btn"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="12dp"
-        android:backgroundTint="@color/redColor"
+        android:background="@drawable/radius"
         android:text="@string/EnviarAmistad"
-        android:textColor="@android:color/white" />
+        android:textColor="@color/negro" />
 
     <Button
         android:id="@+id/profile_decline_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/redColor"
+        android:background="@drawable/radius"
         android:text="@string/RechazarAmistad"
-        android:textColor="@android:color/white" />
+        android:textColor="@color/negro" />
 
     <Button
         android:id="@+id/profile_change_image"
@@ -73,5 +73,14 @@
         android:text="Editar Datos de Usuario"
         android:textColor="@android:color/white"
         android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/pic_start_chat"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:layout_alignTop="@+id/profile_displayName"
+        android:layout_toEndOf="@+id/profile_decline_btn"
+        android:background="@drawable/radius"
+        app:srcCompat="@drawable/chat_black" />
 
 </RelativeLayout>

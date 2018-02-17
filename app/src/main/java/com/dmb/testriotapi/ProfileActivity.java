@@ -47,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private DatabaseReference mUserRef;
-    private ImageView mProfileImage;
+    private ImageView mProfileImage, mStartChat;
     private TextView mProfileName, mProfileStatus, mProfileFriendsCount;
     private Button mProfileSendReqBtn, mDeclineBtn, mChangeProfileImage, mEditUserData;
     private String username,name,surname,birthday;
@@ -74,6 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
     private StorageReference sr = fs.getReference();
 
     private Uri filePath;
+    private String selected_user;
 
     private String imgRef;
 
@@ -87,6 +88,9 @@ public class ProfileActivity extends AppCompatActivity {
             mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
         }
         final String user_id = getIntent().getStringExtra("user_id");
+
+        //David creo esta variable porque la necesito
+        selected_user = user_id;
 
         mRootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -102,6 +106,7 @@ public class ProfileActivity extends AppCompatActivity {
         mDeclineBtn = findViewById(R.id.profile_decline_btn);
         mChangeProfileImage = findViewById(R.id.profile_change_image);
         mEditUserData = findViewById(R.id.profile_edit_user_data);
+        mStartChat = findViewById(R.id.pic_start_chat);
 
         mCurrent_state = "not_friends";
 
@@ -405,7 +410,14 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        //-----------LISTENER NUEVO CHAT----------//
+        mStartChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                startChat();
+            }
+        });
     }
 
     //---------- CAMBIO DE IMAGEN DE PERFIL ------------//
@@ -500,6 +512,16 @@ public class ProfileActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Intent i = new Intent(ProfileActivity.this,UsersActivity.class);
+        startActivity(i);
+    }
+
+    //-------------------INICIO NUEVO CHAT-----------------//
+
+    public void startChat() {
+
+        Intent i = new Intent(this, ChatActivity.class);
+        i.putExtra("uid", selected_user);
+        i.putExtra("nombre", username);
         startActivity(i);
     }
 

@@ -98,4 +98,14 @@
     <string name="CancelarAmistad">"CANCEL·LAR PETICIÓ D'AMISTAT "</string>
     <string name="EliminarAmigo">"ELIMINAR AMIC "</string>
     <string name="ErrorPeticion">"Error a l'enviar la petició "</string>
+    <string name="VolverCampeon">"Tornar al Campió "</string>
+    <string name="HistoriaCampeon">"HISTÒRIA DEL CAMPIÓ "</string>
+    <string name="CerrarSesion">"Tancar Sessió "</string>
+    <string name="Usuarios">Usuaris</string>
+    <string name="Foro">Fòrum</string>
+    <string name="Torneos">Tornejos</string>
+    <string name="Informacion">"Informació "</string>
+    <string name="NoRecuerdaContra">"Recorda no donar contrasenyes "</string>
+    <string name="Campeon">Campions</string>
+    <string name="AcercaNosotros">"Sobre nosaltres "</string>
 </resources>

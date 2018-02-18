@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="HISTORIA DEL CAMPEON" />
+        android:text="@string/HistoriaCampeon" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/skinsSlider"

@@ -137,6 +137,6 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
     public void createChat() {
 
         ref.child(keyChat).child("recordatorio")
-                .setValue(new Mensaje("Recuerda no dar contraseñas", "ElBuenoDeManguima"));
+                .setValue(new Mensaje(getText(R.string.NoRecuerdaContra).toString(), "ElBuenoDeManguima"));
     }
 }

@@ -98,4 +98,14 @@
     <string name="CancelarAmistad">CANCELAR PETICIÓN DE AMISTAD</string>
     <string name="EliminarAmigo">ELIMINAR AMIGO</string>
     <string name="ErrorPeticion">Error al enviar la petición</string>
+    <string name="VolverCampeon">Volver al Campeón</string>
+    <string name="HistoriaCampeon">HISTORIA DEL CAMPEÓN</string>
+    <string name="CerrarSesion">Cerrar Sesión</string>
+    <string name="Usuarios">Usuarios</string>
+    <string name="Foro">Foro</string>
+    <string name="Torneos">Torneos</string>
+    <string name="Informacion">Información</string>
+    <string name="NoRecuerdaContra">Recuerda no dar contraseñas</string>
+    <string name="Campeon">Campeones</string>
+    <string name="AcercaNosotros">"sobre nosotros "</string>
 </resources>

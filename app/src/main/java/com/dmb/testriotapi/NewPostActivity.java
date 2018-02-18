@@ -55,10 +55,10 @@ public class NewPostActivity extends MainActivity {
     public boolean checkTemaFields(){
 
         if (TextUtils.isEmpty(getNombre)){
-            etNombre.setError("Introduce un nombre de tema");
+            etNombre.setError(getText(R.string.IntroduceTema));
             checkFields = false;
         }else if(TextUtils.isEmpty(getMensaje)){
-            etMensaje.setError("¡El tema no puede estar vacío!");
+            etMensaje.setError(getText(R.string.TemaVacio));
             checkFields = false;
         }else {
             checkFields = true;
@@ -80,7 +80,7 @@ public class NewPostActivity extends MainActivity {
         Forum f = new Forum(getNombre, getUser, getMensaje, currentDate, getKey);
 
         bbdd.child(getKey).setValue(f);
-        Toast.makeText(NewPostActivity.this, "¡Tema creado!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(NewPostActivity.this, getText(R.string.TemaCreado), Toast.LENGTH_SHORT).show();
         finish();
 
     }

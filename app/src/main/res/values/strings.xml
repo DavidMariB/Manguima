@@ -108,4 +108,14 @@
     <string name="CancelarAmistad">CANCEL PETITION FOR FRIENDSHIP</string>
     <string name="EliminarAmigo">ELIMINATE FRIEND</string>
     <string name="ErrorPeticion">Error sending the request</string>
+    <string name="VolverCampeon">Return to the Champion</string>
+    <string name="HistoriaCampeon">CHAMPION HISTORY</string>
+    <string name="CerrarSesion">Sign off</string>
+    <string name="Usuarios">Users</string>
+    <string name="Foro">Forum</string>
+    <string name="Torneos">Tournaments</string>
+    <string name="Informacion">Information</string>
+    <string name="NoRecuerdaContra">Remember not to give passwords</string>
+    <string name="Campeon">Champions</string>
+    <string name="AcercaNosotros">About us</string>
 </resources>

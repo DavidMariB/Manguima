@@ -7,7 +7,7 @@
     <item
         android:id="@+id/navUsers"
         android:icon="@drawable/ic_users"
-        android:title="Users" />
+        android:title="@string/Usuarios" />
     <item
         android:id="@+id/navFriends"
         android:icon="@drawable/ic_friends"
@@ -15,15 +15,15 @@
     <item
         android:id="@+id/navForum"
         android:icon="@drawable/ic_foro"
-        android:title="Forum" />
+        android:title="@string/Foro" />
     <item
         android:id="@+id/navTournament"
         android:icon="@drawable/ic_trophy"
-        android:title="Tournaments" />
+        android:title="@string/Torneos" />
     <item
         android:id="@+id/navInfo"
         android:icon="@drawable/ic_info"
-        android:title="Information" />
+        android:title="@string/Informacion" />
     <item
         android:id="@+id/navSettings"
         android:icon="@drawable/ic_settings"
@@ -31,10 +31,10 @@
     <item
         android:id="@+id/navLogOut"
         android:icon="@drawable/ic_logout"
-        android:title="Log out" />
+        android:title="@string/CerrarSesion" />
     <item
         android:id="@+id/navAboutUs"
         android:icon="@drawable/ic_about_us"
-        android:title="AboutUs" />
+        android:title="@string/AcercaNosotros" />
 
 </menu>

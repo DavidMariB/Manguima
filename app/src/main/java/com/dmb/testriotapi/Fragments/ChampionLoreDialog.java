@@ -24,7 +24,7 @@ public class ChampionLoreDialog extends DialogFragment {
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(inflater.inflate(R.layout.dialog_champ_lore, null))
                 // Add action buttons
-                .setPositiveButton("Volver al Campeon", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getText(R.string.VolverCampeon), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 

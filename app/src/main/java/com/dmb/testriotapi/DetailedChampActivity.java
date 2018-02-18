@@ -72,7 +72,7 @@ public class DetailedChampActivity extends AppCompatActivity {
                         .setMessage(getChampLore)
                         .setTitle(tvChampName.getText().toString()+" Lore")
                         // Add action buttons
-                        .setPositiveButton("Volver al Campeon", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(getText(R.string.VolverCampeon), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
 

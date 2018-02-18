@@ -30,6 +30,8 @@ FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteract
     private static ViewPager viewPager;
     private PagerAdapter mPagerAdapter;
 
+    private String apiKey,gameVersion;
+
     private ArrayList<Champion> champions = new ArrayList<>();
 
     @Override
@@ -42,6 +44,9 @@ FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteract
             Window w = getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+
+        apiKey = "RGAPI-29f00e71-10ee-4816-9dd8-f7f5429b6b34";
+        gameVersion = "8.3.1";
 
         //Creacion del ViewPager
         viewPager = (ViewPager) findViewById(R.id.dynamicPager);
@@ -95,18 +100,13 @@ FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteract
     }
 
     @Override
-    public ArrayList<Champion> getChampions() {
-        return null;
-    }
-
-    @Override
     public String getApiKey() {
-        return null;
+        return this.apiKey;
     }
 
     @Override
     public String getGameVersion() {
-        return null;
+        return this.gameVersion;
     }
 
     @Override

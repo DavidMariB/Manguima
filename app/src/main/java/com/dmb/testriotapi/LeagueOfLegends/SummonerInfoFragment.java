@@ -316,7 +316,7 @@ public class SummonerInfoFragment extends Fragment {
             e.printStackTrace();
         }
 
-        btnRecentMatches.setVisibility(View.VISIBLE);
+        //btnRecentMatches.setVisibility(View.VISIBLE);
     }
 
     public void callRecentMatchesFragment(){
@@ -357,7 +357,6 @@ public class SummonerInfoFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-        ArrayList<Champion> getChampions();
         String getApiKey();
         String getGameVersion();
         void setRegion(String region);

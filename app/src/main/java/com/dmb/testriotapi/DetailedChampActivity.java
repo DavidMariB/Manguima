@@ -54,7 +54,7 @@ public class DetailedChampActivity extends AppCompatActivity {
         btnChampLore = findViewById(R.id.detailedChampLore);
         viewPager = findViewById(R.id.skinsSlider);
 
-        apiKey = "RGAPI-505e7cbc-0304-46df-ae00-8200b9d391da";
+        apiKey = "RGAPI-29f00e71-10ee-4816-9dd8-f7f5429b6b34";
         gameVersion = "8.3.1";
 
         getChampionData();

@@ -31,8 +31,6 @@ public class ChampsActivity extends AppCompatActivity {
 
     private String champName,champKey,champTitle,champImg;
 
-    private ProgressDialog progressDialog;
-
     private ChampsAdapter champsAdapter;
 
     private ArrayList<Champion> champions = new ArrayList<>();

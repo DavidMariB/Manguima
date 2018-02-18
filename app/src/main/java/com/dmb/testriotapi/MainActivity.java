@@ -40,11 +40,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth mAuth;
     private StorageReference storageReference;
 
-    private String apiKey,gameVersion,selectedRegion,accountID;
-
     private LinearLayout holderLayout;
 
-    private TextView tvUser,tvEmail;
+    private TextView tvUser;
     private ImageView profileIcon;
 
     private static NavigationView navigationView;
@@ -131,11 +129,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.navUsers) {
-
             Intent intent = new Intent(this,UsersActivity.class);
             startActivity(intent);
         } else if (id == R.id.navSettings) {
-
             Intent refresh = new Intent(MainActivity.this, ConfigActivity.class);
             startActivity(refresh);
         } else if (id == R.id.navLogOut) {

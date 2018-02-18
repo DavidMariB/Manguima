@@ -156,7 +156,7 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
     //--------------------------Metodo para cargar imagenes--------------------//
     public void loadPic() {
 
-        if (!uCurrentPic.equals("")) {
+        if (uCurrentPic != null) {
 
             storageReference = FirebaseStorage.getInstance().getReference().child(uCurrentPic);
             Glide.with(getApplicationContext())
@@ -168,7 +168,7 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
             Picasso.with(getApplicationContext()).load(R.mipmap.default_avatar).into(picCurrent);
         }
 
-        if (!targetPic.equals("")) {
+        if (targetPic != null) {
 
             storageReference = FirebaseStorage.getInstance().getReference().child(targetPic);
             Glide.with(getApplicationContext())

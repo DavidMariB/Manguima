@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private TextView tvUser,tvEmail;
     private ImageView profileIcon;
-    private static boolean isInDynamic;
+
     private static NavigationView navigationView;
     private String currentUserPic, currentUserName;
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_main);
 
-        isInDynamic = true;
+
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
 
@@ -95,11 +95,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        if (!isInDynamic) {
-
-            hideItems();
-        }
 
         View headerLayout = navigationView.getHeaderView(0);
         holderLayout = (LinearLayout) findViewById(R.id.holderLayout);
@@ -280,19 +275,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public static void setIsInDynamicTrue() {
+    public void setIsInDynamicTrue() {
 
         showItems();
-        isInDynamic = true;
     }
 
-    public static void setIsInDynamicFalse() {
+    public void setIsInDynamicFalse() {
 
         hideItems();
-        isInDynamic = false;
     }
 
-    public static void hideItems() {
+    public void hideItems() {
 
         Menu menu = navigationView.getMenu();
         menu.findItem(R.id.navForum).setVisible(false);
@@ -300,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         menu.findItem(R.id.navInfo).setVisible(false);
     }
 
-    public static void showItems() {
+    public void showItems() {
 
         Menu menu = navigationView.getMenu();
         menu.findItem(R.id.navForum).setVisible(true);

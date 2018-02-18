@@ -135,7 +135,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
             tCurrentUser.setText(m.getText());
             this.time.setText(time);
 
-            if (!pic.equals("")) {
+            if (pic != null) {
 
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(pic);
                 Glide.with(context)
@@ -172,7 +172,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
                 this.time.setText(time);
                 tTargetName.setText(name);
 
-                if (!pic.equals("")) {
+                if (pic != null) {
 
                     StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(pic);
                     Glide.with(context)

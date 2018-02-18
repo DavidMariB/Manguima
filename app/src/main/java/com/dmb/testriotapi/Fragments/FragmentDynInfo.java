@@ -1,5 +1,7 @@
 package com.dmb.testriotapi.Fragments;
 
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -22,6 +25,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.dmb.testriotapi.Adapters.ChampsAdapter;
 import com.dmb.testriotapi.ChampsActivity;
+import com.dmb.testriotapi.LeagueOfLegends.SummonerInfoFragment;
 import com.dmb.testriotapi.Models.Champion;
 import com.dmb.testriotapi.R;
 
@@ -40,6 +44,8 @@ public class FragmentDynInfo extends Fragment {
     private String mParam2;
 
     private Button btnChampsActivity;
+    private LinearLayout fragmentLoader;
+    private FragmentTransaction ft;
 
     private OnFragmentInteractionListener mListener;
 
@@ -72,6 +78,7 @@ public class FragmentDynInfo extends Fragment {
         View v = inflater.inflate(R.layout.fragment_fragment_dyn_info, container, false);
 
         btnChampsActivity = v.findViewById(R.id.btnChampsActivity);
+        fragmentLoader = v.findViewById(R.id.fragmentLoader);
 
         btnChampsActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +87,12 @@ public class FragmentDynInfo extends Fragment {
                 startActivity(intent);
             }
         });
+
+        SummonerInfoFragment f = SummonerInfoFragment.newInstance(null,null);
+
+        ft = getFragmentManager().beginTransaction();
+        ft.add(R.id.fragmentLoader, f, "fragmentLol");
+        ft.commit();
 
         return v;
     }
@@ -107,6 +120,7 @@ public class FragmentDynInfo extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     public interface OnFragmentInteractionListener {
         void cosasDelInfo(Uri uri);

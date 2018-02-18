@@ -18,12 +18,14 @@ import com.dmb.testriotapi.Fragments.FragmentDynForo;
 import com.dmb.testriotapi.Fragments.FragmentDynInfo;
 import com.dmb.testriotapi.Fragments.FragmentDynNoticias;
 import com.dmb.testriotapi.Fragments.FragmentDynTorneos;
+import com.dmb.testriotapi.LeagueOfLegends.SummonerInfoFragment;
 import com.dmb.testriotapi.Models.Champion;
 
 import java.util.ArrayList;
 
 public class DynamicActivity extends MainActivity implements
-FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteractionListener{
+FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteractionListener ,
+        SummonerInfoFragment.OnFragmentInteractionListener{
 
     private static ViewPager viewPager;
     private PagerAdapter mPagerAdapter;
@@ -85,6 +87,36 @@ FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteract
     public static void setCurrentPage (int pagina) {
 
         viewPager.setCurrentItem(pagina);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public ArrayList<Champion> getChampions() {
+        return null;
+    }
+
+    @Override
+    public String getApiKey() {
+        return null;
+    }
+
+    @Override
+    public String getGameVersion() {
+        return null;
+    }
+
+    @Override
+    public void setRegion(String region) {
+
+    }
+
+    @Override
+    public void setAccountID(String account) {
+
     }
 
 

@@ -114,6 +114,11 @@ public class ProfileActivity extends MainActivity {
         mDeclineBtn.setVisibility(View.INVISIBLE);
         mDeclineBtn.setEnabled(false);
 
+        if (mCurrent_user.getUid().equals(selected_user)) {
+
+            mStartChat.setVisibility(View.INVISIBLE);
+        }
+
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setTitle(getText(R.string.CargandoUsuario));
         mProgressDialog.setMessage(getText(R.string.EsperaUsuario));

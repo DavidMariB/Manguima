@@ -22,9 +22,15 @@
 
         <Button
             android:id="@+id/btnChampsActivity"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Campeon" />
+
+        <LinearLayout
+            android:id="@+id/fragmentLoader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
     </LinearLayout>
 
 </FrameLayout>

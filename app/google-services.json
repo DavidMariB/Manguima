@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "430442945610-96h9g6shlgg7o62esb6jfsq7rkmj20ti.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dmb.testriotapi",
+            "certificate_hash": "52c1ea260e9cd9a15f18a91da8faaec8a4bb80ac"
+          }
+        },
+        {
           "client_id": "430442945610-rnnd82i52t7oveidjvfr94l3oqkjhjqm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

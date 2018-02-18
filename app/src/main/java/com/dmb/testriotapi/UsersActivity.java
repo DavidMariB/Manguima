@@ -40,9 +40,7 @@ public class UsersActivity extends MainActivity {
     private static StorageReference storageReference;
 
     private LinearLayoutManager mLayoutManager;
-    private FirebaseAuth mAuth;
-    private DatabaseReference mUserRef;
-    private FirebaseUser mUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +54,6 @@ public class UsersActivity extends MainActivity {
         mUsersList = findViewById(R.id.users_list);
         mUsersList.setHasFixedSize(true);
         mUsersList.setLayoutManager(mLayoutManager);
-
-        mAuth = FirebaseAuth.getInstance();
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (mUser != null) {
-            mUserRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid());
-        }
 
     }
 

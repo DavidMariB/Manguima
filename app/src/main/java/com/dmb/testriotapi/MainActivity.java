@@ -99,6 +99,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         getUserData();
+        final DatabaseReference lastOnlineRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid()).child("lastTime");
+
+        final DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
+
+        connectedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                boolean connected = snapshot.getValue(Boolean.class);
+                if (connected) {
+                    DatabaseReference con = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid()).push();
+
+                    // when this device disconnects, remove it
+                    con.onDisconnect().removeValue();
+                    mUserRef.onDisconnect().setValue("false");
+                    // when I disconnect, update the last time I was seen online
+                    lastOnlineRef.onDisconnect().setValue(ServerValue.TIMESTAMP);
+
+                    // add this device to my connections list
+                    // this value could contain info about the device or a timestamp too
+                    con.setValue(Boolean.TRUE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                System.err.println("Listener was cancelled at .info/connected");
+            }
+        });
     }
 
     @Override

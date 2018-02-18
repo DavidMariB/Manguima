@@ -37,8 +37,6 @@ public class UsersActivity extends MainActivity {
 
     private static DatabaseReference mUsersDatabase;
 
-    private static StorageReference storageReference;
-
     private LinearLayoutManager mLayoutManager;
 
 
@@ -83,7 +81,7 @@ public class UsersActivity extends MainActivity {
 
                 usersViewHolder.setDisplayName(user.getName());
                 usersViewHolder.setUserName(user.getUserName());
-                usersViewHolder.setUserImage(user.getProfileImage(), getApplicationContext());
+                usersViewHolder.setUserImage(user.getProfileImage());
 
 
                 final String user_id = getRef(position).getKey();
@@ -148,25 +146,23 @@ public class UsersActivity extends MainActivity {
 
         }
 
-        public void setUserImage(final String profileIcon, final Context ctx){
+        public void setUserImage(final String profileIcon){
 
             final CircleImageView userImageView = mView.findViewById(R.id.user_single_image);
 
-            mUsersDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            final Context context = userImageView.getContext();
+
+            DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("usuarios");
+
+            dbr.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    
-                    if (dataSnapshot.getValue(User.class).getProfileImage() != null){
-                        storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
-
-                        Glide.with(ctx)
+                    if(dataSnapshot.getValue(User.class).getProfileImage() != null){
+                        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
+                        Glide.with(context)
                                 .using(new FirebaseImageLoader())
                                 .load(storageReference)
                                 .into(userImageView);
-                    }else{
-
-                        Picasso.with(ctx).load(profileIcon).placeholder(R.mipmap.default_avatar).into(userImageView);
                     }
                 }
 
@@ -179,7 +175,7 @@ public class UsersActivity extends MainActivity {
         }
 
         public void setUserOnline(String online_status) {
-            ImageView imgConection = (ImageView) mView.findViewById(R.id.imgConection);
+            ImageView imgConection = mView.findViewById(R.id.imgConection);
             if(online_status.equals("true")){
                 imgConection.setImageResource(R.mipmap.conected);
             } else {

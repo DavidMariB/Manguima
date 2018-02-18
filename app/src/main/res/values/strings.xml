@@ -105,8 +105,8 @@
     <string name="CargandoUsuario">Loading User Information</string>
     <string name="EsperaUsuario">Wait while we load the user\'s information.</string>
     <string name="AceptarAmistad">ACCEPT FRIEND REQUEST</string>
-    <string name="CancelarAmistad">CANCEL PETITION FOR FRIENDSHIP</string>
-    <string name="EliminarAmigo">ELIMINATE FRIEND</string>
+    <string name="CancelarAmistad">CANCEL FRIEND REQUEST</string>
+    <string name="EliminarAmigo">DELETE FRIEND</string>
     <string name="ErrorPeticion">Error sending the request</string>
     <string name="VolverCampeon">Return to the Champion</string>
     <string name="HistoriaCampeon">CHAMPION HISTORY</string>

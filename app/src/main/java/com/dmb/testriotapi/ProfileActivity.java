@@ -43,7 +43,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends MainActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private DatabaseReference mUserRef;
@@ -51,6 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView mProfileName, mProfileStatus, mProfileFriendsCount;
     private Button mProfileSendReqBtn, mDeclineBtn, mChangeProfileImage, mEditUserData;
     private String username,name,surname,birthday;
+    private String profilePic;
 
     private DatabaseReference mUsersDatabase;
 
@@ -127,6 +128,7 @@ public class ProfileActivity extends AppCompatActivity {
                 surname = dataSnapshot.child("surname").getValue().toString();
                 birthday = dataSnapshot.child("age").getValue().toString();
                 mProfileName.setText(username);
+                profilePic = dataSnapshot.getValue(User.class).getProfileImage();
 
                 if (dataSnapshot.getValue(User.class).getProfileImage() != null){
                     storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot.getValue(User.class).getProfileImage());
@@ -520,6 +522,8 @@ public class ProfileActivity extends AppCompatActivity {
     public void startChat() {
 
         Intent i = new Intent(this, ChatActivity.class);
+        i.putExtra("userPic", getCurrentUserPic());
+        i.putExtra("targetPic", profilePic);
         i.putExtra("uid", selected_user);
         i.putExtra("nombre", username);
         startActivity(i);

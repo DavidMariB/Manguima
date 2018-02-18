@@ -15,24 +15,31 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.dmb.testriotapi.Adapters.ChatAdapter;
 import com.dmb.testriotapi.Models.Forum.Chat;
 import com.dmb.testriotapi.Models.Forum.Mensaje;
+import com.dmb.testriotapi.Models.User;
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ChatActivity extends MainActivity implements View.OnClickListener{
@@ -49,6 +56,10 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
     private String uid2, uid1;
     private TextView targetUser;
     private String keyChat;
+    private String targetPic, uCurrentPic;
+    private StorageReference storageReference;
+    private CircleImageView picTarget, picCurrent;
+    private String targetUserString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +74,17 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
         send = (ImageView) findViewById(R.id.btnSendChat);
         etMensaje = (EditText) findViewById(R.id.etMessageChat);
         targetUser = (TextView) findViewById(R.id.tTargetUser);
+        picCurrent = (CircleImageView) findViewById(R.id.img_Profile_current);
+        picTarget = (CircleImageView) findViewById(R.id.img_Profile_target);
 
         Intent i = getIntent();
+
+        targetPic = i.getStringExtra("targetPic");
+        uCurrentPic = i.getStringExtra("userPic");
+
+        //Carga la imagenes de perfil
+        loadPic();
+
         uid2 = i.getStringExtra("uid");
         uid1 = currentUser.getUid();
         uidKey.add(uid1);
@@ -75,6 +95,7 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
 
         getWindow().setNavigationBarColor(getResources().getColor(R.color.morado));
         getWindow().setStatusBarColor(getResources().getColor(R.color.negro));
+        targetUserString = i.getStringExtra("nombre");
         targetUser.setText(i.getStringExtra("nombre"));
 
         send.setOnClickListener(this);
@@ -102,15 +123,7 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
         }
     }
 
-    //------------------------Dropeo de chat que seguramente acabare quitando porque no me gusta--//
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        //ref.child(keyChat).removeValue();
-    }
-
-    //--------------------Metodo para comprobar si ya se ha creado un chat-----------------//
+    //--------------------Metodo para comprobar el chat-----------------//
     public void checkChat() {
 
         Query q = ref.child(keyChat);
@@ -122,7 +135,7 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
                 for (DataSnapshot child: dataSnapshot.getChildren()) {
                     listaMensajes.add(child.getValue(Mensaje.class));
                 }
-                chatAdapter = new ChatAdapter(listaMensajes);
+                chatAdapter = new ChatAdapter(listaMensajes, uCurrentPic, targetPic, getCurrentUserName(), targetUserString, getApplicationContext());
                 recycler.setAdapter(chatAdapter);
             }
 
@@ -136,7 +149,35 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
     //--------------------Metodo para crear un chat-----------------//
     public void createChat() {
 
-        ref.child(keyChat).child("recordatorio")
-                .setValue(new Mensaje(getText(R.string.NoRecuerdaContra).toString(), "ElBuenoDeManguima"));
+        ref.child(keyChat).child("recordatorio").
+                setValue(new Mensaje(getText(R.string.NoRecuerdaContra).toString(), "ElBuenoDeManguima"));
+    }
+
+    //--------------------------Metodo para cargar imagenes--------------------//
+    public void loadPic() {
+
+        if (!uCurrentPic.equals("")) {
+
+            storageReference = FirebaseStorage.getInstance().getReference().child(uCurrentPic);
+            Glide.with(getApplicationContext())
+                    .using(new FirebaseImageLoader())
+                    .load(storageReference)
+                    .into(picCurrent);
+        } else {
+
+            Picasso.with(getApplicationContext()).load(R.mipmap.default_avatar).into(picCurrent);
+        }
+
+        if (!targetPic.equals("")) {
+
+            storageReference = FirebaseStorage.getInstance().getReference().child(targetPic);
+            Glide.with(getApplicationContext())
+                    .using(new FirebaseImageLoader())
+                    .load(storageReference)
+                    .into(picTarget);
+        } else {
+
+            Picasso.with(getApplicationContext()).load(R.mipmap.default_avatar).into(picTarget);
+        }
     }
 }

@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ImageView profileIcon;
     private static boolean isInDynamic;
     private static NavigationView navigationView;
+    private String currentUserPic, currentUserName;
 
     private DatabaseReference dbr;
 
@@ -196,15 +197,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.navForum) {
 
 
-                DynamicActivity.setCurrentPage(1);
+            DynamicActivity.setCurrentPage(1);
 
         } else if (id == R.id.navInfo) {
 
-                DynamicActivity.setCurrentPage(3);
+            DynamicActivity.setCurrentPage(3);
 
         } else if (id == R.id.navTournament) {
 
-             DynamicActivity.setCurrentPage(2);
+            DynamicActivity.setCurrentPage(2);
         } else if(id == R.id.navAboutUs) {
 
             alertInfo();
@@ -225,7 +226,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
                     tvUser.setText(dataSnapshot1.getValue(User.class).getUserName());
+                    currentUserName = dataSnapshot1.getValue(User.class).getUserName();
                     if (dataSnapshot1.getValue(User.class).getProfileImage() != null) {
+                        currentUserPic = dataSnapshot1.getValue(User.class).getProfileImage();
                         storageReference = FirebaseStorage.getInstance().getReference().child(dataSnapshot1.getValue(User.class).getProfileImage());
                         Glide.with(getApplicationContext())
                                 .using(new FirebaseImageLoader())
@@ -303,6 +306,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         menu.findItem(R.id.navForum).setVisible(true);
         menu.findItem(R.id.navTournament).setVisible(true);
         menu.findItem(R.id.navInfo).setVisible(true);
+    }
+
+    public String getCurrentUserPic() {
+
+        return currentUserPic;
+    }
+
+    public String getCurrentUserName() {
+
+        return currentUserName;
     }
 }
 

@@ -134,12 +134,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             Intent intent = new Intent(this,UsersActivity.class);
             startActivity(intent);
-        } else if (id==R.id.navFriends){
-
-            //Esto cambialo cuando este disponible la lista de amigos
-            Intent ref = new Intent(MainActivity.this, FriendsActivity.class);
-            startActivity(ref);
-            finish();
         } else if (id == R.id.navSettings) {
 
             Intent refresh = new Intent(MainActivity.this, ConfigActivity.class);

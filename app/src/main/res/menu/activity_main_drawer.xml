@@ -9,10 +9,6 @@
         android:icon="@drawable/ic_users"
         android:title="@string/Usuarios" />
     <item
-        android:id="@+id/navFriends"
-        android:icon="@drawable/ic_friends"
-        android:title="@string/amigos" />
-    <item
         android:id="@+id/navForum"
         android:icon="@drawable/ic_foro"
         android:title="@string/Foro" />

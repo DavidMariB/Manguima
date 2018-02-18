@@ -95,8 +95,8 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
 
         keyChat = uidKey.get(0) + uidKey.get(1);
 
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.morado));
-        getWindow().setStatusBarColor(getResources().getColor(R.color.negro));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.negro));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.morado));
         targetUserString = i.getStringExtra("nombre");
         targetUser.setText(i.getStringExtra("nombre"));
 

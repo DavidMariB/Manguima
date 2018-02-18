@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
         android:text="@string/EditarPerfil"
         android:textColor="@color/white"
         android:textSize="30sp"
@@ -21,32 +22,32 @@
         android:id="@+id/editUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Nombre"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
         android:shadowColor="@color/white"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/editUserSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:ems="10"
         android:hint="Apellido"
-        android:layout_marginLeft="20dp"
         android:shadowColor="@color/white"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/editUserUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:ems="10"
         android:hint="Nombre de Usuario"
-        android:layout_marginLeft="20dp"
         android:shadowColor="@color/white"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/btnConfirmEditProfile"
@@ -54,9 +55,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:background="@color/redColor"
+        android:background="@drawable/radius"
         android:text="@string/EditarPerfil"
-        android:textColor="@color/white" />
+        android:textColor="@color/negro" />
 
 
 </LinearLayout>

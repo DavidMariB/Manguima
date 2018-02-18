@@ -3,6 +3,7 @@ package com.dmb.testriotapi;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dmb.testriotapi.Models.User;
@@ -33,7 +35,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+import java.util.Locale;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     private FirebaseUser mUser;
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DatabaseReference dbr;
 
     private User user;
+    Integer idioma;
 
     private DatabaseReference mUserRef;
 
@@ -92,14 +97,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     DatabaseReference con = FirebaseDatabase.getInstance().getReference().child("conexiones").push();
 
                     // when this device disconnects, remove it
-                   con.onDisconnect().removeValue();
+                    con.onDisconnect().removeValue();
                     mUserRef.child("online").onDisconnect().setValue("false");
                     // when I disconnect, update the last time I was seen online
                     lastOnlineRef.onDisconnect().setValue(ServerValue.TIMESTAMP);
 
                     // add this device to my connections list
                     // this value could contain info about the device or a timestamp too
-                   con.setValue(Boolean.TRUE);
+                    con.setValue(Boolean.TRUE);
                 }
             }
 
@@ -121,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -129,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.navUsers) {
-            Intent intent = new Intent(this,UsersActivity.class);
+            Intent intent = new Intent(this, UsersActivity.class);
             startActivity(intent);
         } else if (id == R.id.navSettings) {
             Intent refresh = new Intent(MainActivity.this, ConfigActivity.class);
@@ -139,10 +143,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mAuth.signOut();
             FirebaseUser currentUser = mAuth.getCurrentUser();
 
-            if(currentUser != null) {
+            if (currentUser != null) {
                 mUserRef.child("online").setValue("false");
             }
-            Intent intent = new Intent(this,LoginActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             this.finish();
             return true;
@@ -158,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.navTournament) {
 
             DynamicActivity.setCurrentPage(1);
-        } else if(id == R.id.navAboutUs) {
+        } else if (id == R.id.navAboutUs) {
 
             alertInfo();
         }
@@ -176,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     tvUser.setText(dataSnapshot1.getValue(User.class).getUserName());
                     currentUserName = dataSnapshot1.getValue(User.class).getUserName();
                     if (dataSnapshot1.getValue(User.class).getProfileImage() != null) {
@@ -220,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         dialog.cancel();
                     }
                 }).create();
-        dialog.setOnShowListener( new DialogInterface.OnShowListener() {
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onShow(DialogInterface arg0) {
@@ -267,5 +271,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return currentUserName;
     }
+
 }
 

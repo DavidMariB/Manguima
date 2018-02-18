@@ -53,6 +53,9 @@ public class UsersActivity extends MainActivity {
         mUsersList.setHasFixedSize(true);
         mUsersList.setLayoutManager(mLayoutManager);
 
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.negro));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.negro));
+
     }
 
     @Override

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkColor"
+    android:paddingBottom="30dp"
     tools:context="com.dmb.testriotapi.ProfileActivity">
 
     <ImageView
@@ -60,7 +61,7 @@
         android:backgroundTint="@color/redColor"
         android:text="Cambiar Foto de Perfil"
         android:textColor="@android:color/white"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/profile_edit_user_data"
@@ -72,12 +73,13 @@
         android:backgroundTint="@color/redColor"
         android:text="Editar Datos de Usuario"
         android:textColor="@android:color/white"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/pic_start_chat"
         android:layout_width="75dp"
         android:layout_height="35dp"
+        android:layout_alignBottom="@+id/profile_displayName"
         android:layout_alignTop="@+id/profile_displayName"
         android:layout_toEndOf="@+id/profile_decline_btn"
         android:background="@drawable/radius"

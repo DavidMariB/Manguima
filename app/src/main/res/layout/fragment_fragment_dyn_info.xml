@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/negro"
+    android:paddingBottom="30dp"
     tools:context="com.dmb.testriotapi.Fragments.FragmentDynInfo">
 
     <!-- TODO: Update blank fragment layout -->
@@ -24,7 +25,10 @@
             android:id="@+id/btnChampsActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Campeon" />
+            android:layout_margin="20dp"
+            android:background="@drawable/radiusm"
+            android:text="@string/Campeon"
+            android:textColor="@color/white" />
 
         <LinearLayout
             android:id="@+id/fragmentLoader"

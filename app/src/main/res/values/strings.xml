@@ -98,7 +98,7 @@
     <string name="NuevoTema">Create new post</string>
     <string name="EditarPerfil">"EDIT PROFILE "</string>
     <string name="FalloComentario">"The comment can not be empty "</string>
-    <string name="TemaCreado">Theme created!</string>
+    <string name="TemaCreado">Post created!</string>
     <string name="IntroduceTema">Enter a topic name</string>
     <string name="TemaVacio">The theme can not be empty!</string>
     <string name="TodosUsuarios">"All users "</string>
@@ -109,7 +109,7 @@
     <string name="EliminarAmigo">DELETE FRIEND</string>
     <string name="ErrorPeticion">Error sending the request</string>
     <string name="VolverCampeon">Return to the Champion</string>
-    <string name="HistoriaCampeon">CHAMPION HISTORY</string>
+    <string name="HistoriaCampeon">Story</string>
     <string name="CerrarSesion">Sign off</string>
     <string name="Usuarios">Users</string>
     <string name="Foro">Forum</string>

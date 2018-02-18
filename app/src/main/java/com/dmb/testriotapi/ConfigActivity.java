@@ -33,6 +33,9 @@ public class ConfigActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
 
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.negro));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.negro));
+
         idioma = 0;
 
         btnEspanol = (ImageButton) findViewById(R.id.tvEspanol);

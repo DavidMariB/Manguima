@@ -22,37 +22,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/tvEspanol"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/amarillo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSeleccionaIdioma"
-        app:srcCompat="@mipmap/icono_espana" />
+        android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/tvCatalan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:background="@color/amarillo"
-        app:layout_constraintStart_toEndOf="@+id/tvEspanol"
-        app:layout_constraintTop_toTopOf="@+id/tvEspanol"
-        app:srcCompat="@mipmap/icono_cataluna" />
+        <ImageButton
+            android:id="@+id/tvEspanol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@mipmap/icono_espana"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSeleccionaIdioma" />
 
-    <ImageButton
-        android:id="@+id/tvIngles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/amarillo"
-        app:layout_constraintStart_toEndOf="@+id/tvCatalan"
-        app:layout_constraintTop_toBottomOf="@+id/tvSeleccionaIdioma"
-        app:srcCompat="@mipmap/icono_uk" />
+        <ImageButton
+            android:id="@+id/tvCatalan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@mipmap/icono_cataluna"
+            app:layout_constraintStart_toEndOf="@+id/tvEspanol"
+            app:layout_constraintTop_toTopOf="@+id/tvEspanol" />
+
+        <ImageButton
+            android:id="@+id/tvIngles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@mipmap/icono_uk"
+            app:layout_constraintStart_toEndOf="@+id/tvCatalan"
+            app:layout_constraintTop_toBottomOf="@+id/tvSeleccionaIdioma" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvVisitaWeb"
@@ -69,11 +77,12 @@
 
     <Button
         android:id="@+id/btWeb"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:background="@color/amarillo"
+        android:background="@drawable/radius"
         android:text="www.manguimaproject.com"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -95,11 +104,12 @@
 
     <Button
         android:id="@+id/btSalir"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="15dp"
-        android:background="@color/amarillo"
+        android:background="@drawable/radius"
         android:drawableLeft="@mipmap/icono_salirr"
         android:text="@string/salir_boton"
         app:layout_constraintStart_toStartOf="parent"

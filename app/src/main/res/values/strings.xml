@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mänguima Project</string>
+    <string name="app_name">Manguima Project</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -23,7 +23,7 @@
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="title_activity_login2">Sign in</string>
     <string name="infoTitle">About...</string>
-    <string name="thx">Thank you for using Mänguima!\nVisit us on www.manguimaproject.com\nVersion 1.0</string>
+    <string name="thx">Thank you for using Manguima!\nVisit us on www.manguimaproject.com\nVersion 1.0</string>
     <string name="notRegistered"><u>Are you not registered? Click here.</u></string>
     <string name="forgetPassword"><u>Did you forget your password? Click here.</u></string>
     <string name="alreadyRegistered"><u>Already registered? Log in.</u></string>
@@ -36,7 +36,7 @@
     <string name="Games">Games</string>
     <string name="Like">Like ()</string>
     <string name="Comment">Comment ()</string>
-    <string name="Join">Join Mänguima!</string>
+    <string name="Join">Join Manguima!</string>
     <string name="Resetpass">Password Reset</string>
     <string name="Sendmail">Send Password Reset</string>
     <string name="NombreUser">Username</string>
@@ -52,7 +52,7 @@
     <string name="Exit">Exit</string>
     <string name="selecciona_idioma">Select Language:</string>
     <string name="visita_nuestra_web">Visit Our Web:</string>
-    <string name="salir_manguima">Leave Mänguima:</string>
+    <string name="salir_manguima">Leave Manguima:</string>
     <string name="salir_boton">Leave</string>
     <string name="desarrolador_por">Developed by</string>
     <string name="login">Login</string>
@@ -115,7 +115,7 @@
     <string name="Foro">Forum</string>
     <string name="Torneos">Tournaments</string>
     <string name="Informacion">Information</string>
-    <string name="NoRecuerdaContra">Remember not to give passwords</string>
+    <string name="NoRecuerdaContra">Never share your passwords</string>
     <string name="Campeon">Champions</string>
     <string name="AcercaNosotros">About us</string>
 </resources>

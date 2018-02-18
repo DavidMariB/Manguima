@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Mänguima Project</string>
+    <string name="app_name">Manguima Project</string>
     <string name="infoTitle" tools:ignore="StringEscaping">Sobre l'app...</string>
-    <string name="thx" tools:ignore="StringEscaping">Gràcies per utilitzar Mänguima!\nVisita'ns en www.manguimaproject.com\nVersion 1.0</string>
+    <string name="thx" tools:ignore="StringEscaping">Gràcies per utilitzar Manguima!\nVisita'ns en www.manguimaproject.com\nVersion 1.0</string>
     <string name="RecentGames">partides Recents</string>
     <string name="SearchSummoner">"Cercar Invocador "</string>
     <string name="Summoner">"Nom de Invocador "</string>
@@ -10,7 +10,7 @@
     <string name="AddBirth">"Afegeix ara una data de naixement! "</string>
     <string name="AddPhoto">"Afegeix ara una foto de perfil! "</string>
     <string name="NombreUser">"Nom d'usuari "</string>
-    <string name="Join">"Uneix-te a Mänguima! "</string>
+    <string name="Join">"Uneix-te a Manguima! "</string>
     <string name="prompt_email">"Correu Electrònic "</string>
     <string name="Comment">Comentar ()</string>
     <string name="Like">"M'agrada () "</string>
@@ -39,7 +39,7 @@
     <string name="Exit">Eixir</string>
     <string name="selecciona_idioma">Selecciona Llenguatge:</string>
     <string name="visita_nuestra_web">Visita la Nostra Web:</string>
-    <string name="salir_manguima">Ix de Mänguima:</string>
+    <string name="salir_manguima">Ix de Manguima:</string>
     <string name="salir_boton">Eixir</string>
     <string name="desarrolador_por">Desenvolupat per</string>
     <string name="forgetPassword"><u> Has oblidat la teva contrasenya? Feu clic aquí. </u></string>
@@ -105,7 +105,7 @@
     <string name="Foro">Fòrum</string>
     <string name="Torneos">Tornejos</string>
     <string name="Informacion">"Informació "</string>
-    <string name="NoRecuerdaContra">"Recorda no donar contrasenyes "</string>
+    <string name="NoRecuerdaContra">"Mai compartiu les vostres claus"</string>
     <string name="Campeon">Campions</string>
     <string name="AcercaNosotros">"Sobre nosaltres "</string>
 </resources>

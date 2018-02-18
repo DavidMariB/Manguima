@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mänguima Project</string>
+    <string name="app_name">Manguima Project</string>
     <string name="infoTitle">Acerca de...</string>
-    <string name="thx">Gracias por usar Mänguima!\nVisitanos en www.manguimaproject.com\nVersion 1.0</string>
+    <string name="thx">Gracias por usar Manguima!\nVisitanos en www.manguimaproject.com\nVersion 1.0</string>
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Entrar o registrarse</string>
     <string name="action_sign_in_short">Entrar</string>
@@ -25,7 +25,7 @@
     <string name="Like">Me gusta ()</string>
     <string name="Comment">Comentar ()</string>
     <string name="prompt_email">Correo Electrónico</string>
-    <string name="Join">¡Únete a Mänguima!</string>
+    <string name="Join">¡Únete a Manguima!</string>
     <string name="NombreUser">Nombre de Usuario</string>
     <string name="AddPhoto">¡Añade una foto de perfil!</string>
     <string name="AddBirth">¡Añade una fecha de nacimiento!</string>
@@ -40,7 +40,7 @@
     <string name="selecciona_idioma">Selecciona Lenguaje:</string>
     <string name="visita_nuestra_web">Visita Nuestra Web:</string>
     <string name="salir_boton">Salir</string>
-    <string name="salir_manguima">Sal de Mänguima:</string>
+    <string name="salir_manguima">Sal de Manguima:</string>
     <string name="desarrolador_por">Desarrollado por</string>
     <string name="forgetPassword"><u> ¿Olvidó su contraseña? Haga clic aquí. </u></string>
     <string name="Resetpass">Restablecer Contraseña</string>
@@ -105,7 +105,7 @@
     <string name="Foro">Foro</string>
     <string name="Torneos">Torneos</string>
     <string name="Informacion">Información</string>
-    <string name="NoRecuerdaContra">Recuerda no dar contraseñas</string>
+    <string name="NoRecuerdaContra">Nunca compartas tus contraseñas</string>
     <string name="Campeon">Campeones</string>
     <string name="AcercaNosotros">"sobre nosotros "</string>
 </resources>

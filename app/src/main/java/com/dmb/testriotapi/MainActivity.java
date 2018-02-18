@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         getUserData();
+        mUserRef.child("online").setValue("true");
         final DatabaseReference lastOnlineRef = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid()).child("lastTime");
 
         final DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
@@ -89,17 +91,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onDataChange(DataSnapshot snapshot) {
                 boolean connected = snapshot.getValue(Boolean.class);
                 if (connected) {
-                    DatabaseReference con = FirebaseDatabase.getInstance().getReference().child("usuarios").child(mUser.getUid()).push();
+                    DatabaseReference con = FirebaseDatabase.getInstance().getReference().child("conexiones").push();
 
                     // when this device disconnects, remove it
-                    con.onDisconnect().removeValue();
-                    mUserRef.onDisconnect().setValue("false");
+                   con.onDisconnect().removeValue();
+                    mUserRef.child("online").onDisconnect().setValue("false");
                     // when I disconnect, update the last time I was seen online
                     lastOnlineRef.onDisconnect().setValue(ServerValue.TIMESTAMP);
 
                     // add this device to my connections list
                     // this value could contain info about the device or a timestamp too
-                    con.setValue(Boolean.TRUE);
+                   con.setValue(Boolean.TRUE);
                 }
             }
 

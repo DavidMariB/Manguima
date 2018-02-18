@@ -89,7 +89,7 @@ FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteract
 
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter
-            implements FragmentDynNoticias.OnFragmentInteractionListener, FragmentDynForo.OnFragmentInteractionListener,
+            implements FragmentDynForo.OnFragmentInteractionListener,
             FragmentDynTorneos.OnFragmentInteractionListener{
 
         private Fragment currentFragment;
@@ -108,15 +108,12 @@ FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteract
             switch (position) {
 
                 case 0:
-                    currentFragment = FragmentDynNoticias.newInstance(null, null);
-                    break;
-                case 1:
                     currentFragment = FragmentDynForo.newInstance(null, null);
                     break;
-                case 2:
+                case 1:
                     currentFragment = FragmentDynTorneos.newInstance(null, null);
                     break;
-                case 3:
+                case 2:
                     currentFragment = FragmentDynInfo.newInstance(null, null);
                     break;
             }
@@ -126,13 +123,9 @@ FragmentDynForo.OnFragmentInteractionListener,FragmentDynInfo.OnFragmentInteract
 
         @Override
         public int getCount() {
-            return 4;
+            return 3;
         }
 
-        @Override
-        public void onFragmentInteraction(Uri uri) {
-
-        }
 
         @Override
         public void cosasDelTorneo(Uri uri) {

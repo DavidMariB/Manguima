@@ -54,7 +54,7 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
     private ImageView send;
     private EditText etMensaje;
     private String uid2, uid1;
-    private TextView targetUser;
+    private TextView targetUser, status;
     private String keyChat;
     private String targetPic, uCurrentPic;
     private StorageReference storageReference;
@@ -76,12 +76,14 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
         targetUser = (TextView) findViewById(R.id.tTargetUser);
         picCurrent = (CircleImageView) findViewById(R.id.img_Profile_current);
         picTarget = (CircleImageView) findViewById(R.id.img_Profile_target);
+        status = (TextView) findViewById(R.id.tStatus);
 
         Intent i = getIntent();
 
         targetPic = i.getStringExtra("targetPic");
         uCurrentPic = i.getStringExtra("userPic");
 
+        checkStatus();
         //Carga la imagenes de perfil
         loadPic();
 
@@ -179,5 +181,29 @@ public class ChatActivity extends MainActivity implements View.OnClickListener{
 
             Picasso.with(getApplicationContext()).load(R.mipmap.default_avatar).into(picTarget);
         }
+    }
+
+    public void checkStatus() {
+
+        DatabaseReference statusRef = FirebaseDatabase.getInstance().getReference("usuarios").child(currentUser.getUid()).child("online");
+
+        statusRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.getValue(String.class).equals("true")) {
+
+                    status.setText("OnLine");
+                } else {
+
+                    status.setText("OffLine");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

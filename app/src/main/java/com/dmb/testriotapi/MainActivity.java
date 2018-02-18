@@ -159,15 +159,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.navForum) {
 
 
-            DynamicActivity.setCurrentPage(1);
+            DynamicActivity.setCurrentPage(0);
 
         } else if (id == R.id.navInfo) {
 
-            DynamicActivity.setCurrentPage(3);
+            DynamicActivity.setCurrentPage(2);
 
         } else if (id == R.id.navTournament) {
 
-            DynamicActivity.setCurrentPage(2);
+            DynamicActivity.setCurrentPage(1);
         } else if(id == R.id.navAboutUs) {
 
             alertInfo();
